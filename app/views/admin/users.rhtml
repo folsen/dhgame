@@ -1,0 +1,13 @@
+<h3>Users</h3>
+<h4>Welcome, Admin - Use your godgiven right to administrate the feeble users...</h4>
+<span style="display:none;float:right;" id="admin_spin"><%= image_tag "ajax-loader.gif" %></span>
+<p style="text-align:center;">
+<% form_remote_tag :url => {:action => :search_users},:before => "Element.show('admin_spin');$('tableContent').innerHTML = '';", :complete =>"Element.hide('admin_spin')" do %>
+<%= text_field 'user', 'name' %><br />
+<%= submit_tag "Search" %>
+<% end %>
+<p>
+	<div style="display:inline;" id="tableContent">
+		<%= render :partial => "admin/users", :locals => {:users => @users} %>
+	</div>
+	

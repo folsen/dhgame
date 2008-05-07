@@ -1,0 +1,35 @@
+html{
+	background-color:#363942;
+	font-family:"Helvetica";
+	color:#FFF9E8;
+	font-size:0.8em;
+}
+
+a{
+	color:white;
+}
+
+h3{
+	font-size:1.2em;
+}
+
+h4{
+	font-size:1.0em;
+	font-weight:bold;
+}
+
+p{
+	color:#FFF9E8;
+	font-size:1.0em;
+}
+
+legend{
+	font-size:2.0em;
+}
+
+.clearAll{
+	clear:both;
+}
+
+
+

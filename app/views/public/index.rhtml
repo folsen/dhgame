@@ -1,0 +1,66 @@
+<h1>The Dreamhack Game</h1>
+
+
+<div class="login-form"> 
+
+		<% form_tag :action => :login do %> 
+		<p> 
+			<label for="name">Name:</label> 
+			<%= text_field_tag :name, params[:name] %> 
+		</p> 
+		<p> 
+			<label for="password">Password:</label> 
+			<%= password_field_tag :password, params[:password] %> 
+		</p> 
+		<p> 
+		<%= submit_tag "Login" %> 
+	</p> 
+	<% end %> 
+	<br />
+	
+	<span class="new_user_button">
+		<%= button_to "New User", {:action => :new},{:method => :get} %>
+	</span>
+	
+</div>
+
+<p><div style="width: 600px;">
+	The DreamHack Game is the traditional contest where intellect, 
+	craftiness and the ability to think logically makes you go far.
+	<br /><br />
+	With tough challenges, codes and mystical events we give you a contest beyond the normal…
+	<br /><br />
+	Everything isn’t always what it seems to be…
+	<br /><br />
+	The DreamHack Game is a contest that is played out on the unique 
+	battlefield that is DreamHack, on site at Elmia. It is an interactive
+	 quest where each contestant is supposed to deal with a number of challenges 
+	and riddles in the shortest possible time. Maybe it will take you to places 
+	you’ve never been before…
+	<br /><br />
+	The requirements for playing the game is that you are in place at DreamHack in 
+	Elmia and have registered at this site. You can already register now, so go do it!
+	During the contest you will complete tasks by entering passwords on this site. 
+	The passwords are never random letters and numbers, but can be a combination of words and numbers.
+	<br /><br />
+	Since The DreamHack Game is a rough competition and you race against the clock 
+	you have to work fast and efficiently. To you’re help you have the entire world. 
+	System requirements are that you can listen to mp3- and wav-files and view movies 
+	in avi-, mov- and mpg. You must have Macromedia Flash Player installed aswell. 
+	Other goods things to have is a camera, cell-phone, notepad, clock and miscellaneous 
+	code-breaking devices.
+	<br /><br />
+	The most important rule is that you are not allowed to ruin for anyone else. 
+	Leave visited places as they were when you got there, don’t destroy clues.
+	Never enter into restricted areas, you will never need to enter an area not open to the public.
+	<br /><br />
+	If you seem to have a problem of a technical nature, please e-mail the crew at creators@dhgame.eu
+	<br /><br />
+	You do not need any special knowledge to compete in The DreamHack Game, 
+	you only need to know how to obtain it.
+</div>
+</p>
+
+<br /><br />
+
+<br />

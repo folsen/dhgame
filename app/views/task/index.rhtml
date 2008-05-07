@@ -1,0 +1,26 @@
+<h2>Welcome, <%= User.active_user.name.capitalize %>...</h2>
+<p>
+  The most beautiful thing we can experience is the mysterious. <br/>
+  It is the source of all true art and all science. <br/>
+  He to whom this emotion is a stranger, who can no longer pause to wonder and stand rapt in awe, is as good as dead: his eyes are closed.
+  
+</p>
+  <p>
+  <%= episode_link_for_user(User.active_user) %>
+  </p>
+
+<div class="result_box">
+  <% unless User.active_user.progresses.empty? %>
+  <table>
+  <tr><td><b>Episode</b></td><td><b>Task</b></td><td><b>Placement</b></td></tr>
+  <% User.active_user.progresses.each do |p| %>
+  <tr><td><%= p.episode.name %></td><td><%= p.task.name %></td><td><%= p.position %></td></tr>
+  
+  <br />
+  
+  <% end %>
+  </table>
+  <% end %>
+</div>
+
+

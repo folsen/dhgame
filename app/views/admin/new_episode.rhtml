@@ -1,0 +1,29 @@
+<div class="depot-form">  
+  <%= error_messages_for "episode" %> 
+  <fieldset> 
+
+<legend>Enter Episode Details</legend> 
+<% form_tag :action => :save_episode do %> 
+  <p> 
+  <label for="task_name">Name:</label> 
+  <%= text_field "episode", "name",:size => 40 %> 
+  </p> 
+  <p> 
+  <label for="task_desc">Description:</label> 
+  <%= text_area "episode", "desc" %> 
+  </p>
+	<p>
+	<label for="task_starttime">Start:</label>
+	<%= datetime_select('episode', 'start_time') %>
+	</p>
+	<p>
+		<label for="task_headstart">Give headstart?</label>
+		<input type="checkbox" id="headstart_box" onChange="slideDown('headstart_selector')" />
+	</p>
+	<p id="headstart_selector" style="display:none">
+		<%= select_with_integer_options('episode', 'headstart',0,12)%> hours
+	</p>
+  <%= submit_tag "Save Episode", :class => "submit" %> 
+  <% end %> 
+  </fieldset> 
+</div> 

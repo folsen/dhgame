@@ -1,0 +1,49 @@
+<div class="top_menu_center_aligned">
+	<%= link_to "New Task", :action => :new_task %> | <%= link_to "New Episode", :action => :new_episode %>
+</div>
+
+<% @episodes.each do |episode| %>
+<div class="episode_box">
+<% if episode.tasks.empty? %>
+<span class="redLink">
+<% if episode.start_time > 9.hours.from_now %>
+<h3><%= link_to episode.name, :action => :edit_episode, :id => episode.id %></h3>
+<% else %>
+<h3><%= episode.name %></h3>
+<% end %>
+</span>
+<% else %>
+<% if episode.start_time > 9.hours.from_now %>
+<h3><%= link_to episode.name, :action => :edit_episode, :id => episode.id %></h3>
+<% else %>
+<h3><%= episode.name %></h3>
+<% end %>
+<% end %>	
+<p><% episode.desc %></p>
+<h5 style="cursor:pointer;">Tasks</h5>
+<div id="task_list_container<%=episode.id%>" style="" class="task_list_container">
+<ol id="task_list_episode<%=episode.position%>" class="tast_list">
+<% episode.tasks.each do |task| %>
+<li style="cursor:move;" id="task_<%= task.id %>">
+<div class="task_list_item">
+<% if task.answers.empty? %>
+<span class="redLink">
+<%= link_to task.name, :action => :show, :id => task.id  %>
+</span>
+<% else %>
+<%= link_to task.name, :action => :show, :id => task.id  %>
+<% end %>
+</div>
+</li>
+<% end %>
+</ol>
+</div>
+</div>
+<% if episode.start_time > 9.hours.from_now %>
+<%= sortable_element "task_list_episode#{episode.position}", 
+      :complete => visual_effect(:highlight, 'list'), 
+      :url => { :action => "order", :episode_position => episode.position } %>
+<% end %>
+<% end %>
+
+

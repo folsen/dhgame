@@ -1,0 +1,76 @@
+<div class="depot-form">  
+	
+	<% unless @user.nil? || @user.errors.empty? %>
+		<fieldset>
+			<legend style="color:red;">Ooops!</legend>
+		<p>	<%= error_messages_for "user" %> </p>
+		</fieldset>
+		<br class="clearAll" />
+	<% end %>
+		<br class="clearAll" />
+	<% form_for :user, :action => :save_user do |form| %> 
+
+	<fieldset> 
+
+		<legend>Usual Stuff</legend> 
+
+		<p> 
+			<label for="user_name">Name:</label> 
+			<%= form.text_field :name, :size => 40 %> 
+		</p>
+
+		<p> 
+			<label for="user_password">Password:</label> 
+			<%= form.password_field :password, :size => 40 %> 
+		</p> 
+
+		<p> 
+			<label for="user_password_confirmation">One more time:</label> 
+			<%= form.password_field :password_confirmation, :size => 40 %> 
+		</p> 
+
+
+	</fieldset> 
+	<br /><br />
+	<fieldset>
+		<legend>Contacty Stuff</legend>
+		<p>
+			<label for="email">Email:</label>
+			<%= form.text_field :email, :size => 40 %>
+		</p>
+		<p>
+			<label for="phone">Phone:</label>
+			<%= form.text_field :phone, :size => 40 %>
+		</p>
+		<p>
+			<label for="team">Team:</label>
+		 <%= form.text_field :team, :size => 40, :value => "Single Player" %>
+		
+		</p>
+	</fieldset>
+	<br /><br />
+	<fieldset>
+		<legend>Placy Stuff</legend>
+		<p id="place_form">
+			<label for="email">Place:</label>
+			<%= form.text_field :row, :size => 2 %><%= form.text_field :seat, :size => 3%>
+		</p>
+		<p>
+			<label for="crew">I am Crew [<span style="cursor:pointer;" onclick="showInfoBox('crew_info')">?</span>]:</label>
+			<%= form.check_box :crew,{:onChange => "hideBySlide('place_form')"} %>
+		</p>
+		<p>
+			<label for="nationality">Nationality:</label>
+			<%= form.country_select 'nationality', priority_countries = ["Sweden", "Great Britain", "Denmark", "Norway", "Finland"] %>
+		</p>
+	</fieldset>
+	<br /><br />
+	<fieldset>
+		<legend>Clickety Stuff</legend>
+		<p>
+	<%= submit_tag "Add User", :class => "submit" %> 
+	<% end %> 
+	<span id="crew_info" style="display:none;">
+		Crew får deltaga precis som alla andra, men deltar inte i pristävlingen. De rankas dock som alla andra!
+	</span>	
+</div> 

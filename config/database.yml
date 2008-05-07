@@ -1,0 +1,20 @@
+development:
+  adapter: mysql
+  database: cassi_development
+  username: root
+  password:
+
+test:
+  adapter: mysql
+  database: cassi_test
+  username: root
+  password:
+  socket: /opt/local/var/run/mysql5/mysqld.sock
+  
+production:
+  adapter: mysql
+  database: dhg
+  username: dhg
+  password: ninja666
+  socket: /var/run/mysqld/mysqld.sock
+  host: localhost

@@ -1,0 +1,27 @@
+.progressBar img, .percentImage1 img {
+	 background: white url(../images/percentImage_back1.png) top left no-repeat;
+	 padding: 0;
+	 margin: 5px 0 0 0;
+	 background-position: 1px 0;
+}
+
+.percentImage2 img {
+	 background: white url(../images/percentImage_back2.png) top left no-repeat;
+	 padding: 0;
+	 margin: 5px 0 0 0;
+	 background-position: 1px 0;
+}
+
+.percentImage3 img {
+	 background: white url(../images/percentImage_back3.png) top left no-repeat;
+	 padding: 0;
+	 margin: 5px 0 0 0;
+	 background-position: 1px 0;
+}
+
+.percentImage4 img {
+	 background: white url(../images/percentImage_back4.png) top left no-repeat;
+	 padding: 0;
+	 margin: 5px 0 0 0;
+	 background-position: 1px 0;
+}

@@ -1,0 +1,171 @@
+.page_holder{
+	width:800px;
+	border:1px solid black;
+	height:100%;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+.top_banner{
+	width:100%;
+}
+
+.top_menu{
+	width:97%;
+	height:20px;
+	color:#FFEFC7;
+	padding:5px;
+	margin-left:auto;
+	margin-right:auto;
+	font-size:0.8em;
+}
+
+.top_menu a{
+	color:inherit;
+	text-decoration:none;
+}
+
+.main_container{
+	padding:0px 20px 0px 20px;
+}
+
+.top_menu .top_menu_right_aligned{
+	float:right;
+}
+
+.top_menu .top_menu_left_aligned{
+	float:left;
+}
+
+.top_menu_center_aligned{
+	width:200px;
+	margin-right:auto;
+	margin-left:auto;
+	text-align:center;
+}
+
+.top_menu_center_aligned a{
+	text-decoration:none;
+}
+
+
+.footer{
+	width:100%;
+	height:20px;
+	margin-top:30px;
+	text-align:center;
+	font-size:0.7em;
+}
+
+.footer a{
+	color:inherit;
+	text-decoration:none;
+}
+
+/* Formy Stuff */
+
+.depot-form fieldset{
+	width:600px;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+.depot-form input{
+	float:right;
+}
+
+fieldset p{
+	width:400px;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+.depot-form .submit{
+	width:400px;
+}
+
+form .fieldWithErrors {
+	border:none;
+}
+
+.new_user_button{
+	float:right;
+}
+
+
+/* Edit-in-Place Stuff */
+
+.editable-content a{
+	color:inherit;
+}
+
+.editable-content{
+	display:inline;
+}
+
+.editable-content-large{
+	font-size:2.0em;
+}
+
+/* System messages */
+
+#box_of_notice{
+	width:300px;
+	margin-left:auto;
+	margin-right:auto;
+	border:2px dashed green;
+	padding:10px;
+}
+
+#box_of_warning{
+	width:300px;
+	margin-left:auto;
+	margin-right:auto;
+	border:2px dashed red;
+	padding:10px;
+}
+
+/* Implementation Specifics */
+
+.counter_box{
+	float:right;
+}
+
+#javascript_counter{
+	font-size:3.5em;
+}
+
+/* Listy Items */
+.head_row{
+	font-weight:bold;
+}
+
+#user_table{
+	width:100%;
+}
+
+.task_list{
+	list-style-type:none;
+}
+
+.redLink a{
+	color:red;
+}
+
+.redLink{
+	color:red;
+}
+
+.overview_box{
+	float:right;
+	width:200px;
+	border:1px solid white;
+	padding:15px;
+	margin:15px;
+}
+
+.login-form{
+	width:260px;
+	text-align:right;
+	float:right;
+}

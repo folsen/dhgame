@@ -1,0 +1,31 @@
+<div class="depot-form">  
+  <%= error_messages_for "task" %> 
+  <fieldset> 
+
+<% if @episodes.empty? %>
+<h3>All episodes has been frozen since they're LIVE!</h3>
+<% else %>
+<legend>Enter Task Details</legend> 
+<% form_tag :action => :save_task do %> 
+  <p> 
+  <label for="task_name">Name:</label> 
+  <%= text_field "task", "name",:size => 40 %> 
+  </p> 
+  <p> 
+  <label for="task_desc">Description:</label> 
+  <%= text_area "task", "desc" %> 
+  </p> 
+	<p>
+	<label for="task_episode">Episode:</label>
+	<%= collection_select("task", "episode_id" , @episodes, "id", "name") %>
+	</p>
+	<p>
+		<label for="task_partial">Is Partial-based:</label>
+		<%= text_field 'task', 'partial' %>
+	</p>
+	
+  <%= submit_tag "Save Task", :class => "submit" %> 
+  <% end %> 
+<% end %>
+  </fieldset> 
+</div> 
