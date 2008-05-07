@@ -22,3 +22,9 @@ set :use_sudo, false
 role :web, "dhgame.eu"
 role :app, "dhgame.eu"
 role :db,  "dhgame.eu", :primary => true
+
+namespace :deploy do
+  task :restart do
+    mongrel_cluster_ctl restart
+  end
+end
