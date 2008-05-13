@@ -1,7 +1,7 @@
 <div class="top_menu_center_aligned">
 	<%= link_to "New Task", :action => :new_task %> | <%= link_to "New Episode", :action => :new_episode %>
 </div>
-
+<br />
 <% @episodes.each do |episode| %>
 <div class="episode_box">
 <% if episode.tasks.empty? %>

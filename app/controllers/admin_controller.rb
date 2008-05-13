@@ -6,8 +6,9 @@ class AdminController < ApplicationController
       @users          = User.find_all_by_admin(0)
       @episodes       = Episode.find(:all)
       @user           = User.find_by_id(session[:user_id])
+      
     end
-
+    
     def create
       @episodes = Episode.find(:all)
     end
@@ -15,7 +16,7 @@ class AdminController < ApplicationController
     def timeline
       
     end
-      
+    
     def show
       begin 
         @task = Task.find(params[:id])

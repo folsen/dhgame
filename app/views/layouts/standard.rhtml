@@ -9,47 +9,67 @@
 	<%= javascript_include_tag :defaults %>
 	<%= javascript_include_tag 'jsProgressBarHandler' %>
 
-	<title>Cassi - Dreamhack Game Platform</title>
+	<title>Dreamhack Game Platform</title>
 </head>
 <body>
-<div class="page_holder">	
-	<div class="top_banner">
-		<%= image_tag("storms.jpg", {:id => "top_banner_image"})%>
-		<div class="top_menu">
-			<span class="top_menu_left_aligned">
-			<%= home_link %> | <%= info_link %> | <%= help_link %>
-			<% if !@user.nil? && @user.is_admin? %>
-			|
-			<%= link_to "Creation", :action => :create, :controller => :admin %> | <%= link_to "Timeline", :action => :timeline, :controller => :admin %> | <%= link_to "Users", :action => :users, :controller => :admin %>
-			| <%= link_to "Stats", :action => :stats, :controller => :admin %>
-			<% end %>
-			</span>
-			<span class="clearAll"></span>
-			<span class="top_menu_right_aligned">
-				<% if @user %>
-					<%= link_to @user.name, :action => :edit_user, :id => @user.id %>
-					| <%= link_to 'Logout', :controller => :public ,:action => :logout %>
-				<% end %>
-			</span>
-		</div>
-		
-	  </div>
-	<div class="main_container">
-		<%= yield %>
-			<% if flash[:error] %>
-			<div id="box_of_warning">
-				<%= flash[:error] %>
-			</div>
-			<% end %>
-			<% if flash[:notice] %>
-			<div id="box_of_notice">
-				<%= flash[:notice] %>
-			</div>
-			<% end %>
+<div id="main">
+/-------------------------------------------------------------------------------------------------------------------------------------------------------------------------\<br />
+<div class="generals" id="banner">
+ READING THE TITLE AND THE BLURB? TYPING IT INTO A SEARCH ENGINE? PURSUING EVEN A TRAIN OF THOUGHT THAT DOESN'T SEEM TO GIVE A COGENT ANSWER AT FIRST? LOOKING AT THE LI <br />
+ ST OF HELPFUL WEBSITES? LOOKING AT THE BINDER OF USEFUL STUFF? ALPHABETIZING? USING THE LEFTOVER LETTERS TO SPELL SOMETHING? REARRANGING THE LETTERS (AKA "ANAGRAMMING" <br />
+ OR <span class="greytext">"TRANSPOSING")?</span> LOOKING FOR <span class="greytext">UNUS</span>UAL LETTER FRE<span class="greytext">QUEN</span>CIES? DETERMI<span class="greytext">NING IF IT IS </span>A ROT 13/CAESAR S<span class="greytext">HIFT</span> IN GENERAL? SHIF<span class="greytext">TING</span> FROM LETTERS <span class="greytext">TO N</span>UMBER<span class="greytext">S? TREATING LETTERS</span> AS <br />
+ PRO<span class="greytext">TEIN SEQUENCES? TR</span>EATING LET<span class="greytext">TERS</span> AS CALL <span style="color: #ff0000;">L</span>ETTE<span class="greytext">RS? </span>TURNING IT<span class="greytext"> INTO A CRYPTIC C</span>ROSSWORD CLUE? S<span class="greytext">EEING </span>IF THESE WORDS R<span class="greytext">ELATE</span> TO SONG LYR<span class="greytext">ICS? </span>SEEIN<span class="greytext">G IF THERE ARE ANY </span>ACR <br />
+ ONY<span class="greytext">MS O</span>F PHRASES? <span class="greytext">DIAGO</span>NALIZING<span class="greytext"> (TA</span>KING THE FIRST<span class="greytext"> LET</span>TER OF T<span class="greytext">HE FI</span>RST ANSWER, THE SECOND LETTER<span class="greytext"> OF THE </span>SECOND)? LOOKIN<span class="greytext">G AT A</span> COMPUTER <span class="greytext">KEYBOA</span>RD? A<span class="greytext"> PUN</span><span style="color: #ff00ff;">?</span> GRAPHING IT FUNC <br />
+ TIO<span class="greytext">NALL</span>Y? GRAPHING I<span class="greytext">T PA</span>RAMETRI<span class="greytext">CALL</span>Y? CHECKING TO<span class="greytext"> SEE</span> IF YOU<span class="greytext">R NU</span>MBERS ARE IN THE RIGHT BASE (I<span class="greytext">NCLU</span>DI<span class="greytext">NG H</span>EX)? SHIFTING <span class="greytext">FROM NU</span>MBERS TO<span class="greytext"> LETTER</span>S? US<span class="greytext">ING </span>IT AS A PHONE NUMB <br />
+ ER?<span class="greytext"> USI</span>NG IT AS AN IP<span class="greytext"> ADD</span>RESS? <span class="greytext">MATC</span>HING NUMBERS T<span class="greytext">O MI</span>T BUIL<span class="greytext">DING</span>S? MATCHING NUMBERS TO MIT COU<span class="greytext">RSES</span>? TR<span class="greytext">EATI</span>NG NUMBERS AS<span class="greytext"> DATES? </span>TREATI<span class="greytext">NG NUMBE</span>RS AS<span class="greytext"> ATO</span>MIC WEIGHTS, NUMBE <br />
+ RS,<span class="greytext"> ETC</span>? TREATING NUMB<span class="greytext">ERS </span>AS LA<span class="greytext">TITU</span>DE/LONGITUDE O<span class="greytext">R GP</span>S COO<span class="greytext">RDIN</span>ATES? TREATING NUMBERS AS RADI<span class="greytext">O ST</span>ATIONS<span class="greytext">? TR</span>EATING NUMBE<span class="greytext">RS A</span>S<span class="greytext"> ASC</span>II N<span class="greytext">UMBE</span>R<span class="greytext">S? T</span>REATI<span class="greytext">NG N</span>UMBERS AS PLU NUMB <br />
+ ERS<span class="greytext">? TR</span>EATING NUMBERS <span class="greytext">AS I</span>SBN N<span class="greytext">UMBERS? SEEING IF THER</span>E ARE<span class="greytext"> ANY</span> STRANGE S<span class="greytext">EQUENCES</span>? SEEING IF<span class="greytext"> PRI</span>ME NUMBE<span class="greytext">RS A</span>RE INVOLVED<span class="greytext">? SE</span>EI<span class="greytext">NG I</span>F <span class="greytext">FUND</span>AM<span class="greytext">ENTA</span>L CON<span class="greytext">STANTS ARE INVO</span>LVED? A <br />
+ SKI<span class="greytext">NG W</span>HAT OTHER NUMBE<span class="greytext">RS A</span>RE CL<span class="greytext">OSE TO THE ONE YOU HAV</span>E? LO<span class="greytext">OKIN</span>G AT IT IN<span class="greytext"> A MIRRO</span>R? SQ<span style="color: #0000ff;">U</span>INTI<span class="greytext">NG AT IT FROM FAR </span>AWAY? TILT<span class="greytext">ING </span>IT?<span class="greytext"> LOOKING</span> AT<span class="greytext"> IT </span>UPSID<span class="greytext">E DOWN? LOOKING</span> THROUG <br />
+ H I<span class="greytext">T? R</span>EWRITING IT NE<span class="greytext">ATLY</span>? REWR<span class="greytext">ITIN</span>G IT ON GRAPH <span class="greytext">PAPE</span>R? SAY<span class="greytext">ING </span>IT OUT LOUD T<span class="greytext">O SO</span>MEONE ELS<span class="greytext">E? PUTTING YOURSELF </span>IN THE CO<span class="greytext">NSTR</span>UCTO<span class="greytext">R'S SH</span>OES?<span class="greytext"> MAK</span>ING I<span class="greytext">T 3D</span>? CUTTING IT UP? F <br />
+ OLD<span class="greytext">ING </span>IT? CONNECTIN<span class="greytext">G TH</span>E DOTS?<span class="greytext"> WHA</span>T IS IT? LOOKI<span class="greytext">NG A</span>T A SON<span class="greytext">G/PO</span>EM/BOOK/MOVI<span class="greytext">E/TV</span> SHOW? B<span class="greytext">RAIL</span>LE? MORSE CODE<span class="greytext">? OV</span>ERLAYING<span class="greytext"> IT </span>ON A <span class="greytext">MAP </span>OF MI<span class="greytext">T? G</span>ETTIN<span class="greytext">G ON</span> THE T? CHECKING I <br />
+ T F<span class="greytext">OR P</span>OP CULTURE <span class="greytext">REFER</span>ENCES? U<span class="greytext">SING</span> THE LIBRARY O<span class="greytext">F CO</span>NGRESS O<span class="greytext">R DEW</span>EY DECIMAL<span class="greytext"> SYS</span>TEM? AS<span class="greytext">KING</span> WHETHER IT HAS <span class="greytext">ANYT</span>HING TO<span class="greytext"> DO </span>PERSONALLY WIT<span class="greytext">H TH</span>E CON<span class="greytext">STRU</span>CTING TEAM? PALM G <br />
+ RAF<span class="greytext">ITTI? RUNNING IT BY</span> SOMEONE <span class="greytext">WHO </span>GOES TO MIT? T<span class="greytext">RUST</span>ING YOUR I<span class="greytext">NSTINCTS? TRUSTIN</span>G SOME<span class="greytext">ONE </span>ELSE'S INSTINCTS? <span class="greytext">ASKI</span>NG "WH<span class="greytext">AT'S</span> W<span style="color: #ffff00;">E</span>IRD ABOUT T<span class="greytext">HIS?"</span> TAK<span class="greytext">ING A STEP BACK? AS</span>KIN <br />
+ G F<span class="greytext">OR FRESH BRAINS?</span> CHECKING YO<span class="greytext">UR W</span>ORK? ASKING SO<span class="greytext">MEON</span>E ELSE TO CHE<span class="greytext">CK YOUR WORK? </span>EXPLA<span class="greytext">ININ</span>G YOUR WORK TO SOMEO<span class="greytext">NE E</span>LSE? <span class="greytext">DOIN</span>G WHAT YOU'VE <span class="greytext">ALRE</span>ADY D<span class="greytext">ONE AGAIN TO THE OU</span>TPU <br />
+ T? <span style="color: #00ff00;">C</span>ONSULTING THE LIST OF EXPERTISE? LEAVING THE ROOM? ASKING PEOPLE IF IT LOOKS LIKE ANYTHING THEY RECOGNIZE? THINKING ABOUT WHAT'S MISSING? ASKING YOURSELF WHETHER Y <br />
+ OU'VE USED ALL THE INFORMATION? KEEPING EVEN A STRANGE-LOOKING RESULT? GIVE ADMIN BEER? NOT THINKING ABOUT IT? ASKING "WHAT'S THE PATTERN"? REREADING THE INSTRUCTIONS? <br />
+</div>
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+<br />
+<div class="generals" id="menu">
+	<div id="left-menu">
+		<%= home_link %> | <%= info_link %> | <%= help_link %>
+		<% if !@user.nil? && @user.is_admin? %>
+		|
+		<%= link_to "Creation", :action => :create, :controller => :admin %> | <%= link_to "Timeline", :action => :timeline, :controller => :admin %> | <%= link_to "Users", :action => :users, :controller => :admin %>
+		| <%= link_to "Stats", :action => :stats, :controller => :admin %>
+		<% end %>
 	</div>
-	<div class="footer">
-		Code & Design by <a href="http://www.sykewarrior.com" target="_blank">Sykewarrior</a>
-	</div>
+	<div id="right-menu">
+		<% if @user %>
+			<%= link_to @user.name, :action => :edit_user, :id => @user.id %>
+			| <%= link_to 'Logout', :controller => :public ,:action => :logout %>
+		<% end %>
+	</div>&nbsp;
+</div>
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+<br />
+<div class="generals" id="content">
+
+
+<%= yield %>
+
+<% if flash[:error] %>
+<div id="box_of_warning">
+	<%= flash[:error] %>
+</div>
+<% end %>
+<% if flash[:notice] %>
+<div id="box_of_notice">
+	<%= flash[:notice] %>
+</div>
+<% end %>
+
+</div>
+\-------------------------------------------------------------------------------------------------------------------------------------------------------------------------/<br />
+
 </div>
 </body>
 </html>

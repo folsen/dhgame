@@ -1,19 +1,26 @@
 html{
-	background-color:#363942;
-	font-family:"Helvetica";
-	color:#FFF9E8;
-	font-size:0.8em;
+	background-color: black;
+	color: white;
 }
 
 a{
 	color:white;
 }
 
+h1 {
+	margin-top: 0px;
+}
+h2 {
+	margin-top: 0px;
+}
+
 h3{
+	margin-top: 0px;
 	font-size:1.2em;
 }
 
 h4{
+	margin-top: 0px;
 	font-size:1.0em;
 	font-weight:bold;
 }
@@ -31,5 +38,7 @@ legend{
 	clear:both;
 }
 
-
+ul {
+	margin-bottom: 0px;
+}
 

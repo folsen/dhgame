@@ -22,10 +22,10 @@
 			<%= user.team %>
 		</td>
 		<td>
-			<%= user.email %>
+			<%= user.email.slice!(0..25) %>
 		</td>
 		<td>
-			<%= user.phone%>
+			<%= user.phone.slice!(0..15)%>
 		</td>
 
 		<td>
