@@ -14,7 +14,7 @@ set :repository,  "ique@dhgame.eu:/repos/dhgame"
 # set :scm, :subversion
 set :scm, "git"
 set :user, "ique"
-set :branch, "origin/master"
+set :branch, "master"
 
 set :deploy_to, "/var/www/dhgame"
 set :use_sudo, false
