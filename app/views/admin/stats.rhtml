@@ -62,9 +62,9 @@
 	<% if s[0].split('.')[1] == "1" %>
 	<span style="float: left;"><%= @episodes[s[0].split('.')[0].to_i-1].name unless @episodes[s[0].split('.')[0].to_i-1].nil? %></span><br /><br />
 	<%end%>
-	<div style="background-color: green; margin-bottom: 3px; width: <%= (s[1].to_f/@users.length.to_f*500).to_i + 70 %>px;">
+	<div style="background-color: green; margin-bottom: 3px; width: <%= (s[1].to_f/(@users.length.to_f + 1)*500).to_i + 70 %>px;">
 	<%= s[0].split('.')[1] %>: <%= s[1] %>
-	<span style="float: right; position: relative; top: -10px;"><%= (s[1].to_f/@users.length.to_f*100).to_i %>%</span>
+	<span style="float: right; position: relative; top: -10px;"><%= (s[1].to_f/(@users.length.to_f + 1)*100).to_i %>%</span>
 	</div>
 <% end %>
 </div>

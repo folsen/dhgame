@@ -9,7 +9,6 @@ test:
   database: cassi_test
   username: root
   password:
-  socket: /opt/local/var/run/mysql5/mysqld.sock
   
 production:
   adapter: mysql

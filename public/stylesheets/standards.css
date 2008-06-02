@@ -19,7 +19,7 @@
 	word-spacing: 0px;
 	line-height: 8px;
 	font-size: 9px;
-	font-family: monaco;
+	font-family: monaco, monospace;
 }
 #menu {
 	clear: both;

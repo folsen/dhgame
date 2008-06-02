@@ -35,6 +35,9 @@ module AdminHelper
             latest_task = t
           end
         end
+        if latest_task == nil
+          return "NaN"
+        end
       else
         return "NaN"
       end
@@ -98,7 +101,7 @@ module AdminHelper
   #count the number of users that are currenlty on a specific task and return the results as an array
   def get_tasks_playercount
     current_task_array = []
-    users = User.find(:all)
+    users = User.find(:all, :conditions => "admin = 0")
     users.each do |user|
       progresses = user.progresses
       if progresses.empty?
