@@ -20,8 +20,12 @@ class Task < ActiveRecord::Base
   end
   
   def self.get_first_task_id
-     task = Task.find_by_position(1, :conditions => "episode_id = 2")
-     return task.id
+     firsts = Task.find_all_by_position(1)
+     firsts.each do |t|
+       if t.episode.position == 1
+         return t.id
+       end
+     end
    end
   
   def self.get_id_for_task(task_object)
@@ -33,8 +37,8 @@ class Task < ActiveRecord::Base
   end
   
   def self.validate_task_request?(task_object, user_object)
-    #if the task object exists and its past its start time
-    if !task_object.nil? && task_object.episode.start_time < Time.now
+    #if the task object exists and it's past it's start time
+    if !task_object.nil? && (task_object.episode.start_time < Time.now  || User.has_headstart(task_object.episode, user_object))
       progress = user_object.progresses #get the users progresses into progress
       #if the user has no previous progress and it's the first task of the first episode
       if progress.empty? && task_object.position == 1 && task_object.episode.position == 1
@@ -48,11 +52,12 @@ class Task < ActiveRecord::Base
       elsif  !progress.empty? && task_object.position == 1 && progress.last.episode.position + 1 == task_object.episode.position
         return true
       else
-        #if it's nothing of these, he is requesting the wrong task
+        #if it's none of these, he is requesting the wrong task
         return false
       end
     else
       #the task has not been released yet or the task doesnt exist
+      logger.debug("Fuck you false")
       return false
     end
   end

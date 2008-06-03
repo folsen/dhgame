@@ -127,7 +127,12 @@ module AdminHelper
   end
   
   def get_teammates(user)
-    return User.find(:all, :conditions => ["team = ?", user.team])
+    teammates = User.find(:all, :conditions => ["team = ?", user.team]) unless user.team.empty? || user.team == "Single Player"
+    if teammates.nil?
+      return []
+    else
+      return teammates
+    end
   end
 
 end

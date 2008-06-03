@@ -13,6 +13,25 @@ class User < ActiveRecord::Base
   
   has_many :progresses
   
+  def self.has_headstart(episode_object, user_object)
+    progress = user_object.progresses
+    if progress.nil?
+      return false
+    else
+      #hämta de senaste progresses för episoden
+      previous_ep = episode_object.higher_item
+      unless previous_ep.nil?
+        latest = Progress.find(:all, :conditions => {:position => 1..episode_object.headstart_count, :task_id => previous_ep.tasks.last.id})
+        latest.each do |p|
+          if p.user == user_object && episode_object.start_time - episode_object.headstart.minutes < Time.now
+            return true
+          end
+        end
+      end
+      return false
+    end
+  end
+  
   def before_validation_on_create
     if self.first_name.nil?
       self.first_name = "Anonymous"

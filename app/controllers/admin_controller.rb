@@ -112,7 +112,7 @@ class AdminController < ApplicationController
   
     def new_task
       @task = Task.new()
-      @episodes = Episode.find(:all, :conditions => "start_time > '#{9.hours.from_now.to_s(:db)}'")
+      @episodes = Episode.find(:all, :conditions => "start_time > '#{Time.now.to_s(:db)}'")
     end
     
     def new_episode
@@ -181,7 +181,7 @@ class AdminController < ApplicationController
     def update_partial_identifier
       task = Task.find_by_id(params[:id])
       task.update_attribute(:partial, params[:value])
-      render_text task.partial
+      render :text => task.partial
     end
     
     def add_answer
@@ -195,19 +195,19 @@ class AdminController < ApplicationController
     def update_task_name
       task = Task.find_by_id(params[:id])
       task.update_attribute(:name, params[:value])
-      render_text task.name
+      render :text => task.name
     end
     
     def update_task_desc
         task = Task.find_by_id(params[:id])
         task.update_attribute(:desc, params[:value])
-        render_text task.desc
+        render :text => task.desc
     end
       
     def update_answer
         answer = Answer.find_by_id(params[:id])
         answer.update_attribute(:answer, params[:value])
-        render_text answer.answer
+        render :text => answer.answer
     end
     
     def update_admin

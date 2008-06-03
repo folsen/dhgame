@@ -4,19 +4,26 @@ module TaskHelper
   def episode_link_for_user(user_object)
     progress = user_object.progresses
     eps = Episode.find_by_position(1)
+    next_ep = progress.last.episode.lower_item unless progress.empty?
+    last_task = progress.last.task unless progress.empty?
     unless eps.nil?
       if progress.empty? && eps.start_time < Time.now
         return link_to("Start Game", :action => :show, :id => Task.get_first_task_id)
       elsif progress.empty? && eps.start_time > Time.now
         "The Game hasn't started yet! It starts at #{eps.start_time.to_s(:short)}"
-      elsif progress.last.task.is_last? && progress.last.episode.is_last?
+      elsif last_task.is_last? && progress.last.episode.is_last?
         return "You have finished The Game."
-      elsif progress.last.task.is_last? && !progress.last.episode.is_last? && progress.last.episode.lower_item.start_time < Time.now
-        return link_to("Proceed with the game...", :action => :show, :id => progress.last.task.episode.lower_item.tasks.first.id)
-      elsif progress.last.task.is_last? && !progress.last.episode.is_last? && progress.last.episode.lower_item.start_time > Time.now
-        return "The next episode - #{progress.last.episode.lower_item.name} - starts at #{progress.last.episode.lower_item.start_time.to_s(:short)}!"
-      elsif !progress.last.task.is_last?
-        return link_to("Proceed with the game...", :action => :show, :id => progress.last.task.lower_item.id)
+      elsif last_task.is_last? && !progress.last.episode.is_last? && (next_ep.start_time < Time.now || User.has_headstart(next_ep, user_object))
+        return link_to("Proceed with the game...", :action => :show, :id => next_ep.tasks.first.id)
+      elsif last_task.is_last? && !progress.last.episode.is_last? && next_ep.start_time > Time.now
+        if next_ep.headstart != 0
+          return "The next episode - #{next_ep.name} - starts at #{next_ep.start_time.to_s(:short)}, the best " + 
+                  "#{next_ep.headstart_count} people will get a #{next_ep.headstart} minute headstart!"
+        else
+          return "The next episode - #{next_ep.name} - starts at #{next_ep.start_time.to_s(:short)}!"
+        end
+      elsif !last_task.is_last?
+        return link_to("Proceed with the game...", :action => :show, :id => last_task.lower_item.id)
       else
         "A technical error occured, admin is notified!"
       end

@@ -18,10 +18,10 @@
 	</p>
 	<p>
 		<label for="task_headstart">Give headstart?</label>
-		<input type="checkbox" id="headstart_box" onChange="slideDown('headstart_selector')" />
 	</p>
-	<p id="headstart_selector" style="display:none">
-		<%= select_with_integer_options('episode', 'headstart',0,12)%> hours
+	<p id="headstart_selector">
+		<%= select_with_integer_options('episode', 'headstart',0,60)%> minutes
+		<%= select_with_integer_options('episode', 'headstart_count',0,100)%> people
 	</p>
   <%= submit_tag "Save Episode", :class => "submit" %> 
   <% end %> 

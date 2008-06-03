@@ -8,7 +8,7 @@
 
 <div class="overview_box">
 	<% unless @episodes.empty? %>
-    <% if @episodes.first.start_time < 9.hours.from_now %>
+    <% if @episodes.first.start_time < Time.now %>
     Played Time: <h2><%= time_ago_in_words(@episodes.first.start_time) %></h2>
     <% end %>
     Players: <h2><%= @users.length %></h2>
