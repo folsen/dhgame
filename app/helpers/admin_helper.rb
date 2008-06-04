@@ -125,6 +125,79 @@ module AdminHelper
     return return_array.sort
   
   end
+  def get_task_chart_labels
+    task_chart_labels = ""
+    episodes = Episode.find(:all)
+    episodes.each do |e|
+      e.tasks.each do |t|
+        task_chart_labels = task_chart_labels + "|" + e.position.to_s + "." + t.position.to_s
+      end
+    end
+    return task_chart_labels
+  end
+  
+  def get_progresses_chart_data
+    progresses_chart_data = ""
+    episodes = Episode.find(:all)
+    episodes.each do |e|
+      e.tasks.each do |t|
+        if e.last? && t.last?
+          progresses_chart_data = progresses_chart_data + t.progresses.length.to_s
+        else
+          progresses_chart_data = progresses_chart_data + t.progresses.length.to_s + ","
+        end
+      end
+    end
+    return progresses_chart_data
+  end
+  def get_progresses_chart_labels
+    progresses_chart_labels = ""
+    episodes = Episode.find(:all)
+    episodes.each do |e|
+      e.tasks.each do |t|
+        progresses_chart_labels = progresses_chart_labels + "|" + t.progresses.length.to_s
+      end
+    end
+    return progresses_chart_labels
+  end
+  def get_progresses_chart_link
+    link = "http://chart.apis.google.com/chart?cht=bvs&chs=500x300&chco=FFEA63&chds=0,"
+    link = link + @users.length.to_s 
+    link = link + "&chd=t:"
+    link = link + get_progresses_chart_data
+    link = link + "&chxl=1:"
+    link = link + get_task_chart_labels
+    link = link + "|0:"
+    link = link + get_progresses_chart_labels
+    link = link + "|2:|0|"
+    link = link + @users.length.to_s
+    link = link + "&chxt=x,x,y&chf=bg,s,000000"
+    return link
+  end
+  
+  def get_player_count_chart_link
+    chart_data = ""
+    chart_labels = ""
+    task_labels = ""
+    link = "http://chart.apis.google.com/chart?cht=bvs&chs=500x300&chco=FFEA63&chds=0,"
+    link = link + @users.length.to_s 
+    link = link + "&chd=t:"
+    get_tasks_playercount.each do |count|
+      chart_data = chart_data + "," + count[1].to_s
+      chart_labels = chart_labels + "|" + count[1].to_s
+      task_labels = task_labels + "|" + count[0]
+    end
+    chart_data.sub!(",", "")
+    link = link + chart_data
+    link = link + "&chxl=1:"
+    link = link + task_labels
+    link = link + "|0:"
+    link = link + chart_labels
+    link = link + "|2:|0|"
+    link = link + @users.length.to_s
+    link = link + "&chxt=x,x,y&chf=bg,s,000000"
+    return link
+  end
   
   def get_teammates(user)
     teammates = User.find(:all, :conditions => ["team = ?", user.team]) unless user.team.empty? || user.team == "Single Player"

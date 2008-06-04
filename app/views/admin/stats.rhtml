@@ -18,23 +18,7 @@
 <div class="statcontainer" style="overflow: auto; width: 100%;">
 <div style="float: left; width: 70%;">
 <h3>Number of people that have completed the tasks</h3>
-
-<% @episodes.each do |e| %>
-<%= e.name %><br />
-<% e.tasks.each do |t| %>
-<% unless t.progresses.empty? %>
-<div style="background-color: green; margin-bottom: 3px; width: <%= (t.progresses.length.to_f/@users.length.to_f*400).to_i + 30 %>px;">
-	<%= t.position %>: <%= t.progresses.length %> 
-	<span style="float: right; position: relative; top: -10px;"><%= (t.progresses.length.to_f/@users.length.to_f*100).to_i %>%</span>
-	<% else %>
-	<div style="background-color: green; margin-bottom: -9px; width: 30px;">
-		<%= t.position %>: 0
-		<% end %>
-	</div>
-	<% end %>
-	
-	<br />
-	<% end %>
+<img src="<%= get_progresses_chart_link %>" /> <br /><br />
 </div>
 
 <div style="float: left;">
@@ -58,14 +42,7 @@
 <div>
 <h3>Where players are right now</h3>
 
-<% get_tasks_playercount.each do |s|%>
-	<% if s[0].split('.')[1] == "1" %>
-	<span style="float: left;"><%= @episodes[s[0].split('.')[0].to_i-1].name unless @episodes[s[0].split('.')[0].to_i-1].nil? %></span><br /><br />
-	<%end%>
-	<div style="background-color: green; margin-bottom: 3px; width: <%= ((s[1].to_f + 1)/(@users.length.to_f + 1)*500).to_i + 70 %>px;">
-	<%= s[0].split('.')[1] %>: <%= s[1] %>
-	<span style="float: right; position: relative; top: -10px;"><%= ((s[1].to_f + 1)/(@users.length.to_f + 1)*100).to_i %>%</span>
-	</div>
-<% end %>
+<img src="<%= get_player_count_chart_link %>">
+
 </div>
 </div>
