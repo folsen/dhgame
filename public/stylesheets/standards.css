@@ -8,19 +8,6 @@
 	text-align: center;
 }
 
-#banner {
-	text-align: center;
-	text-transform: none;
-	text-decoration: none;
-	font-variant: small-caps;
-	font-style: normal;
-	font-weight: normal;
-	letter-spacing: -1px;
-	word-spacing: 0px;
-	line-height: 8px;
-	font-size: 9px;
-	font-family: monaco, monospace;
-}
 #menu {
 	clear: both;
 }
@@ -39,6 +26,7 @@
 	text-align: left;
 	color:#FFF9E8;
 	padding-bottom: 8px;
+	font-size: 16px;
 }
 .generals {
 	margin-left: auto;
