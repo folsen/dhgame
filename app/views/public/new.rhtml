@@ -15,17 +15,16 @@
 		<legend>Usual Stuff</legend> 
 
 		<p> 
-			<label for="user_name">Name:</label> 
+			<label for="user_name">Name:</label>
 			<%= form.text_field :name, :size => 40 %> 
 		</p>
-
 		<p> 
 			<label for="user_password">Password:</label> 
 			<%= form.password_field :password, :size => 40 %> 
 		</p> 
 
 		<p> 
-			<label for="user_password_confirmation">One more time:</label> 
+			<label for="user_password_confirmation">Again:</label> 
 			<%= form.password_field :password_confirmation, :size => 40 %> 
 		</p> 
 
@@ -60,7 +59,8 @@
 			<%= form.check_box :crew,{:onChange => "hideBySlide('place_form')"} %>
 		</p>
 		<p>
-			<label for="nationality">Nationality:</label>
+			<label for="nationality">Nationality:</label><br />
+			<br />
 			<%= form.country_select 'nationality', priority_countries = ["Sweden", "Great Britain", "Denmark", "Norway", "Finland"] %>
 		</p>
 	</fieldset>

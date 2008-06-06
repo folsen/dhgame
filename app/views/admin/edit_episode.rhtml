@@ -9,22 +9,25 @@
   <label for="task_name">Name:</label> 
   <%= text_field "episode", "name",:size => 40 %> 
   </p> 
+  <br />
   <p> 
-  <label for="task_desc">Description:</label> 
+  Description: 
   <%= text_area "episode", "desc" %> 
   </p>
 	<p>
-	<label for="task_starttime">Start:</label>
+	Start:
 	<%= datetime_select('episode', 'start_time') %>
 	</p>
 	<p>
-		<label for="task_headstart">Give headstart?</label>
+		Give headstart?
 	</p>
 	<p id="headstart_selector">
 		<%= select_with_integer_options('episode', 'headstart',0,60, @episode.headstart)%> minutes
 		<%= select_with_integer_options('episode', 'headstart_count',0,100, @episode.headstart_count)%> people
 	</p>
+	<p>
   <%= submit_tag "Save Episode", :class => "submit" %> 
+  </p>
   <% end %> 
   </fieldset> 
 </div> 

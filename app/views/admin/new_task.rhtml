@@ -11,20 +11,23 @@
   <label for="task_name">Name:</label> 
   <%= text_field "task", "name",:size => 40 %> 
   </p> 
+  <br />
   <p> 
-  <label for="task_desc">Description:</label> 
+  Description:
   <%= text_area "task", "desc" %> 
   </p> 
 	<p>
-	<label for="task_episode">Episode:</label>
+	Episode:
 	<%= collection_select("task", "episode_id" , @episodes, "id", "name") %>
 	</p>
 	<p>
 		<label for="task_partial">Is Partial-based:</label>
 		<%= text_field 'task', 'partial' %>
 	</p>
-	
+	<br />
+	<p>
   <%= submit_tag "Save Task", :class => "submit" %> 
+  </p>
   <% end %> 
 <% end %>
   </fieldset> 

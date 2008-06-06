@@ -58,7 +58,10 @@ fieldset p{
 	margin-right:auto;
 	margin-left:auto;
 }
-
+fieldset label {
+  position: relative;
+  top: 20px;
+}
 .depot-form .submit{
 	width:400px;
 }
