@@ -93,6 +93,12 @@ class AdminController < ApplicationController
       @users = User.find(:all)
     end
     
+    #fulhack
+    def progresses
+      @progresses = Progresses.find(:all, :order => "created_at DESC")
+      @episode = Episode.find(:all).last
+    end
+    
     def edit_user
       @admin_user = User.find_by_id(session[:user_id])
       @user = User.find_by_id(params[:id])
