@@ -95,7 +95,7 @@ class AdminController < ApplicationController
     
     #fulhack
     def progresses
-      @progresses = Progresses.find(:all, :order => "created_at DESC")
+      @progresses = Progresses.find(:all)
       @episode = Episode.find(:all).last
     end
     
