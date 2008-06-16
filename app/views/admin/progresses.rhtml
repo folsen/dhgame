@@ -3,6 +3,6 @@
 
 <% @progresses.each do |p| %>
 	<% if p.task.id == @episode.tasks.last.id %>
-		<%= link_to p.user, :action => :show_user, :id => p.user.id %> - <%= p.created_at %><br/>
+		<%= link_to p.user.name, :action => :show_user, :id => p.user.id %> - <%= p.user.team %> - <%= p.created_at %><br/>
 	<% end %>
 <% end %>
