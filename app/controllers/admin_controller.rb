@@ -96,7 +96,8 @@ class AdminController < ApplicationController
     #fulhack
     def progresses
       @progresses = Progresses.find(:all)
-      @episode = Episode.find(:all).last
+      episodes = Episode.find(:all)
+      @episode = episode.last
     end
     
     def edit_user
