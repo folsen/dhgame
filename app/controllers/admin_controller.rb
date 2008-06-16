@@ -97,7 +97,7 @@ class AdminController < ApplicationController
     def progresses
       @progresses = Progress.find(:all)
       episodes = Episode.find(:all)
-      @episode = episode.last
+      @episode = episodes.last
     end
     
     def edit_user
