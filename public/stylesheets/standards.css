@@ -1,44 +1,55 @@
-/* Layout stuff */
+/* Layout stuff - stuff to change betweeen games*/
 
-#main {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 30px;
-	text-align: center;
+html {
+	background-image: url('/images/bg-repeater.gif');
+}
+body {
+	margin: 0px 0px 0px 0px;
+	font: 14px "Trebuchet MS", Helvetica, Arial;
+}
+a {
+	color: white;
+}
+
+.generals {
+	color: white;
+	width: 757px;
+	margin: auto;
+}
+
+#top {
+	background-image: url('/images/top.png');
+	background-repeat: no-repeat;
+	height: 288px;
+	position: relative;
 }
 
 #menu {
-	clear: both;
+	width: 95%;
+	position: absolute;
+	top: 260px;
+	margin-left: 15px;
+	margin-right: 25px;
 }
-#left-menu {
-	text-align: left;
-	float: left;
-}
+
 #menu a {
 	text-decoration: none;
 }
-#right-menu {
-	text-align: right;
-	float: right;
-}
+
 #content {
-	text-align: left;
-	color:#FFF9E8;
-	padding-bottom: 8px;
-	font-size: 16px;
-}
-.generals {
-	margin-left: auto;
-	margin-right: auto;
-	width: 835px;
-	padding-left: 11px;
-	padding-right: 11px;
-	background-image: url('/images/bg-repeater.gif');
+	width: 732px;
+	padding: 10px 10px 15px 15px;
+	background-image: url('/images/box-repeater.png');
 	background-repeat: repeat-y;
 }
-.greytext {
-	color: #808080;
+
+#bottom {
+	background-image: url('/images/box-bottom.png');
+	background-repeat: no-repeat;
+	height: 6px;
+}
+p {
+	color: white;
 }
 
 /* Formy Stuff */
@@ -77,9 +88,6 @@ form .fieldWithErrors {
 
 /* Edit-in-Place Stuff */
 
-.editable-content a{
-	color:inherit;
-}
 
 .editable-content{
 	display:inline;
@@ -115,6 +123,10 @@ form .fieldWithErrors {
 
 #javascript_counter{
 	font-size:3.5em;
+}
+
+.task_answer_container {
+	margin-top: 30px;
 }
 
 /* Listy Items */

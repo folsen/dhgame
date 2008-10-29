@@ -42,9 +42,9 @@ module ApplicationHelper
   
   def info_link
     if User.active_user
-      return link_to("Info", :controller => :task, :action => :info)
+      return link_to("Rules & Info", :controller => :task, :action => :info)
     else
-      return link_to("Info", :controller => :public, :action => :info)
+      return link_to("Rules & Info", :controller => :public, :action => :info)
     end
   end
     

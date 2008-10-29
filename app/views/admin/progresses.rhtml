@@ -1,8 +1,0 @@
-<h3>Users</h3>
-<h4>Welcome, Admin - Use your godgiven right to administrate the feeble users...</h4>
-
-<% @progresses.each do |p| %>
-	<% if p.task.id == @episode.tasks.last.id %>
-		<%= link_to p.user.name, :action => :show_user, :id => p.user.id %> - <%= p.user.team %> - <%= p.created_at %><br/>
-	<% end %>
-<% end %>
