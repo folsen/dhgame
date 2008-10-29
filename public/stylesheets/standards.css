@@ -37,8 +37,8 @@ a {
 }
 
 #content {
-	width: 732px;
-	padding: 10px 10px 15px 15px;
+	width: 727px;
+	padding: 10px 15px 15px 15px;
 	background-image: url('/images/box-repeater.png');
 	background-repeat: repeat-y;
 }
@@ -51,7 +51,6 @@ a {
 p {
 	color: white;
 }
-
 /* Formy Stuff */
 
 .depot-form fieldset{
@@ -129,6 +128,10 @@ form .fieldWithErrors {
 	margin-top: 30px;
 }
 
+.clearAll {
+	clear: both;
+}
+
 /* Listy Items */
 .head_row{
 	font-weight:bold;
@@ -152,7 +155,7 @@ form .fieldWithErrors {
 }
 
 .overview_box{
-	float:right;
+	float: right;
 	width:200px;
 	border:1px solid white;
 	padding:15px;
