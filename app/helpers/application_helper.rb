@@ -40,6 +40,19 @@ module ApplicationHelper
     end
   end
   
+  def image_button_link
+    if User.active_user && User.active_user.admin != 1
+      return link_to image_tag("/images/dhg-button.png", :id => "dhg-button"), 
+        :controller => :task, :action => :index
+    elsif User.active_user && User.active_user.admin == 1
+      return link_to image_tag("/images/dhg-button.png", :id => "dhg-button"), 
+        :controller => :admin, :action => :index
+    else
+      return link_to image_tag("/images/dhg-button.png", :id => "dhg-button"), 
+        :controller => :public, :action => :index
+    end
+  end
+  
   def info_link
     if User.active_user
       return link_to("Rules & Info", :controller => :task, :action => :info)

@@ -11,6 +11,13 @@ a {
 	color: white;
 }
 
+#dhg-button {
+	position: absolute;
+	top: 0px;
+	left: 340px;
+	border: 0px;
+}
+
 .generals {
 	color: white;
 	width: 757px;
