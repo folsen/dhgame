@@ -58,6 +58,12 @@ a {
 p {
 	color: white;
 }
+
+.bottom-text {
+	text-align: center;
+	font-size: 8px;
+}
+
 /* Formy Stuff */
 
 .depot-form fieldset{
