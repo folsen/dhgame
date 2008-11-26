@@ -1,0 +1,587 @@
+# Logfile created on Wed Nov 26 23:22:37 +0100 2008
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:22:45) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.03473 (28 reqs/sec) | Rendering: 0.02964 (85%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#login (for 127.0.0.1 at 2008-11-26 23:22:51) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"name"=>"Fredrik", "commit"=>"Login", "action"=>"login", "controller"=>"public", "password"=>"seCmGynve"}
+  [4;36;1mUser Columns (0.015802)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001385)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'Fredrik') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 0.02919 (34 reqs/sec) | DB: 0.01719 (58%) | 302 Found [http://localhost/public/login]
+
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:22:51) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.01597 (62 reqs/sec) | Rendering: 0.01331 (83%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#login (for 127.0.0.1 at 2008-11-26 23:22:58) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"name"=>"IQue", "commit"=>"Login", "action"=>"login", "controller"=>"public", "password"=>"tjenis"}
+  [4;36;1mUser Columns (0.003531)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001617)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'IQue') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 0.01745 (57 reqs/sec) | DB: 0.00515 (29%) | 302 Found [http://localhost/public/login]
+
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:22:58) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.01640 (60 reqs/sec) | Rendering: 0.01347 (82%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#login (for 127.0.0.1 at 2008-11-26 23:23:01) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"name"=>"IQue", "commit"=>"Login", "action"=>"login", "controller"=>"public", "password"=>"pelle"}
+  [4;36;1mUser Columns (0.003827)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001380)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'IQue') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 0.01804 (55 reqs/sec) | DB: 0.00521 (28%) | 302 Found [http://localhost/public/login]
+
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:23:01) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.09887 (10 reqs/sec) | Rendering: 0.09537 (96%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#login (for 127.0.0.1 at 2008-11-26 23:23:04) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"name"=>"Fredrik", "commit"=>"Login", "action"=>"login", "controller"=>"public", "password"=>"tjenis"}
+  [4;36;1mUser Columns (0.003689)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001459)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'Fredrik') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 0.01826 (54 reqs/sec) | DB: 0.00515 (28%) | 302 Found [http://localhost/public/login]
+
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:23:04) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.01666 (60 reqs/sec) | Rendering: 0.01331 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#login (for 127.0.0.1 at 2008-11-26 23:23:08) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"name"=>"IQue", "commit"=>"Login", "action"=>"login", "controller"=>"public", "password"=>"seCmGynve"}
+  [4;36;1mUser Columns (0.005473)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.002567)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'IQue') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 0.02831 (35 reqs/sec) | DB: 0.00804 (28%) | 302 Found [http://localhost/public/login]
+
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:23:08) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.01519 (65 reqs/sec) | Rendering: 0.01236 (81%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#login (for 127.0.0.1 at 2008-11-26 23:23:25) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"name"=>"IQue", "commit"=>"Login", "action"=>"login", "controller"=>"public", "password"=>"pelle"}
+  [4;36;1mUser Columns (0.003392)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.002862)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'IQue') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 0.01793 (55 reqs/sec) | DB: 0.00625 (34%) | 302 Found [http://localhost/public/login]
+
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:23:25) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.01682 (59 reqs/sec) | Rendering: 0.01316 (78%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#new (for 127.0.0.1 at 2008-11-26 23:25:43) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"new", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/new
+Completed in 0.02634 (37 reqs/sec) | Rendering: 0.02105 (79%) | DB: 0.00000 (0%) | 200 OK [http://localhost/public/new]
+
+
+Processing PublicController#new (for 127.0.0.1 at 2008-11-26 23:25:55) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"user"=>{"name"=>"IQue", "crew"=>"0", "password_confirmation"=>"pelle", "row"=>"", "seat"=>"", "phone"=>"", "team"=>"Single Player", "password"=>"pelle", "email"=>"", "nationality"=>"Sweden"}, "commit"=>"Add User", "action"=>"new", "controller"=>"public"}
+  [4;36;1mUser Columns (0.005432)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.000345)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.001705)[0m   [0;1mSELECT * FROM `users` WHERE (users.name = 'IQue') LIMIT 1[0m
+  [4;35;1mUser Create (0.000487)[0m   [0mINSERT INTO `users` (`name`, `salt`, `crew`, `hashed_password`, `admin`, `row`, `seat`, `phone`, `team`, `first_name`, `last_name`, `created_at`, `email`, `nationality`) VALUES('IQue', '206468100.117710690370752', 0, '2d19f10470dba770bf8c70087bc7b598b15fef75', 0, '?', '?', '070-EDIT-ME', 'Single Player', 'Anonymous', 'Coward', '2008-11-26 23:25:55', 'click@to-edit.com', 'Sweden')[0m
+  [4;36;1mSQL (0.001216)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed in 0.03333 (30 reqs/sec) | DB: 0.00918 (27%) | 302 Found [http://localhost/public/new]
+
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:25:55) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.02323 (43 reqs/sec) | Rendering: 0.01976 (85%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#login (for 127.0.0.1 at 2008-11-26 23:26:00) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"name"=>"buffpojken", "commit"=>"Login", "action"=>"login", "controller"=>"public", "password"=>"kexi"}
+  [4;35;1mUser Columns (0.003569)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001506)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`name` = 'buffpojken') LIMIT 1[0m
+Redirected to http://localhost:3000/admin
+Completed in 0.02327 (42 reqs/sec) | DB: 0.00508 (21%) | 302 Found [http://localhost/public/login]
+
+
+Processing AdminController#index (for 127.0.0.1 at 2008-11-26 23:26:00) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.006681)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.003981)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.001698)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`admin` = 0) [0m
+  [4;35;1mEpisode Load (0.000825)[0m   [0mSELECT * FROM `episodes` [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+Rendering template within layouts/standard
+Rendering admin/index
+ninja
+Completed in 0.04764 (20 reqs/sec) | Rendering: 0.00839 (17%) | DB: 0.01319 (27%) | 200 OK [http://localhost/admin]
+
+
+Processing AdminController#users (for 127.0.0.1 at 2008-11-26 23:26:02) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"users", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.006065)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.002728)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.002077)[0m   [0;1mSELECT * FROM `users` [0m
+Rendering template within layouts/standard
+Rendering admin/users
+Rendered admin/_users (0.00521)
+ninja
+Completed in 0.04607 (21 reqs/sec) | Rendering: 0.01380 (29%) | DB: 0.01087 (23%) | 200 OK [http://localhost/admin/users]
+
+
+Processing AdminController#edit_user (for 127.0.0.1 at 2008-11-26 23:26:06) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"edit_user", "id"=>"2", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.005267)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.002287)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.001652)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '2') LIMIT 1[0m
+Rendering template within layouts/standard
+Rendering admin/edit_user
+  [4;36;1mProgress Columns (0.003489)[0m   [0;1mSHOW FIELDS FROM `progresses`[0m
+  [4;35;1mSQL (0.000605)[0m   [0mSELECT count(*) AS count_all FROM `progresses` WHERE (progresses.user_id = 2) [0m
+samuraj
+Completed in 0.05483 (18 reqs/sec) | Rendering: 0.02046 (37%) | DB: 0.01330 (24%) | 200 OK [http://localhost/admin/edit_user/2]
+
+
+Processing AdminController#update_admin (for 127.0.0.1 at 2008-11-26 23:26:10) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"update_admin", "id"=>"2", "value"=>"1", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.003808)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001824)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.001770)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = '2') LIMIT 1[0m
+  [4;36;1mSQL (0.000216)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Update (0.000420)[0m   [0mUPDATE `users` SET `created_at` = '2008-11-26 23:25:55', `phone` = '070-EDIT-ME', `hashed_password` = '2d19f10470dba770bf8c70087bc7b598b15fef75', `salt` = '206468100.117710690370752', `nationality` = 'Sweden', `last_name` = 'Coward', `seat` = '?', `first_name` = 'Anonymous', `row` = '?', `admin` = 1, `team` = 'Single Player', `email` = 'click@to-edit.com', `crew` = 0, `name` = 'IQue' WHERE `id` = 2[0m
+  [4;36;1mSQL (0.000816)[0m   [0;1mCOMMIT[0m
+Completed in 0.02879 (34 reqs/sec) | Rendering: 0.00012 (0%) | DB: 0.00885 (30%) | 200 OK [http://localhost/admin/update_admin/2]
+
+
+Processing PublicController#logout (for 127.0.0.1 at 2008-11-26 23:26:14) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"logout", "controller"=>"public"}
+Redirected to http://localhost:3000/
+Completed in 0.01440 (69 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/public/logout]
+
+
+Processing PublicController#index (for 127.0.0.1 at 2008-11-26 23:26:14) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"public"}
+Rendering template within layouts/standard
+Rendering public/index
+Completed in 0.01642 (60 reqs/sec) | Rendering: 0.01362 (82%) | DB: 0.00000 (0%) | 200 OK [http://localhost/]
+
+
+Processing PublicController#login (for 127.0.0.1 at 2008-11-26 23:26:17) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"name"=>"IQue", "commit"=>"Login", "action"=>"login", "controller"=>"public", "password"=>"pelle"}
+  [4;35;1mUser Columns (0.005796)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.003742)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`name` = 'IQue') LIMIT 1[0m
+Redirected to http://localhost:3000/admin
+Completed in 0.02573 (38 reqs/sec) | DB: 0.00954 (37%) | 302 Found [http://localhost/public/login]
+
+
+Processing AdminController#index (for 127.0.0.1 at 2008-11-26 23:26:17) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"index", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.013117)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.003658)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.002415)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`admin` = 0) [0m
+  [4;35;1mEpisode Load (0.001431)[0m   [0mSELECT * FROM `episodes` [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+Rendering template within layouts/standard
+Rendering admin/index
+ninja
+Completed in 0.06209 (16 reqs/sec) | Rendering: 0.00863 (13%) | DB: 0.02062 (33%) | 200 OK [http://localhost/admin]
+
+
+Processing AdminController#create (for 127.0.0.1 at 2008-11-26 23:26:18) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"create", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.005505)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.002619)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mEpisode Load (0.000975)[0m   [0;1mSELECT * FROM `episodes` [0m
+Rendering template within layouts/standard
+Rendering admin/create
+ninja
+Completed in 0.04315 (23 reqs/sec) | Rendering: 0.00865 (20%) | DB: 0.00910 (21%) | 200 OK [http://localhost/admin/create]
+
+
+Processing AdminController#new_episode (for 127.0.0.1 at 2008-11-26 23:26:20) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"new_episode", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.005200)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001684)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mEpisode Columns (0.004152)[0m   [0;1mSHOW FIELDS FROM `episodes`[0m
+Rendering template within layouts/standard
+Rendering admin/new_episode
+ninja
+Completed in 0.04927 (20 reqs/sec) | Rendering: 0.01480 (30%) | DB: 0.01104 (22%) | 200 OK [http://localhost/admin/new_episode]
+
+
+Processing AdminController#save_episode (for 127.0.0.1 at 2008-11-26 23:26:26) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"commit"=>"Save Episode", "action"=>"save_episode", "episode"=>{"name"=>"Test", "headstart_count"=>"0", "start_time(1i)"=>"2008", "start_time(2i)"=>"11", "start_time(3i)"=>"26", "start_time(4i)"=>"23", "start_time(5i)"=>"26", "desc"=>"test db", "headstart"=>"0"}, "controller"=>"admin"}
+  [4;35;1mUser Columns (0.003788)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001419)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mEpisode Columns (0.002672)[0m   [0;1mSHOW FIELDS FROM `episodes`[0m
+  [4;35;1mSQL (0.000216)[0m   [0mBEGIN[0m
+  [4;36;1mEpisode Load (0.014829)[0m   [0;1mSELECT * FROM `episodes` WHERE (1 = 1) ORDER BY position DESC LIMIT 1[0m
+  [4;35;1mEpisode Create (0.000648)[0m   [0mINSERT INTO `episodes` (`headstart_count`, `name`, `desc`, `headstart`, `position`, `start_time`) VALUES(0, 'Test', 'test db', 0, 1, '2008-11-26 23:26:00')[0m
+  [4;36;1mSQL (0.000924)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/admin/create
+Completed in 0.05208 (19 reqs/sec) | DB: 0.02450 (47%) | 302 Found [http://localhost/admin/save_episode]
+
+
+Processing AdminController#create (for 127.0.0.1 at 2008-11-26 23:26:27) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"create", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.006491)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.005062)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mEpisode Load (0.001127)[0m   [0;1mSELECT * FROM `episodes` [0m
+Rendering template within layouts/standard
+Rendering admin/create
+  [4;35;1mSQL (0.000938)[0m   [0mSHOW TABLES[0m
+  [4;36;1mEpisode Columns (0.004114)[0m   [0;1mSHOW FIELDS FROM `episodes`[0m
+  [4;35;1mTask Load (0.002974)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+ninja
+Completed in 0.07417 (13 reqs/sec) | Rendering: 0.02301 (31%) | DB: 0.02071 (27%) | 200 OK [http://localhost/admin/create]
+
+
+Processing AdminController#new_task (for 127.0.0.1 at 2008-11-26 23:26:29) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"new_task", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.005395)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.002518)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mTask Columns (0.003903)[0m   [0;1mSHOW FIELDS FROM `tasks`[0m
+  [4;35;1mEpisode Load (0.001145)[0m   [0mSELECT * FROM `episodes` WHERE (start_time > '2008-11-26 23:26:29') [0m
+Rendering template within layouts/standard
+Rendering admin/new_task
+ninja
+Completed in 0.05455 (18 reqs/sec) | Rendering: 0.00787 (14%) | DB: 0.01296 (23%) | 200 OK [http://localhost/admin/new_task]
+
+
+Processing AdminController#create (for 127.0.0.1 at 2008-11-26 23:26:32) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"create", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.006494)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.006900)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mEpisode Load (0.000928)[0m   [0mSELECT * FROM `episodes` [0m
+Rendering template within layouts/standard
+Rendering admin/create
+  [4;36;1mSQL (0.000738)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mEpisode Columns (0.003867)[0m   [0mSHOW FIELDS FROM `episodes`[0m
+  [4;36;1mTask Load (0.001053)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+ninja
+Completed in 0.06488 (15 reqs/sec) | Rendering: 0.01775 (27%) | DB: 0.01998 (30%) | 200 OK [http://localhost/admin/create]
+
+
+Processing AdminController#new_episode (for 127.0.0.1 at 2008-11-26 23:26:33) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"new_episode", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.005313)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.004595)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mEpisode Columns (0.004112)[0m   [0mSHOW FIELDS FROM `episodes`[0m
+Rendering template within layouts/standard
+Rendering admin/new_episode
+ninja
+Completed in 0.05638 (17 reqs/sec) | Rendering: 0.01532 (27%) | DB: 0.01402 (24%) | 200 OK [http://localhost/admin/new_episode]
+
+
+Processing AdminController#save_episode (for 127.0.0.1 at 2008-11-26 23:26:43) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"commit"=>"Save Episode", "action"=>"save_episode", "episode"=>{"name"=>"testt", "headstart_count"=>"0", "start_time(1i)"=>"2013", "start_time(2i)"=>"11", "start_time(3i)"=>"26", "start_time(4i)"=>"23", "start_time(5i)"=>"26", "desc"=>"testing", "headstart"=>"0"}, "controller"=>"admin"}
+  [4;36;1mUser Columns (0.006170)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.007964)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mEpisode Columns (0.002852)[0m   [0mSHOW FIELDS FROM `episodes`[0m
+  [4;36;1mSQL (0.000259)[0m   [0;1mBEGIN[0m
+  [4;35;1mEpisode Load (0.001177)[0m   [0mSELECT * FROM `episodes` WHERE (1 = 1) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mEpisode Create (0.000381)[0m   [0;1mINSERT INTO `episodes` (`headstart_count`, `name`, `desc`, `headstart`, `position`, `start_time`) VALUES(0, 'testt', 'testing', 0, 2, '2013-11-26 23:26:00')[0m
+  [4;35;1mSQL (0.000749)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/admin/create
+Completed in 0.04665 (21 reqs/sec) | DB: 0.01955 (41%) | 302 Found [http://localhost/admin/save_episode]
+
+
+Processing AdminController#create (for 127.0.0.1 at 2008-11-26 23:26:43) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"create", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.156558)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.002791)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mEpisode Load (0.001701)[0m   [0mSELECT * FROM `episodes` [0m
+Rendering template within layouts/standard
+Rendering admin/create
+  [4;36;1mSQL (0.001321)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mEpisode Columns (0.004331)[0m   [0mSHOW FIELDS FROM `episodes`[0m
+  [4;36;1mTask Load (0.001260)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;36;1mTask Load (0.001111)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 2) ORDER BY position[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 2) ORDER BY position[0m
+ninja
+Completed in 0.22225 (4 reqs/sec) | Rendering: 0.02200 (9%) | DB: 0.16907 (76%) | 200 OK [http://localhost/admin/create]
+
+
+Processing AdminController#new_task (for 127.0.0.1 at 2008-11-26 23:26:46) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"new_task", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.005525)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001695)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mTask Columns (0.003786)[0m   [0mSHOW FIELDS FROM `tasks`[0m
+  [4;36;1mEpisode Load (0.000877)[0m   [0;1mSELECT * FROM `episodes` WHERE (start_time > '2008-11-26 23:26:46') [0m
+Rendering template within layouts/standard
+Rendering admin/new_task
+  [4;35;1mEpisode Columns (0.004708)[0m   [0mSHOW FIELDS FROM `episodes`[0m
+ninja
+Completed in 0.06141 (16 reqs/sec) | Rendering: 0.01351 (21%) | DB: 0.01659 (27%) | 200 OK [http://localhost/admin/new_task]
+
+
+Processing AdminController#save_task (for 127.0.0.1 at 2008-11-26 23:28:23) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"commit"=>"Save Task", "action"=>"save_task", "task"=>{"name"=>"ECC", "partial"=>"ecc", "desc"=>"It would be nice to have a drink.", "episode_id"=>"2"}, "controller"=>"admin"}
+  [4;36;1mUser Columns (0.003201)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.003371)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mTask Columns (0.002680)[0m   [0mSHOW FIELDS FROM `tasks`[0m
+  [4;36;1mSQL (0.001156)[0m   [0;1mBEGIN[0m
+  [4;35;1mTask Load (0.000804)[0m   [0mSELECT * FROM `tasks` WHERE (episode_id = 2) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mTask Create (0.000351)[0m   [0;1mINSERT INTO `tasks` (`name`, `partial`, `desc`, `episode_id`, `position`, `created_at`) VALUES('ECC', 'ecc', 'It would be nice to have a drink.', 2, 1, '2008-11-26 23:28:23')[0m
+  [4;35;1mSQL (0.000745)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/admin/create
+Completed in 0.04685 (21 reqs/sec) | DB: 0.01231 (26%) | 302 Found [http://localhost/admin/save_task]
+
+
+Processing AdminController#create (for 127.0.0.1 at 2008-11-26 23:28:23) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"create", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.003682)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001795)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mEpisode Load (0.001023)[0m   [0mSELECT * FROM `episodes` [0m
+Rendering template within layouts/standard
+Rendering admin/create
+  [4;36;1mSQL (0.000684)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mEpisode Columns (0.002580)[0m   [0mSHOW FIELDS FROM `episodes`[0m
+  [4;36;1mTask Load (0.000990)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;36;1mTask Load (0.000939)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 2) ORDER BY position[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 2) ORDER BY position[0m
+  [4;36;1mTask Columns (0.002676)[0m   [0;1mSHOW FIELDS FROM `tasks`[0m
+  [4;35;1mAnswer Columns (0.002599)[0m   [0mSHOW FIELDS FROM `answers`[0m
+  [4;36;1mSQL (0.000528)[0m   [0;1mSELECT count(*) AS count_all FROM `answers` WHERE (answers.task_id = 1) [0m
+ninja
+Completed in 0.06581 (15 reqs/sec) | Rendering: 0.02420 (36%) | DB: 0.01750 (26%) | 200 OK [http://localhost/admin/create]
+
+
+Processing AdminController#show (for 127.0.0.1 at 2008-11-26 23:28:25) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.005690)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.002766)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mTask Columns (0.003079)[0m   [0;1mSHOW FIELDS FROM `tasks`[0m
+  [4;35;1mTask Load (0.001331)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`id` = 1) [0m
+Rendering template within layouts/standard
+Rendering admin/show
+task/partials/task_ecc
+Rendered task/partials/_task_ecc (0.00144)
+  [4;36;1mAnswer Load (0.000806)[0m   [0;1mSELECT * FROM `answers` WHERE (answers.task_id = 1) [0m
+Rendered admin/_answer_list (0.00311)
+ninja
+Completed in 0.15382 (6 reqs/sec) | Rendering: 0.02436 (15%) | DB: 0.01367 (8%) | 200 OK [http://localhost/admin/show/1]
+
+
+Processing AdminController#create (for 127.0.0.1 at 2008-11-26 23:28:40) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"create", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.005761)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001762)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mEpisode Load (0.001040)[0m   [0;1mSELECT * FROM `episodes` [0m
+Rendering template within layouts/standard
+Rendering admin/create
+  [4;35;1mSQL (0.000791)[0m   [0mSHOW TABLES[0m
+  [4;36;1mEpisode Columns (0.002849)[0m   [0;1mSHOW FIELDS FROM `episodes`[0m
+  [4;35;1mTask Load (0.001074)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;35;1mTask Load (0.001258)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 2) ORDER BY position[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 2) ORDER BY position[0m
+  [4;35;1mTask Columns (0.002898)[0m   [0mSHOW FIELDS FROM `tasks`[0m
+  [4;36;1mAnswer Columns (0.002428)[0m   [0;1mSHOW FIELDS FROM `answers`[0m
+  [4;35;1mSQL (0.000514)[0m   [0mSELECT count(*) AS count_all FROM `answers` WHERE (answers.task_id = 1) [0m
+ninja
+Completed in 0.07182 (13 reqs/sec) | Rendering: 0.02761 (38%) | DB: 0.02038 (28%) | 200 OK [http://localhost/admin/create]
+
+
+Processing AdminController#new_task (for 127.0.0.1 at 2008-11-26 23:28:43) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"new_task", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.005936)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.012561)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mTask Columns (0.003210)[0m   [0mSHOW FIELDS FROM `tasks`[0m
+  [4;36;1mEpisode Load (0.001264)[0m   [0;1mSELECT * FROM `episodes` WHERE (start_time > '2008-11-26 23:28:43') [0m
+Rendering template within layouts/standard
+Rendering admin/new_task
+  [4;35;1mEpisode Columns (0.002895)[0m   [0mSHOW FIELDS FROM `episodes`[0m
+ninja
+Completed in 0.06890 (14 reqs/sec) | Rendering: 0.01004 (14%) | DB: 0.02587 (37%) | 200 OK [http://localhost/admin/new_task]
+
+
+Processing AdminController#save_task (for 127.0.0.1 at 2008-11-26 23:28:59) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"commit"=>"Save Task", "action"=>"save_task", "task"=>{"name"=>"Keys", "partial"=>"keys", "desc"=>"Use the keys.", "episode_id"=>"2"}, "controller"=>"admin"}
+  [4;36;1mUser Columns (0.003763)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.009973)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mTask Columns (0.003566)[0m   [0mSHOW FIELDS FROM `tasks`[0m
+  [4;36;1mSQL (0.000205)[0m   [0;1mBEGIN[0m
+  [4;35;1mTask Load (0.000834)[0m   [0mSELECT * FROM `tasks` WHERE (episode_id = 2) ORDER BY position DESC LIMIT 1[0m
+  [4;36;1mTask Create (0.000271)[0m   [0;1mINSERT INTO `tasks` (`name`, `partial`, `desc`, `episode_id`, `position`, `created_at`) VALUES('Keys', 'keys', 'Use the keys.', 2, 2, '2008-11-26 23:28:59')[0m
+  [4;35;1mSQL (0.000738)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/admin/create
+Completed in 0.05375 (18 reqs/sec) | DB: 0.01935 (35%) | 302 Found [http://localhost/admin/save_task]
+
+
+Processing AdminController#create (for 127.0.0.1 at 2008-11-26 23:28:59) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"create", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.004322)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.001740)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mEpisode Load (0.001038)[0m   [0mSELECT * FROM `episodes` [0m
+Rendering template within layouts/standard
+Rendering admin/create
+  [4;36;1mSQL (0.000702)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mEpisode Columns (0.004099)[0m   [0mSHOW FIELDS FROM `episodes`[0m
+  [4;36;1mTask Load (0.001165)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 1) ORDER BY position[0m
+  [4;36;1mTask Load (0.001122)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 2) ORDER BY position[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`episode_id` = 2) ORDER BY position[0m
+  [4;36;1mTask Columns (0.004257)[0m   [0;1mSHOW FIELDS FROM `tasks`[0m
+  [4;35;1mAnswer Columns (0.002601)[0m   [0mSHOW FIELDS FROM `answers`[0m
+  [4;36;1mSQL (0.000521)[0m   [0;1mSELECT count(*) AS count_all FROM `answers` WHERE (answers.task_id = 1) [0m
+  [4;35;1mSQL (0.000510)[0m   [0mSELECT count(*) AS count_all FROM `answers` WHERE (answers.task_id = 2) [0m
+ninja
+Completed in 0.17594 (5 reqs/sec) | Rendering: 0.13015 (73%) | DB: 0.02208 (12%) | 200 OK [http://localhost/admin/create]
+
+
+Processing AdminController#show (for 127.0.0.1 at 2008-11-26 23:29:01) [GET]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.005327)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.002528)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mTask Columns (0.004538)[0m   [0mSHOW FIELDS FROM `tasks`[0m
+  [4;36;1mTask Load (0.001585)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`id` = 2) [0m
+Rendering template within layouts/standard
+Rendering admin/show
+task/partials/task_keys
+Rendered task/partials/_task_keys (0.00193)
+  [4;35;1mAnswer Load (0.001078)[0m   [0mSELECT * FROM `answers` WHERE (answers.task_id = 2) [0m
+Rendered admin/_answer_list (0.00268)
+ninja
+Completed in 0.06903 (14 reqs/sec) | Rendering: 0.02598 (37%) | DB: 0.01506 (21%) | 200 OK [http://localhost/admin/show/2]
+
+
+Processing AdminController#add_answer (for 127.0.0.1 at 2008-11-26 23:30:40) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"commit"=>"+", "action"=>"add_answer", "id"=>"2", "controller"=>"admin"}
+  [4;36;1mUser Columns (0.005692)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.002514)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mTask Columns (0.003962)[0m   [0mSHOW FIELDS FROM `tasks`[0m
+  [4;36;1mTask Load (0.001037)[0m   [0;1mSELECT * FROM `tasks` WHERE (`tasks`.`id` = '2') LIMIT 1[0m
+  [4;35;1mAnswer Columns (0.002717)[0m   [0mSHOW FIELDS FROM `answers`[0m
+  [4;36;1mSQL (0.000246)[0m   [0;1mBEGIN[0m
+  [4;35;1mAnswer Create (0.000391)[0m   [0mINSERT INTO `answers` (`answer`, `task_id`) VALUES('click to edit', 2)[0m
+  [4;36;1mSQL (0.000792)[0m   [0;1mCOMMIT[0m
+Rendered admin/_answer_row (0.00335)
+Completed in 0.06941 (14 reqs/sec) | Rendering: 0.01197 (17%) | DB: 0.01735 (24%) | 200 OK [http://localhost/admin/add_answer/2]
+
+
+Processing AdminController#update_answer (for 127.0.0.1 at 2008-11-26 23:30:54) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"update_answer", "id"=>"1", "value"=>"136497128785631478565", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.003916)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001909)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mAnswer Columns (0.003555)[0m   [0;1mSHOW FIELDS FROM `answers`[0m
+  [4;35;1mAnswer Load (0.001059)[0m   [0mSELECT * FROM `answers` WHERE (`answers`.`id` = '1') LIMIT 1[0m
+  [4;36;1mSQL (0.000354)[0m   [0;1mBEGIN[0m
+  [4;35;1mAnswer Update (0.000454)[0m   [0mUPDATE `answers` SET `task_id` = 2, `answer` = '136497128785631478565' WHERE `id` = 1[0m
+  [4;36;1mSQL (0.000865)[0m   [0;1mCOMMIT[0m
+Completed in 0.03962 (25 reqs/sec) | Rendering: 0.00012 (0%) | DB: 0.01211 (30%) | 200 OK [http://localhost/admin/update_answer/1]
+
+
+Processing AdminController#update_task_desc (for 127.0.0.1 at 2008-11-26 23:31:21) [POST]
+  Session ID: ade2f864480d44c8f6a9e0897beb6c8f
+  Parameters: {"action"=>"update_task_desc", "id"=>"2", "value"=>"Use them", "controller"=>"admin"}
+  [4;35;1mUser Columns (0.003655)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.001301)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 2) LIMIT 1[0m
+  [4;36;1mTask Columns (0.002528)[0m   [0;1mSHOW FIELDS FROM `tasks`[0m
+  [4;35;1mTask Load (0.000893)[0m   [0mSELECT * FROM `tasks` WHERE (`tasks`.`id` = '2') LIMIT 1[0m
+  [4;36;1mSQL (0.000206)[0m   [0;1mBEGIN[0m
+  [4;35;1mTask Update (0.000367)[0m   [0mUPDATE `tasks` SET `created_at` = '2008-11-26 23:28:59', `partial` = 'keys', `desc` = 'Use them', `position` = 2, `episode_id` = 2, `name` = 'Keys' WHERE `id` = 2[0m
+  [4;36;1mSQL (0.000819)[0m   [0;1mCOMMIT[0m
+Completed in 0.03468 (28 reqs/sec) | Rendering: 0.00011 (0%) | DB: 0.00977 (28%) | 200 OK [http://localhost/admin/update_task_desc/2]
