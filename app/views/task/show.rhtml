@@ -10,7 +10,7 @@
 
 <% unless @task.partial.empty? %>
 <% begin %>
-	<%= render :partial => partial_path(@task), :locals => {:task => @task} %>
+	<%= render :partial => partial_path(@task), :locals => {:task => @task, :user => @user} %>
 <% rescue %>
 	<i>Technical Error - Admin is notified!</i>
 <% end %>
