@@ -42,7 +42,7 @@ module AdminHelper
         return "NaN"
       end
     end
-    return "#{latest_task.episode_id}:#{latest_task.position} - #{link_to latest_task.progresses.first.user.name,
+    return "#{latest_task.episode.position}:#{latest_task.position} - #{link_to latest_task.progresses.first.user.name,
       :action => :show_user, :id => latest_task.progresses.first.user.id}"
   end
 
