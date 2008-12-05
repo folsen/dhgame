@@ -45,7 +45,13 @@
     ) %>
 
 <% if !@task.partial.empty? %>
-<h3>Code</h3>
+
+<% begin %>
+	<%= render :partial => partial_path(@task), :locals => {:task => @task, :user => @user} #TODO remove @user reference when a global one exists %>
+<% rescue %>
+	<span class="redLink"><h2>Could not load partial!</h2></span>
+<% end %>
+
 <p>Partial-name: <%= editable_content(
       :content => {
         :element => 'span',
@@ -65,11 +71,7 @@
         :cancelText => "'Nevermind'"
        }
     ) %></p>
-<% begin %>
-	<%= render :partial => partial_path(@task), :locals => {:task => @task} %>
-<% rescue %>
-	<span class="redLink"><h2>Could not load partial!</h2></span>
-<% end %>
+
 <% else %>
 <p>Partial-name: <%= editable_content(
       :content => {

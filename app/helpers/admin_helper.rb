@@ -1,5 +1,7 @@
 module AdminHelper
-
+  
+  #return a string of all the tasks that have no name
+  #TODO is this and should this be used?
   def alert_admin_to_lost_task(task_list)
     return_string = "These tasks have no episode:"
     task_list.each do |task|
@@ -10,6 +12,8 @@ module AdminHelper
     return return_string
   end
 
+  #print <td> with class based on user type
+  #TODO this isn't used, but it's a good idea to use in the _users partial
   def colorized_row(user_object)
     if user_object.admin == 1
       return "<td class='admin_row'>"
@@ -19,27 +23,32 @@ module AdminHelper
       return "<td>"
     end
   end
-
+  
+  #returns a link to the user that first finished the episode
+  #TODO is this pointless? i kind of think so... remove
   def episode_leader(episode_object)
     return link_to(episode_object.progresses.first.user.name, :action => :show_user,
       :id => episode_object.progresses.first.user.id) unless episode_object.progresses.empty?
   end
 
-  #gets the latest completed tasks and returns the episode:position and who completed it first
+  #gets the latest completed tasks and returns episode:task - who completed it first
   def leader(episodes)
     latest_task = nil
     episodes.each do |e|
       unless e.tasks.empty?
+        #go through the tasks in order and set the latest_task to this task
+        #when you get to a task with no progresses it doesnt set it
+        #so the result is you get the last task that has progresses
         e.tasks.each do |t|
           unless t.progresses.empty?
             latest_task = t
           end
         end
         if latest_task == nil
-          return "NaN"
+          return "No progresses made"
         end
       else
-        return "NaN"
+        return "No tasks in episode"
       end
     end
     return "#{latest_task.episode.position}:#{latest_task.position} - #{link_to latest_task.progresses.first.user.name,
@@ -52,17 +61,12 @@ module AdminHelper
   def average_time(task)
     total_time = 0
     unless task.progresses.empty?
-      if task.progresses.length < 50
-        task.progresses.each do |p|
-          total_time += p.created_at.to_f
-        end
-        return (total_time/task.progresses.length)
-      else
-        task.progresses[0..49].each do |p|
-          total_time += p.created_at.to_f
-        end
-        return (total_time/50)
+      
+      task.progresses[0..49].each do |p|
+        total_time += p.created_at.to_f
       end
+      return (total_time/task.progresses[0..49].length)
+
     else
       return "None shall pass!"
     end
@@ -71,15 +75,15 @@ module AdminHelper
   #this calculates the average time to complete compared to the previous average time or
   #if it's the first task then compared to the start time, so this should give a pretty accurate
   #reading of how long it took to complete the task
+  #TODO refactor for understandability
   def average_completion_time(task)
     this_time = average_time(task)
-    unless task.position == 1
-      previous_time = average_time(Task.find(:first, :conditions => [" episode_id = ? AND position = ? ", task.episode_id, (task.position - 1)]))
-      return "#{((this_time - previous_time) / 60 / 60).to_i}h #{((this_time - previous_time) / 60 % 60).to_i}m #{((this_time - previous_time) % 60 % 60).to_i}s"
+    if task.position == 1
+      return time_difference(this_time, task.episode.start_time.to_f)
     else
-      return "#{((this_time - (task.episode.start_time.to_f - 32400)) / 60 / 60).to_i}h
-        #{((this_time - task.episode.start_time.to_f - 32400) / 60 % 60).to_i}m
-        #{((this_time - task.episode.start_time.to_f - 32400) % 60 % 60).to_i}s"
+      previous_time = average_time(Task.find(:first, :conditions => [" episode_id = ? AND position = ? ", 
+        task.episode_id, (task.position - 1)]))
+      return time_difference(this_time, previous_time)
     end
   end
 
@@ -88,17 +92,18 @@ module AdminHelper
     unless task.progresses.empty?
       this_time = task.progresses.first.created_at.to_f
       if task.position == 1
-        return "#{((this_time - (task.episode.start_time.to_f - 32400)) / 60 / 60).to_i}h
-          #{((this_time - task.episode.start_time.to_f - 32400) / 60 % 60).to_i}m
-          #{((this_time - task.episode.start_time.to_f - 32400) % 60 % 60).to_i}s"
+        return time_difference(this_time, task.episode.start_time.to_f)
       else
-        previous_time = Task.find(:first, :conditions => [" episode_id = ? AND position = ? ", task.episode_id, (task.position - 1)]).progresses.first.created_at.to_f
-        return "#{((this_time - previous_time) / 60 / 60).to_i}h #{((this_time - previous_time) / 60 % 60).to_i}m #{((this_time - previous_time) % 60 % 60).to_i}s"
+        previous_time = Task.find(:first, :conditions => [" episode_id = ? AND position = ? ", 
+          task.episode_id, (task.position - 1)]).progresses.first.created_at.to_f
+        return time_difference(this_time, previous_time)
       end
     end
   end
 
-  #count the number of users that are currenlty on a specific task and return the results as an array
+  #count the number of users that are currently on a specific task and return the results as an array
+  #TODO refactor, use database instead and store the users current task in there
+  #this is very bad code
   def get_tasks_playercount
     current_task_array = []
     users = User.find(:all, :conditions => "admin = 0")
@@ -125,6 +130,8 @@ module AdminHelper
     return return_array.sort
   
   end
+  
+  #build a chart 
   def get_task_chart_labels
     task_chart_labels = ""
     episodes = Episode.find(:all)
@@ -160,6 +167,8 @@ module AdminHelper
     end
     return progresses_chart_labels
   end
+  
+  #generates a link for the google api chart
   def get_progresses_chart_link
     link = "http://chart.apis.google.com/chart?cht=bvs&chs=500x300&chco=FFEA63&chds=0,"
     link = link + @users.length.to_s 
@@ -175,6 +184,7 @@ module AdminHelper
     return link
   end
   
+  #TODO refactor this when the database is changed, perhaps use a charts plugin
   def get_player_count_chart_link
     chart_data = ""
     chart_labels = ""
@@ -199,6 +209,8 @@ module AdminHelper
     return link
   end
   
+  #returns array of all the teammates a user has
+  #TODO move to model
   def get_teammates(user)
     teammates = User.find(:all, :conditions => ["team = ?", user.team]) unless user.team.empty? || user.team == "Single Player"
     if teammates.nil?

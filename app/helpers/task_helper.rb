@@ -1,6 +1,14 @@
 module TaskHelper
   
-  
+  #return a link for the user to click to start the game
+  #based on where the user is right now
+  #can return:
+  #Start Game
+  #Game hasnt started yet, it starts at...
+  #You have finished the game
+  #Proceed with the game...
+  #The next episode starts at ... the first .. people will get .. minutes headstart if headstart is set
+  #The game is still beeing prepared. Hang loose...
   def episode_link_for_user(user_object)
     progress = user_object.progresses
     eps = Episode.find_by_position(1)
@@ -32,6 +40,7 @@ module TaskHelper
     end
   end
   
+  #TODO this is not used, remove?
   def result_link_for_user(user_object)
     if user_object.progresses.length == 0
       return "You haven't got any results yet!"
@@ -40,11 +49,13 @@ module TaskHelper
     end
   end
   
+  #return how many percent the user has completed
+  #TODO check to see if this can be improved
   def progress_bar(task_object,user_object)
     task_this = task_object.position-1
-    task_count = Task.count("id", :conditions => "episode_id = #{task_object.episode_id}") 
-    logger.info(task_this.inspect)
-    logger.info(task_count.inspect)
+    task_count = task_object.episode.tasks.length
+    #logger.info(task_this.inspect)
+    #logger.info(task_count.inspect)
     task_percentage = ((task_this.to_f/task_count.to_f)*100).round
     return task_percentage
   end

@@ -10,6 +10,8 @@ class Task < ActiveRecord::Base
   
   has_many :progresses
   
+  #alias for .last?
+  #TODO remove from code completely
   def is_last?
     self.last?
     # if self == self.episode.tasks.last
@@ -19,6 +21,7 @@ class Task < ActiveRecord::Base
     # end
   end
   
+  #returns the id of the first task of the first episode
   def self.get_first_task_id
      firsts = Task.find_all_by_position(1)
      firsts.each do |t|
@@ -28,6 +31,10 @@ class Task < ActiveRecord::Base
      end
    end
   
+  #TODO rewrite, check to see if this is a list and perhaps replace 
+  #episode.tasks.last with is_last? or just last?
+  #probably should remove all instances of this
+  #it is used to get the id for the next task when you've supplied a correct answer
   def self.get_id_for_task(task_object)
     if task_object.episode.tasks.last == task_object
       return task_object.episode.higher_item.tasks.first.id
@@ -36,6 +43,7 @@ class Task < ActiveRecord::Base
     end
   end
   
+  #check to see if a user is allowed to access a task
   def self.validate_task_request?(task_object, user_object)
     #if the task object exists and it's past it's start time
     if !task_object.nil? && (task_object.episode.start_time < Time.now  || User.has_headstart(task_object.episode, user_object))
@@ -57,20 +65,20 @@ class Task < ActiveRecord::Base
       end
     else
       #the task has not been released yet or the task doesnt exist
-      logger.debug("Fuck you false")
+      #logger.debug("Fuck you false")
       return false
     end
   end
   
+  #check to see if user_answer is the correct answer for the question
+  #TODO implement the hashing feature somehow
   def check_answer(user_answer)
     self.answers.each do |answer|
       if answer.answer == user_answer
         return true
-      else
-        next
       end
     end
-    false
+      return false
   end
   
 end

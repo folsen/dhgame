@@ -14,10 +14,14 @@
 
 <div style="float: left; width: 35%;">
 <table>
-	<tr><td colspan="2"><h3>User progresses</h3></td></tr>
+	<tr><td colspan="3"><h3>User progresses</h3></td></tr>
 	<% unless @user.progresses.empty? 
 		@user.progresses.each do |p| %>
-			<tr><td><%= p.task.episode_id %>:<%= p.task.position %></td><td><%= p.created_at %></td></tr>
+			<tr>
+			  <td><%= p.task.episode_id %>:<%= p.task.position %></td>
+			  <td><%= p.created_at %></td>
+			  <td><%= p.answer %></td>
+			  </tr>
 	 <% end
 	   end %>
 </table>

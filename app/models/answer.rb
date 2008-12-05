@@ -1,3 +1,7 @@
+#this table saves all the passwords for all the tasks
+#passwords should not be saved in clear text
+#TODO hash passwords
+
 class Answer < ActiveRecord::Base
   validates_presence_of :answer
   

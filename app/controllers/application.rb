@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   session :session_key => '_cassi_session_id'
   private
   
+  #check if the current user is admin
   def check_for_admin
     user = User.find_by_id(session[:user_id])
     if !user.admin.nil? && user.admin == 1
@@ -16,10 +17,15 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  #TODO remove?
   def method_missing(name, *args)
 		redirect_to :controller => 'task', :action => ''
 	end
   
+  #gets the user_id from the cookie and checks if that user exists
+  #if not, goes to pubic index and says please log in, otherwise
+  #set the active_user and @user to the user found
+  #TODO implement another auth system completely? this seems horrible
   def authorize 
     user = User.find_by_id(session[:user_id]) 
     unless user
