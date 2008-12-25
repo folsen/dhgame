@@ -15,11 +15,6 @@ class AdminController < ApplicationController
     def create
       @episodes = Episode.find(:all)
     end
-      
-    #TODO remove all references to timeline in the code
-    def timeline
-      
-    end
     
     #Renders a single task for admin
     def show
@@ -131,6 +126,7 @@ class AdminController < ApplicationController
     #TODO remove Task.new() from here?
     def new_task
       @task = Task.new()
+      @task.materials.build
       @episodes = Episode.find(:all, :conditions => "start_time > '#{Time.now.to_s(:db)}'")
     end
     
@@ -184,6 +180,9 @@ class AdminController < ApplicationController
     #TODO find out if the answers and progresses for this task is automatically removed
     def delete_task
       task = Task.find_by_id(params[:id])
+      task.materials.each do |material|
+        material.destroy
+      end
       if task.destroy
         flash[:notice] = "Task was deleted!"
         redirect_to :action => :create and return

@@ -44,10 +44,23 @@
        }
     ) %>
 
+<% @task.materials.each do |material| -%>
+  <p>
+    <%= image_tag material.data.url(:medium) %>
+    <%= link_to "Destroy", material_path(material), :confirm => 'Are you sure?', :method => :delete  %>
+  </p>
+<% end %>    
+<p>
+  <% form_for(:material, :url => material_index_path, :html => { :multipart => true }) do |f| %>
+    <%= f.file_field :data %>
+    <%= f.hidden_field :task_id, :value => @task.id%>
+    <%= f.submit "Upload" %>
+  <% end -%>
+</p>
 <% if !@task.partial.empty? %>
 
 <% begin %>
-	<%= render :partial => partial_path(@task), :locals => {:task => @task, :user => @user} #TODO remove @user reference when a global one exists %>
+	<%= render :partial => partial_path(@task), :locals => {:task => @task, :user => @user} %>
 <% rescue %>
 	<span class="redLink"><h2>Could not load partial!</h2></span>
 <% end %>

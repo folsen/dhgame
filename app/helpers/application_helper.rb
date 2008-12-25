@@ -49,14 +49,14 @@ module ApplicationHelper
   #TODO refactor - each index action should redirect you to where you are supposed to be
   def image_button_link
     if User.active_user && User.active_user.admin != 1
-      return link_to image_tag("/images/dhg-button.png", :id => "dhg-button"), 
-        :controller => :task, :action => :index
+      return link_to( image_tag("/images/dhg-button.png", :id => "dhg-button"), 
+        :controller => :task, :action => :index )
     elsif User.active_user && User.active_user.admin == 1
-      return link_to image_tag("/images/dhg-button.png", :id => "dhg-button"), 
-        :controller => :admin, :action => :index
+      return link_to( image_tag("/images/dhg-button.png", :id => "dhg-button"), 
+        :controller => :admin, :action => :index)
     else
-      return link_to image_tag("/images/dhg-button.png", :id => "dhg-button"), 
-        :controller => :public, :action => :index
+      return link_to( image_tag("/images/dhg-button.png", :id => "dhg-button"), 
+        :controller => :public, :action => :index)
     end
   end
   

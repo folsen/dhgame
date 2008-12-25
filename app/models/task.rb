@@ -6,9 +6,16 @@ class Task < ActiveRecord::Base
   
   belongs_to :episode
   
+  has_many :materials
   has_many :answers
-  
   has_many :progresses
+  
+  #for creating attached material
+  def material_attributes=(material_attributes)
+    material_attributes.each do |attributes|
+      materials.build(attributes)
+    end
+  end
   
   #alias for .last?
   #TODO remove from code completely
