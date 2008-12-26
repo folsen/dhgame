@@ -27,11 +27,12 @@
   <%= add_link("answer", "Add answer") %>
 </div>
 
-<p>
-  <%= f.label :episode %>
-  <%= f.collection_select("episode_id" , @episodes, "id", "name") %>
-</p>
-
+<% if @task.episode && @task.episode.start_time > Time.now -%>
+  <p>
+    <%= f.label :episode %>
+    <%= f.collection_select("episode_id" , @episodes, "id", "name") %>
+  </p>
+<% end -%>
 <p>
 	<%= f.label :partial %> <br />
 	<%= f.text_field 'partial' %>

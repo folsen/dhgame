@@ -3,6 +3,7 @@ class EpisodesController < ApplicationController
   
   #render the page to create a new episode
   def new
+    @episode = Episode.new() #to avoid nil errors when rendering the form
   end
 
   #render the edit page for the id given

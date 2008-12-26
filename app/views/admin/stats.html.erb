@@ -4,7 +4,7 @@
 <tr><td><strong><%= e.name %></strong></td><td><strong>User:</strong></td><td><strong>Time passed:</strong></td><td><strong>Best time:</strong></td></tr>
 <% e.tasks.each do |t| %>
 <% unless t.progresses.empty? %>
-<tr><td><%= t.name %></td><td><%= link_to t.progresses.first.user.name, :action => :show_user, :id => t.progresses.first.user.id %></td>
+<tr><td><%= t.name %></td><td><%= link_to t.progresses.first.user.login, user_path(t.progresses.first.user) %></td>
 	<td><%= t.progresses.first.created_at.to_s(:short) %></td><td>
 		<%= best_completion_time(t) %>
 	</td></tr>

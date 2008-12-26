@@ -14,6 +14,6 @@
   <%= f.label :headstart, "Give headstart?"%>
 </p>
 <p id="headstart_selector">
-	<%= select_with_integer_options('episode', 'headstart',0,60, @episode.headstart ||= nil)%> minutes
-	<%= select_with_integer_options('episode', 'headstart_count',0,100, @episode.headstart_count ||= nil)%> people
+	<%= select_with_integer_options('episode', 'headstart',0,60, @episode.headstart)%> minutes
+	<%= select_with_integer_options('episode', 'headstart_count',0,100, @episode.headstart_count)%> people
 </p>

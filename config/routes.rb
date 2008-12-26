@@ -18,8 +18,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :episodes
   
   map.resources :material
-  
-  
 
   map.root :controller => "public", :action => "index"
 

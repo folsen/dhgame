@@ -35,32 +35,33 @@ module TasksHelper
   #The game is still beeing prepared. Hang loose...
   def episode_link_for_user(user_object)
     progress = user_object.progresses
-    eps = Episode.find_by_position(1)
-    next_ep = progress.last.episode.lower_item unless progress.empty?
-    last_task = progress.last.task unless progress.empty?
-    unless eps.nil?
-      if progress.empty? && eps.start_time < Time.now
-        return link_to("Start Game", task_path(Task.get_first_task))
-      elsif progress.empty? && eps.start_time > Time.now
-        "The Game hasn't started yet! It starts at #{eps.start_time.to_s(:short)}"
-      elsif last_task.last? && progress.last.episode.last?
-        return "You have finished The Game."
-      elsif last_task.last? && !progress.last.episode.last? && (next_ep.start_time < Time.now || User.has_headstart(next_ep, user_object))
-        return link_to("Proceed with the game...", task_path(next_ep.tasks.first))
-      elsif last_task.last? && !progress.last.episode.last? && next_ep.start_time > Time.now
-        if next_ep.headstart != 0
-          return "The next episode - #{next_ep.name} - starts at #{next_ep.start_time.to_s(:short)}, the best " + 
-                  "#{next_ep.headstart_count} people will get a #{next_ep.headstart} minute headstart!"
-        else
-          return "The next episode - #{next_ep.name} - starts at #{next_ep.start_time.to_s(:short)}!"
-        end
-      elsif !last_task.last?
-        return link_to("Proceed with the game...", task_path(last_task.lower_item))
-      else
-        "A technical error occured, admin is notified!"
-      end
+    first_episode = Episode.find_by_position(1)
+    last_completed_task = progress.last.task unless progress.empty?
+    next_episode = last_completed_task.episode.lower_item unless last_completed_task.nil?
+    
+    if first_episode.nil?
+      return "The Game is still being prepared. Hang loose..."
+      
+    elsif first_episode && first_episode.start_time > Time.now
+      return "The Game hasn't started yet! It starts at #{eps.start_time.to_s(:short)}"
+      
+    elsif progress.empty?
+      return link_to("Start Game", task_path(Task.first_task))
+      
+    elsif !last_completed_task.last?
+      return link_to("Proceed with the game...", task_path(last_completed_task.next_task))
+      
+    elsif next_episode.nil?
+      return "You have finished The Game."
+      
+    elsif next_episode.start_time < Time.now || user_object.headstart_has_begun?(next_episode)
+      return link_to("Proceed with the game...", task_path(next_ep.tasks.first))
+      
+    elsif next_episode.headstart != 0
+      return "The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}, the best " + 
+              "#{next_episode.headstart_count} people will get a #{next_episode.headstart} minute headstart!"
     else
-      "The Game is still being prepared. Hang loose..."
+      return "The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}!"
     end
   end
   

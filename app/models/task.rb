@@ -51,7 +51,7 @@ class Task < ActiveRecord::Base
   
   #returns the id of the first task of the first episode
   #TODO refactor with some sql or something
-  def self.get_first_task
+  def self.first_task
      firsts = Task.find_all_by_position(1)
      firsts.each do |t|
        if t.episode.position == 1

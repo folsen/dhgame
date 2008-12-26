@@ -12,17 +12,14 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      if current_user.admin
-        redirect_back_or_default('/admin') 
-      else
-        redirect_back_or_default('/task')
-      end
+      redirect_to root_path
+      
       flash[:notice] = "Logged in successfully"
     else
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      render :action => 'index'
     end
   end
 

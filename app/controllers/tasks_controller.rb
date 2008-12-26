@@ -88,15 +88,16 @@ class TasksController < ApplicationController
       if task.check_answer(answer)
         current_user.make_progress(task, answer) unless authorized?
         if task.last?
-          redirect_to :action => :index 
+          redirect_to tasks_path
         end
-        redirect_to :action => :show, :id => task.next_task.id
+        redirect_to task_path(task.next_task)
       else
-        redirect_to :action => :show, :id => task.id 
+        logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}")
+        redirect_to task_path(task) 
       end
     else # did not validate
       flash[:notice] = "You are not allowed to answer this task!"
-      redirect_to :action => :index 
+      redirect_to tasks_path 
     end
   end
 
