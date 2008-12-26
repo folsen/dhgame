@@ -67,7 +67,6 @@ class TasksController < ApplicationController
   end
     
   #destroy the task and all of it's relations - only available to admins
-  #TODO find out if i can destroy relations automatically
   def destroy
     task = Task.find_by_id(params[:id])
         

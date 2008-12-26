@@ -2,11 +2,9 @@ class AdminController < ApplicationController
   before_filter :admin_required
     
   # Give all the users that are not admin, all the episodes and the current_user
-  #TODO refactor out @user to something application specific, should not have to do this every time
   def index
     @users          = User.find_all_by_admin(0)
     @episodes       = Episode.find(:all)
-    @user           = current_user
   end
   
   #Rendes the task and episode creation page

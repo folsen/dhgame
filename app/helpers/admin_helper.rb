@@ -184,7 +184,6 @@ module AdminHelper
     return link
   end
   
-  #TODO refactor this when the database is changed, perhaps use a charts plugin
   def get_player_count_chart_link
     chart_data = ""
     chart_labels = ""
