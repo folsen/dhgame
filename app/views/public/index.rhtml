@@ -2,36 +2,24 @@
 
 
 <div class="login-form"> 
+  <% form_tag register_path do %>
+  <p><%= label_tag 'login' %><br />
+  <%= text_field_tag 'login', @login %></p>
 
-		<% form_tag :action => :login do %> 
-		<p> 
-			<label for="name">Name:</label> 
-			<%= text_field_tag :name, params[:name] %> 
-		</p> 
-		<p> 
-			<label for="password">Password:</label> 
-			<%= password_field_tag :password, params[:password] %> 
-		</p> 
-		<p> 
-		<%= submit_tag "Login" %> 
-	</p> 
-	<% end %> 
-	<br />
+  <p><%= label_tag 'password' %><br/>
+  <%= password_field_tag 'password', nil %></p>
+
+
+  <p><%= label_tag 'remember_me', 'Remember me' %>
+  <%= check_box_tag 'remember_me', '1', @remember_me %></p>
+
+  <p><%= submit_tag 'Log in' %></p>
+  <% end -%>
 	
-	<span class="new_user_button">
-		<%= button_to "New User", {:action => :new},{:method => :get} %>
-	</span>
-	
+	<%= link_to "Sign Up Here!", signup_path, :style => "color: red;" %>
 </div>
 
 <div style="width: 550px;">
-  <p>
-  You can find all the solutions in <a href="/solutions.pdf">this pdf</a>.<br/>
-  <br/>
-  I would <u>LOVE</u> to get all the images and movies and notes and anything you would
-  like to release. Mail everything you want (especially images of people and game progress) to
-  ique@3h.se. I thank you all again for a wonderful game and congratulate MPUK!
-  </p>
 	The DreamHack Game is the traditional contest where intellect, 
 	craftiness and the ability to think logically makes you go far.
 	<br /><br />

@@ -1,0 +1,131 @@
+<div class="depot-form">  
+	
+	<% unless @user.nil? || @user.errors.empty? %>
+		<fieldset>
+			<legend style="color:red;">Ooops!</legend>
+		<p>	<%= error_messages_for "user" %> </p>
+		</fieldset>
+		<br class="clearAll" />
+	<% end %>
+		<br class="clearAll" />
+	<% form_for(@user) do |form| %> 
+
+<fieldset> 
+	<legend>Usual Stuff</legend> 
+
+  <table>
+    <tr>
+      <td>
+        <%= label_tag "username" %>
+      </td>
+      <td>
+        <%= form.text_field :login, :size => 40 %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= label_tag "full_name", "Real name" %>
+      </td>
+      <td>
+        <%= form.text_field :firstname, :style => "width: 125px;" %>
+  			<%= form.text_field :lastname, :size => 20 %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= label_tag "password" %>
+      </td>
+      <td>
+        <%= form.password_field :password, :size => 40 %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= label_tag "password_confirmation", "Again" %>
+      </td>
+      <td>
+        <%= form.password_field :password_confirmation, :size => 40 %>
+      </td>
+    </tr>
+  </table>
+</fieldset> 
+
+<br /><br />
+<fieldset>
+	<legend>Contacty Stuff</legend>
+	<table>
+    <tr>
+      <td style="width: 70px;">
+        <%= label_tag "email" %>
+      </td>
+      <td>
+        <%= form.text_field :email, :size => 40 %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= label_tag "phone"%>
+      </td>
+      <td>
+        <%= form.text_field :phone, :size => 40 %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= label_tag "team" %>
+      </td>
+      <td>
+        <%= form.text_field :team, :size => 40, :value => "Single Player" %>
+      </td>
+    </tr>
+
+  </table>
+
+</fieldset>
+<br /><br />
+<fieldset>
+	<legend>Placy Stuff</legend>
+	<table>
+	  <tr>
+      <td>
+        <%= label_tag "crew", 'I am crew [<span style="cursor:pointer;" onclick="showInfoBox(\'crew_info\')">?</span>]'%>
+      </td>
+      <td>
+        <%= form.check_box :crew,{:onChange => "$('place_form').toggle()"} %>
+      </td>
+    </tr>
+    <tr id="place_form">
+      <td>
+        <%= label_tag "place", "Place <br />Row | Seat" %>
+      </td>
+      <td>
+        <%= form.text_field :row, :size => 2 %><%= form.text_field :seat, :size => 3%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= label_tag "nationality" %>
+      </td>
+      <td>
+        <%= form.country_select 'nationality', priority_countries = ["Sweden", "Great Britain", "Denmark", "Norway", "Finland"] %>
+      </td>
+    </tr>
+
+  </table>
+</fieldset>
+<br /><br />
+	<fieldset>
+		<legend>Clickety Stuff</legend>
+		<% if authorized? -%>
+		<p>
+		Admin? <%= form.check_box :admin %>
+		</p>
+		<% end -%>
+		<p>
+	<%= submit_tag (submit_message ||= "Submit"), :class => "submit" %> 
+	  </p>
+	<% end %> 
+	<span id="crew_info" style="display:none;">
+Crew får deltaga precis som alla andra, men deltar inte i pristävlingen. De rankas dock som alla andra!
+	</span>	
+</div>

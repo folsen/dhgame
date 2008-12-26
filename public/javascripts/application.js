@@ -29,7 +29,3 @@ function showInfoBox(info_box_element){
 	msg = $(info_box_element).innerHTML;
 	alert(msg);
 }
-
-function hideBySlide(element_id){
-	new Effect.toggle($(element_id), 'blind', []);
-}

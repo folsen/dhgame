@@ -133,7 +133,7 @@ module Paperclip
     end
 
     # Saves the file, if there are no errors. If there are, it flushes them to
-    # the instance's errors and returns false, cancelling the save.
+    # the instance's errors s false, cancelling the save.
     def save
       if valid?
         logger.info("[paperclip] Saving files for #{name}")

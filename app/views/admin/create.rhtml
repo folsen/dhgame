@@ -26,13 +26,15 @@
 <% episode.tasks.each do |task| %>
 <li style="cursor:move;" id="task_<%= task.id %>">
 <div class="task_list_item">
-<% if task.answers.empty? %>
-<span class="redLink">
-<%= link_to task.name, :action => :show, :id => task.id  %>
+<% if task.answers.empty? -%>
+  <span class="redLink">
+<% else -%>
+  <span>
+<% end -%>
+<%= task.name %> -
+<%= link_to "Show", task_path(task) %>
+<%= link_to "Edit", edit_task_path(task) %>
 </span>
-<% else %>
-<%= link_to task.name, :action => :show, :id => task.id  %>
-<% end %>
 </div>
 </li>
 <% end %>

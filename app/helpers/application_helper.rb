@@ -15,6 +15,10 @@ module ApplicationHelper
     script << "  }"
     script << ")"
 
+    if options[:content][:text].nil? || options[:content][:text].empty?
+      options[:content][:text] = "<i>Change Me</i>"
+    end
+
     content_tag(
       options[:content][:element],
       options[:content][:text],
@@ -36,9 +40,9 @@ module ApplicationHelper
   #return a home link based on what kind of user you are
   #TODO this doesnt look good, fix it somehow
   def home_link
-    if User.active_user && User.active_user.admin != 1
+    if current_user && !current_user.admin
       return link_to("Home", :controller => :task, :action => :index)
-    elsif User.active_user && User.active_user.admin == 1
+    elsif current_user && current_user.admin
       return link_to("Home", :controller => :admin, :action => :index)
     else
       return link_to("Home", :controller => :public, :action => :index)
@@ -48,10 +52,10 @@ module ApplicationHelper
   #return a linked image at the top that sends you to the correct index page
   #TODO refactor - each index action should redirect you to where you are supposed to be
   def image_button_link
-    if User.active_user && User.active_user.admin != 1
+    if current_user && current_user.admin != 1
       return link_to( image_tag("/images/dhg-button.png", :id => "dhg-button"), 
         :controller => :task, :action => :index )
-    elsif User.active_user && User.active_user.admin == 1
+    elsif current_user && current_user.admin == 1
       return link_to( image_tag("/images/dhg-button.png", :id => "dhg-button"), 
         :controller => :admin, :action => :index)
     else

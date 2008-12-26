@@ -13,7 +13,7 @@
 </div>
 
 <h2>Player progress:</h2>
-<% @episodes.reverse.each do |e| %>
+<% @episodes.each do |e| %>
 	<p><%= e.name %> - <%= episode_leader(e) %>
 <% end %>
 <br style="clear: both" />

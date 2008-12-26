@@ -1,0 +1,42 @@
+<div class="depot-form">  
+  <%= error_messages_for "task" %> 
+  <fieldset> 
+
+<% if @episodes.empty? %>
+<h3>All episodes has been frozen since they're LIVE!</h3>
+<% else %>
+<legend>Enter Task Details</legend> 
+<% form_for @task, :url => "/admin/save_task", :html => { :multipart => true } do %> 
+  <p> 
+  <label for="task_name">Title:</label> 
+  <%= text_field "task", "name",:size => 40 %> 
+  </p> 
+  <br />
+  <p> 
+  Text:
+  <%= text_area "task", "desc" %> 
+  </p> 
+  <% for material in @task.materials %>
+    <% fields_for "task[material_attributes][]", material do |material_form| %>
+      <p>
+        File: <%= material_form.file_field :data %>
+      </p>
+    <% end %>
+  <% end %>
+
+	<p>
+	Episode:
+	<%= collection_select("task", "episode_id" , @episodes, "id", "name") %>
+	</p>
+	<p>
+		<label for="task_partial">Partial:</label>
+		<%= text_field 'task', 'partial' %>
+	</p>
+	<br />
+	<p>
+  <%= submit_tag "Save Task", :class => "submit" %> 
+  </p>
+  <% end %> 
+<% end %>
+  </fieldset> 
+</div> 

@@ -10,6 +10,12 @@ body {
 a {
 	color: white;
 }
+img {
+	border: 0px;
+}
+th {
+	text-align: left;
+}
 
 #dhg-button {
 	position: absolute;
@@ -72,25 +78,23 @@ p {
 	margin-left:auto;
 }
 
-.depot-form input{
-	float:right;
+#login-form {
+	width: 100px;
 }
 
-fieldset p{
+fieldset table, fieldset p{
 	width:400px;
 	margin-right:auto;
 	margin-left:auto;
-}
-fieldset label {
-  position: relative;
-  top: 20px;
 }
 .depot-form .submit{
 	width:400px;
 }
 
 form .fieldWithErrors {
-	border:none;
+	display: inline;
+	padding: 1px 0px 3px 0px;
+	border:1px solid red;
 }
 
 .new_user_button{

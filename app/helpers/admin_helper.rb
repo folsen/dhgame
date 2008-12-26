@@ -31,7 +31,7 @@ module AdminHelper
       :id => episode_object.progresses.first.user.id) unless episode_object.progresses.empty?
   end
 
-  #gets the latest completed tasks and returns episode:task - who completed it first
+  #gets the latest completed tasks s episode:task - who completed it first
   def leader(episodes)
     latest_task = nil
     episodes.each do |e|
@@ -51,7 +51,7 @@ module AdminHelper
         return "No tasks in episode"
       end
     end
-    return "#{latest_task.episode.position}:#{latest_task.position} - #{link_to latest_task.progresses.first.user.name,
+    return "#{latest_task.episode.position}:#{latest_task.position} - #{link_to latest_task.progresses.first.user.login,
       :action => :show_user, :id => latest_task.progresses.first.user.id}"
   end
 
@@ -101,7 +101,7 @@ module AdminHelper
     end
   end
 
-  #count the number of users that are currently on a specific task and return the results as an array
+  #count the number of users that are currently on a specific task  the results as an array
   #TODO refactor, use database instead and store the users current task in there
   #this is very bad code
   def get_tasks_playercount
@@ -207,17 +207,6 @@ module AdminHelper
     link = link + @users.length.to_s
     link = link + "&chxt=x,x,y&chf=bg,s,000000"
     return link
-  end
-  
-  #returns array of all the teammates a user has
-  #TODO move to model
-  def get_teammates(user)
-    teammates = User.find(:all, :conditions => ["team = ?", user.team]) unless user.team.empty? || user.team == "Single Player"
-    if teammates.nil?
-      return []
-    else
-      return teammates
-    end
   end
 
 end

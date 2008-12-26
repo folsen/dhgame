@@ -1,24 +1,74 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  
-  validates_presence_of :name 
-  validates_uniqueness_of :name 
+  include Authentication
+  include Authentication::ByPassword
+  include Authentication::ByCookieToken
 
-  attr_accessor :password_confirmation 
-  
-  #TODO replace with restful_auth and find all references to active_user and replace aswell
-  cattr_accessor :active_user
+  validates_presence_of     :login
+  validates_length_of       :login,    :within => 3..40
+  validates_uniqueness_of   :login
+  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
 
-  validates_confirmation_of :password 
-  
+  validates_presence_of     :email
+  validates_length_of       :email,    :within => 6..100 #r@a.wk
+  validates_uniqueness_of   :email
+  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
+
   has_many :progresses
+
+  # prevents a user from submitting a crafted form that can change admin status
+  attr_protected :admin
+
+
+  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
+  #
+  # uff.  this is really an authorization, not authentication routine.  
+  # We really need a Dispatch Chain here or something.
+  # This will also let us return a human error message.
+  #
+  def self.authenticate(login, password)
+    return nil if login.blank? || password.blank?
+    u = find_by_login(login) # need to get the salt
+    u && u.authenticated?(password) ? u : nil
+  end
+
+  def login=(value)
+    write_attribute :login, (value ? value.downcase : nil)
+  end
+
+  def email=(value)
+    write_attribute :email, (value ? value.downcase : nil)
+  end
   
-  #checks if the user has headstart
-  #TODO refactor, user_object not needed in model
+  #TODO implement
+  #This sets the episode and task columns to the right position
+  def current_position(task)
+    self.episode = task.episode.position
+    self.task = task.position
+  end
+  
+  #creates a progress for the user and task
+  def make_progress(task_object, answer)
+    p = Progress.create(:task => task_object, :episode => task_object.episode, :answer => answer, :user => self)
+    self.save
+    p.save
+  end
+
+  #returns array of all the teammates a user has
+  def get_teammates
+    teammates = User.find(:all, :conditions => ["team = ?", self.team]) unless self.team.empty? || self.team == "Single Player"
+    if teammates.nil?
+      return []
+    else
+      return teammates
+    end
+  end
+  
+  #checks if the users headstart has begun on an episode
   #TEST THIS
-  def self.has_headstart(episode_object, user_object)
-    progress = user_object.progresses
+  def headstart_has_begun?(episode_object)
+    progress = self.progresses
     if progress.nil?
       return false
     else
@@ -28,8 +78,7 @@ class User < ActiveRecord::Base
         latest = Progress.find(:all, :conditions => {:position => 1..episode_object.headstart_count, 
           :task_id => previous_ep.tasks.last.id})
         latest.each do |p|
-          #TODO move out the time comparing from here, this method should just check if the user has a headstart or not
-          if p.user == user_object && episode_object.start_time - episode_object.headstart.minutes < Time.now
+          if p.user == self && episode_object.start_time - episode_object.headstart.minutes < Time.now
             return true
           end
         end
@@ -38,111 +87,31 @@ class User < ActiveRecord::Base
     end
   end
   
-  #set standard names, emails and such
-  def before_validation_on_create
-    if self.first_name.nil?
-      self.first_name = "Anonymous"
-    end
-    if self.last_name.nil?
-      self.last_name = "Coward"
-    end
-    if self.email.nil? || self.email.empty?
-      self.email = "click@to-edit.com"
-    end
-    if self.phone.nil? || self.phone.empty?
-      self.phone = "070-EDIT-ME"
-    end
-    if self.row.nil? || self.row.empty?
-      self.row = "row"
-    end
-    if self.seat.nil? || self.seat.empty?
-      self.seat = "seat"
+  #check to see if a user is allowed to access a task
+  #TEST this right fucking here
+  def validate_task_request?(task_object)
+    #if the task object doesnt exist or the episode hasn't been released yet
+    if task_object.nil? || (task_object.episode.start_time > Time.now  && !headstart_has_begun?(task_object.episode))
+      return false
     end
     
-  end
-  
-  #TODO implement to update database with current episode
-  def save_episode_progress
-    true
-  end
-  
-  #TODO implement to update database with current task
-  def save_task_progress
-    true
-  end
-  
-  #creates a progress for the user and task
-  def make_progress(task_object, answer)
-    p = Progress.create(:task => task_object, :episode => task_object.episode, :answer => answer, :user => self)
-    self.save
-    p.save
-  end
-  
-  #TODO remove?
-  def validate 
-    errors.add_to_base("Missing password") if hashed_password.blank?  
-  end
-  
-  #TODO remove?
-  def password 
-    @password 
-  end
-   
-  #TODO replace with restful_auth function
-  def password=(pwd) 
-    @password = pwd 
-    create_new_salt 
-    self.hashed_password = User.encrypted_password(self.password, self.salt) 
-  end 
-  
-  #TODO replace with restful_auth function
-  def self.authenticate(name, password) 
-    user = self.find_by_name(name) 
-    if user 
-      expected_password = encrypted_password(password, user.salt) 
-      if user.hashed_password != expected_password 
-        user = nil 
-      end
+    progress = self.progresses #get the users progresses into progress
+    #if the user has no previous progress and it's the first task of the first episode
+    if progress.empty? && task_object.position == 1 && task_object.episode.position == 1
+      return true
+    #otherwise if the progress isnt empty and the users previous passed task + 1 is the same as this tasks position
+    #i.e. he is on the right task and his last progress episode is the same as this episode
+    elsif !progress.empty? && progress.last.task.position + 1 == task_object.position && progress.last.episode.position == task_object.episode.position
+      return true
+    #or if the progresses isnt empty and the tasks position is 1 and the last progress episode + 1 is this episode
+    #i.e. he is on the first task of a new episode
+    elsif  !progress.empty? && task_object.position == 1 && progress.last.episode.position + 1 == task_object.episode.position
+      return true
+    else
+      #if it's none of these, he is requesting the wrong task
+      return false
     end
-    user 
+      
   end
-  
-  #Check to see if the user is admin
-  #this is also replaced with restful_auth
-  def is_admin?
-    if self.admin == 1
-      #logger.info("ninja")
-      true
-    else      
-      #logger.info("samuraj")
-      false
-    end
-  end
-  
-  #check to see if another (I.E not this) user is admin
-  #this is also replaced with restful_auth
-  #it is currently used in login
-  def self.check_if_admin(user)
-   if user.admin == 1
-     true
-   else
-     false
-   end
-  end
-  
-   
-  private 
-    
-  #replace
-  def self.encrypted_password(password, salt) 
-    string_to_hash = password + "dhgame4thewin" + salt # 'wibble' makes it harder to guess 
-    Digest::SHA1.hexdigest(string_to_hash) 
-  end 
-  #replace
-  def create_new_salt 
-    self.salt = self.object_id.to_s + rand.to_s 
-  end 
 
-
-  
 end

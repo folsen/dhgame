@@ -1,13 +1,11 @@
 class AdminController < ApplicationController
-    before_filter :authorize, :check_for_admin
-    layout 'standard'
     
     # Give all the users that are not admin, all the episodes and the current_user
     #TODO refactor out @user to something application specific, should not have to do this every time
     def index
       @users          = User.find_all_by_admin(0)
       @episodes       = Episode.find(:all)
-      @user           = User.find_by_id(session[:user_id])
+      @user           = current_user
       
     end
     
@@ -22,7 +20,7 @@ class AdminController < ApplicationController
         @task = Task.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         flash[:error] = "Can't find task without ID!"
-        redirect_to :action => :index and return
+        redirect_to :action => :index 
       end
     end
     
@@ -31,11 +29,6 @@ class AdminController < ApplicationController
       @episodes       = Episode.find(:all)
       @users          = User.find_all_by_admin(0)
     end
-    
-    #TODO i don't this is used, remove when tests are written
-    def method_missing(name, *args)
-  		redirect_to :controller => 'admin', :action => ''
-  	end
   	
   	#This is used when ordering tasks and episodes on the creation page
   	#Though i seriously have no idea what it actually does
@@ -70,10 +63,10 @@ class AdminController < ApplicationController
       episode = Episode.find_by_id(params[:id])
       if episode.update_attributes(params[:episode])
         flash[:notice] = "Episode updated."
-        redirect_to :action => :create and return
+        redirect_to :action => :create 
       else
         flash[:error] = "Could not update!"
-        redirect_to :action => :create and return
+        redirect_to :action => :create 
       end
       
     end
@@ -94,40 +87,7 @@ class AdminController < ApplicationController
       else
         flash[:notice] = "Episode could not be deleted. Check the log!"
       end  
-      redirect_to :action => :create and return
-    end
-    
-    #get all the users to render incl admins
-    def users
-      @users = User.find(:all)
-    end
-    
-    #edit a single user
-    #TODO what does @admin_user do? should this be there?
-    def edit_user
-      @admin_user = User.find_by_id(session[:user_id])
-      @user = User.find_by_id(params[:id])
-      if @user.nil?
-        flash[:error] = "No user there!"
-        redirect_to :action => :users and return
-      end
-    end
-    
-    #show a single user
-    def show_user
-      @user = User.find_by_id(params[:id])
-      if @user.nil?
-        flash[:error] = "No user there!"
-        redirect_to :action => :users and return
-      end
-    end
-  
-    #render the page to create a new task
-    #TODO remove Task.new() from here?
-    def new_task
-      @task = Task.new()
-      @task.materials.build
-      @episodes = Episode.find(:all, :conditions => "start_time > '#{Time.now.to_s(:db)}'")
+      redirect_to :action => :create 
     end
     
     #render the page to create a new episode
@@ -136,27 +96,15 @@ class AdminController < ApplicationController
       @episode = Episode.new()
     end
     
-    #create and save the task from the paramaters from the form
-    def save_task
-      @task = Task.new(params[:task])
-      if @task.save
-        flash[:notice] = "Task #{@task.name} was created!"
-        redirect_to :action => :create and return
-      else
-        flash[:error] = "Could not create task!"
-        redirect_to :action => :new_task and return
-      end
-    end
-    
     #create and save the episode from the paramaters from the form
     def save_episode
       @episode = Episode.new(params[:episode])
       if @episode.save
         flash[:notice] = "Episode #{@episode.name} was created!"
-        redirect_to :action => :create and return
+        redirect_to :action => :create 
       else
         flash[:error] = "Episode could not be created!"
-        redirect_to :action => :new_episode and return
+        redirect_to :action => :new_episode 
       end
     end
     
@@ -176,33 +124,6 @@ class AdminController < ApplicationController
       end
     end
     
-    #destroy the task
-    #TODO find out if the answers and progresses for this task is automatically removed
-    def delete_task
-      task = Task.find_by_id(params[:id])
-      task.materials.each do |material|
-        material.destroy
-      end
-      if task.destroy
-        flash[:notice] = "Task was deleted!"
-        redirect_to :action => :create and return
-      else
-        flash[:error] = "Task could not be deleted!"
-        redirect_to :action => :create and return
-      end
-    end
-    
-    #remove a user
-    def delete_user
-      user = User.find_by_id(params[:id])
-      
-      if user.destroy
-        flash[:notice] = "User #{user.name} was killed and can never come back!"
-      else
-        flash[:notice] = "Ooops, something went wrong. Read teh logs...!"
-      end
-      redirect_to :action => :users and return
-    end
     # Ajaxy thingees below
     
     #change the partial name
@@ -221,30 +142,6 @@ class AdminController < ApplicationController
       render :update do |page|
         page.insert_html :bottom, "ajax_container_for_answers", {:partial => "answer_row", :locals => {:task => task, :answer => answer }}
       end
-    end
-    
-    def update_task_name
-      task = Task.find_by_id(params[:id])
-      task.update_attribute(:name, params[:value])
-      render :text => task.name
-    end
-    
-    def update_task_desc
-        task = Task.find_by_id(params[:id])
-        task.update_attribute(:desc, params[:value])
-        render :text => task.desc
-    end
-      
-    def update_answer
-        answer = Answer.find_by_id(params[:id])
-        answer.update_attribute(:answer, params[:value])
-        render :text => answer.answer
-    end
-    
-    def update_admin
-      user = User.find_by_id(params[:id])
-      user.update_attribute(:admin, params[:value])
-      render :text => user.admin
     end
     
 end

@@ -1,0 +1,21 @@
+<h2>Welcome, <%= current_user.login %>...</h2>
+
+  <p>
+  <%= episode_link_for_user(current_user) %>
+  </p>
+
+<div class="result_box">
+  <% unless current_user.progresses.empty? %>
+  <table>
+  <tr><td><b>Episode</b></td><td><b>Task</b></td><td><b>Placement</b></td></tr>
+  <% current_user.progresses.each do |p| %>
+  <tr><td><%= p.episode.name %></td><td><%= p.task.name %></td><td><%= p.position %></td></tr>
+  
+  <br />
+  
+  <% end %>
+  </table>
+  <% end %>
+</div>
+
+

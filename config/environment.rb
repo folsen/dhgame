@@ -13,7 +13,8 @@ ENV['RAILS_ENV'] ||= 'production'
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  config.action_controller.session_store = :active_record_store
-
-
+  config.action_controller.session = {
+    :session_key => '_burkert_session',
+    :secret      => '971192b51828d97a2e233e44c37d30eeeec2eb3933db48ac0775344e1e6bb31ac36d8c20d20609c5de2af9443dedbdae7af1a22912671daafc63aed154233da2'
+  }
 end
