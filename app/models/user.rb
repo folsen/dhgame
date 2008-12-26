@@ -17,10 +17,6 @@ class User < ActiveRecord::Base
 
   has_many :progresses
 
-  # prevents a user from submitting a crafted form that can change admin status
-  attr_protected :admin
-
-
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  
@@ -43,9 +39,14 @@ class User < ActiveRecord::Base
   
   #TODO implement
   #This sets the episode and task columns to the right position
-  def current_position(task)
+  def current_position=(task)
     self.episode = task.episode.position
     self.task = task.position
+  end
+  
+  #This gets the episode and task columns to the right position
+  def current_position
+    "#{episode}.#{task}"
   end
   
   #creates a progress for the user and task
@@ -56,7 +57,7 @@ class User < ActiveRecord::Base
   end
 
   #returns array of all the teammates a user has
-  def get_teammates
+  def teammates
     teammates = User.find(:all, :conditions => ["team = ?", self.team]) unless self.team.empty? || self.team == "Single Player"
     if teammates.nil?
       return []
@@ -66,7 +67,7 @@ class User < ActiveRecord::Base
   end
   
   #checks if the users headstart has begun on an episode
-  #TEST THIS
+  #TEST
   def headstart_has_begun?(episode_object)
     progress = self.progresses
     if progress.nil?

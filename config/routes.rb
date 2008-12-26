@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.resources :users
   map.resources :tasks, :member => { :answer => :post }
+  map.resources :episodes
   
   map.resources :material
   

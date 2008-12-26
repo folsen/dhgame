@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   #render the index action, if you have completed the game, render that
   def index
     @progress = current_user.progresses
-    if !@progress.empty? && @progress.last.task.is_last? && @progress.last.episode.is_last?     
+    if !@progress.empty? && @progress.last.task.last? && @progress.last.episode.last?     
       render :text => "You have completed the game!"
     end
   end
@@ -28,13 +28,14 @@ class TasksController < ApplicationController
   
   #render the page to create a new task
   def new
-    @task.materials.build
+    @task = Task.new
     @episodes = Episode.find(:all, :conditions => "start_time > '#{Time.now.to_s(:db)}'")
   end
   
   #edit a task - only available to admins
   def edit
     @task = Task.find(params[:id])
+    @episodes = Episode.find(:all, :conditions => "start_time > '#{Time.now.to_s(:db)}'")
   end
   
   #create and save the task from the paramaters from the form - only available to admins
@@ -51,11 +52,14 @@ class TasksController < ApplicationController
   
   #update task  - only available to admins
   def update
+    params[:task][:existing_material_attributes] ||= {}
+    params[:task][:existing_answer_attributes] ||= {}
+    
     @task = Task.find(params[:id])
     @task.update_attributes(params[:task])
-    if @user.errors.empty?
+    if @task.errors.empty?
       flash[:notice] = "Your changes are saved"
-      redirect_to edit_user_path(@user)
+      redirect_to :controller => :admin, :action => :create
     else
       flash[:error] = "We couldn't perform your changes :("
       render :action => 'edit'
@@ -66,23 +70,14 @@ class TasksController < ApplicationController
   #TODO find out if i can destroy relations automatically
   def destroy
     task = Task.find_by_id(params[:id])
-    task.materials.each do |material|
-      material.destroy
-    end
-    task.answers.each do |answer|
-      answer.destroy
-    end
-    task.progresses.each do |progress|
-      progress.destroy
-    end
-    
+        
     if task.destroy
       flash[:notice] = "Task was deleted!"
-      redirect_to :action => :create 
     else
       flash[:error] = "Task could not be deleted!"
-      redirect_to :action => :create 
     end
+    redirect_to :controller => :admin, :action => :create
+    
   end
 
   #try to answer a task from a form

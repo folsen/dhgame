@@ -1,0 +1,17 @@
+<div class="depot-form">  
+  <%= error_messages_for "episode" %> 
+  <fieldset> 
+
+    <legend>Update Episode Details</legend> 
+    <span style="float:right">
+    <%= link_to 'Destroy episode', episode_path(@episode), :confirm => 'Really want to?', :method => :delete %>
+    </span>
+    <% form_for :episode, :url => episode_path(@episode), :html => { :method => :put } do |f| %> 
+      <%= render :partial => 'fields', :locals => { :f => f } %>
+	    <p>
+        <%= f.submit "Update Episode", :class => "submit" %> 
+      </p>
+    <% end %> 
+  
+  </fieldset> 
+</div>

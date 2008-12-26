@@ -1,0 +1,19 @@
+<p> 
+  <%= f.label :name %> <br />
+  <%= f.text_field :name, :size => 40 %> 
+</p> 
+<p> 
+  <%= f.label :desc, "Description" %><br />
+  <%= f.text_area :desc %> 
+</p>
+<p>
+  <%= f.label :start %><br />
+  <%= datetime_select('episode', 'start_time') %>
+</p>
+<p>
+  <%= f.label :headstart, "Give headstart?"%>
+</p>
+<p id="headstart_selector">
+	<%= select_with_integer_options('episode', 'headstart',0,60, @episode.headstart ||= nil)%> minutes
+	<%= select_with_integer_options('episode', 'headstart_count',0,100, @episode.headstart_count ||= nil)%> people
+</p>

@@ -1,24 +1,22 @@
 <div class="top_menu_center_aligned">
-	<%= link_to "New Task", :action => :new_task %> | <%= link_to "New Episode", :action => :new_episode %>
+	<%= link_to "New Task", new_task_path %> | <%= link_to "New Episode", new_episode_path %>
 </div>
 <br />
 <% @episodes.each do |episode| %>
 <div class="episode_box">
-<% if episode.tasks.empty? %>
-<span class="redLink">
+<% if episode.tasks.empty? -%>
+  <span class="redLink">
+<% else -%>
+  <span>
+<% end -%>
+
 <% if episode.start_time - episode.headstart.minutes > Time.now %>
-<h3><%= link_to episode.name, :action => :edit_episode, :id => episode.id %></h3>
+<h3><%= link_to episode.name, edit_episode_path(episode) %></h3>
 <% else %>
 <h3><%= episode.name %></h3>
 <% end %>
+
 </span>
-<% else %>
-<% if episode.start_time - episode.headstart.minutes > Time.now %>
-<h3><%= link_to episode.name, :action => :edit_episode, :id => episode.id %></h3>
-<% else %>
-<h3><%= episode.name %></h3>
-<% end %>
-<% end %>	
 <p><% episode.desc %></p>
 <h5 style="cursor:pointer;">Tasks</h5>
 <div id="task_list_container<%=episode.id%>" style="" class="task_list_container">

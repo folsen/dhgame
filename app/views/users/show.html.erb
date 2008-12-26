@@ -32,7 +32,7 @@
 <div style="float: left; width: 25%;">
 <h3>Teammates</h3>
 
-<% @user.get_teammates.each { |u| %>
+<% @user.teammates.each { |u| %>
 	<%= link_to u.login, user_path(u) %><br /> <% } %>
 
 </div>

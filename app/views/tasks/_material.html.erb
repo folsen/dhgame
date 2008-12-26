@@ -1,0 +1,13 @@
+<div class="material">
+  <% fields_for_object(material) do |material_form| %>
+    <p>
+      <% if material.data_file_name.nil? -%>
+        <%= material_form.file_field :data %>
+      <% else -%>
+        <%= material_form.hidden_field :data, :value => "im not removed" %>
+        <%= insert_html_link(material) %>
+      <% end -%>
+      <%= link_to_function "remove", "$(this).up('.material').remove()" %>
+    </p>
+  <% end %>
+</div>

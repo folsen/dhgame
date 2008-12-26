@@ -1,0 +1,39 @@
+<% unless users.empty? %>
+  <table id="user_table">
+  	<tr class="head_row">
+  		<th>Username</th>
+  		<th>Name</th>
+  		<th>Team</th>
+  		<th>Phone</th>
+  	</tr>
+    <% users.each do |user| %>
+    	<tr>
+    		<td>
+    		  <%= user.login %>
+    		</td>
+    		<td>
+    			<%= user.firstname%> <%= user.lastname %>
+    		</td>
+    		<td>
+    			<%= user.team %>
+    		</td>
+    		<td>
+    			<%= user.phone.slice!(0..15)%>
+    		</td>
+    		<td>
+    			<%= link_to "View", user_path(user)%>
+    		</td>
+    		<td>
+    			<%= link_to "Edit", edit_user_path(user) %>
+    		</td>
+    		<td>
+    			<%= link_to 'Destroy', user_path(user), :confirm => 'Are you reaallyy sure?', :method => :delete %>
+    		</td>
+    	</tr>
+    <% end %>
+  </table>
+<% end %>
+
+<% if users.empty? %>
+	<i>No users found</i>
+<% end %>

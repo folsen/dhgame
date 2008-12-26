@@ -72,6 +72,10 @@ p {
 
 /* Formy Stuff */
 
+#task_desc {
+	width: 100%;
+}
+
 .depot-form fieldset{
 	width:600px;
 	margin-right:auto;
@@ -82,7 +86,7 @@ p {
 	width: 100px;
 }
 
-fieldset table, fieldset p{
+fieldset table, fieldset p, fieldset div{
 	width:400px;
 	margin-right:auto;
 	margin-left:auto;
@@ -99,18 +103,6 @@ form .fieldWithErrors {
 
 .new_user_button{
 	float:right;
-}
-
-
-/* Edit-in-Place Stuff */
-
-
-.editable-content{
-	display:inline;
-}
-
-.editable-content-large{
-	font-size:2.0em;
 }
 
 /* System messages */
@@ -153,7 +145,6 @@ form .fieldWithErrors {
 .head_row{
 	font-weight:bold;
 }
-
 #user_table{
 	width:100%;
 	overflow: hidden;

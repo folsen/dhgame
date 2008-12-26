@@ -6,45 +6,65 @@ class Task < ActiveRecord::Base
   
   belongs_to :episode
   
-  has_many :materials
-  has_many :answers
-  has_many :progresses
+  has_many :materials, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
+  has_many :progresses, :dependent => :destroy
   
-  #for creating attached material
-  def material_attributes=(material_attributes)
+  after_update :save_answers  
+
+  def new_material_attributes=(material_attributes)
     material_attributes.each do |attributes|
       materials.build(attributes)
     end
   end
   
-  #alias for .last?
-  #TODO remove from code completely
-  def is_last?
-    self.last?
-    # if self == self.episode.tasks.last
-    #   true
-    # else
-    #   false
-    # end
+  def existing_material_attributes=(material_attributes)
+    materials.reject(&:new_record?).each do |material|
+      if !material_attributes[material.id.to_s]
+        materials.delete(material)
+      end
+    end
+  end
+  
+  def new_answer_attributes=(answer_attributes)
+    answer_attributes.each do |attributes|
+      answers.build(attributes)
+    end
+  end
+  
+  def existing_answer_attributes=(answer_attributes)
+    answers.reject(&:new_record?).each do |answer|
+      attributes = answer_attributes[answer.id.to_s]
+      if attributes
+        answer.attributes = attributes
+      else
+        answers.delete(answer)
+      end
+    end
+  end
+  
+  def save_answers
+    answers.each do |answer|
+      answer.save(false)
+    end
   end
   
   #returns the id of the first task of the first episode
-  def self.get_first_task_id
+  #TODO refactor with some sql or something
+  def self.get_first_task
      firsts = Task.find_all_by_position(1)
      firsts.each do |t|
        if t.episode.position == 1
-         return t.id
+         return t
        end
      end
    end
   
-  #TODO rewrite, check to see if this is a list and perhaps replace 
-  #episode.tasks.last with is_last? or just last?
-  #probably should remove all instances of this
   #it is used to get the next task when you've supplied a correct answer
+  #TEST
   def next_task
     if last?
-      return self.episode.lower_item.tasks.first
+      return self.episode.lower_item.tasks.first unless self.episode.lower_item.nil?
     else
       return self.lower_item
     end

@@ -1,7 +1,7 @@
 module AdminHelper
   
   #return a string of all the tasks that have no name
-  #TODO is this and should this be used?
+  #TODO change and implement this in admin/create
   def alert_admin_to_lost_task(task_list)
     return_string = "These tasks have no episode:"
     task_list.each do |task|
@@ -11,27 +11,18 @@ module AdminHelper
     end
     return return_string
   end
-
-  #print <td> with class based on user type
-  #TODO this isn't used, but it's a good idea to use in the _users partial
-  def colorized_row(user_object)
-    if user_object.admin == 1
-      return "<td class='admin_row'>"
-    elsif user_object.crew == 1
-      return "<td class='crew_row'>"
-    else
-      return "<td>"
-    end
-  end
   
-  #returns a link to the user that first finished the episode
-  #TODO is this pointless? i kind of think so... remove
-  def episode_leader(episode_object)
-    return link_to(episode_object.progresses.first.user.name, :action => :show_user,
-      :id => episode_object.progresses.first.user.id) unless episode_object.progresses.empty?
+  #returns a link to the winner of the episode
+  def episode_winner(episode_object)
+    if episode_object.tasks.empty? || episode_object.tasks.last.progresses.empty?
+      return "No winner yet"
+    end
+    
+    user = episode_object.tasks.last.progresses.first.user
+    return link_to(user.login, user_path(user))
   end
 
-  #gets the latest completed tasks s episode:task - who completed it first
+  #gets the latest completed tasks and returns: episode:task - who completed it first
   def leader(episodes)
     latest_task = nil
     episodes.each do |e|
@@ -51,8 +42,8 @@ module AdminHelper
         return "No tasks in episode"
       end
     end
-    return "#{latest_task.episode.position}:#{latest_task.position} - #{link_to latest_task.progresses.first.user.login,
-      :action => :show_user, :id => latest_task.progresses.first.user.id}"
+    user = latest_task.progresses.first.user
+    return "#{latest_task.episode.position}:#{latest_task.position} - #{link_to user.login, user_path(user)}"
   end
 
   #this calculates the average time the task was completed
@@ -100,8 +91,16 @@ module AdminHelper
       end
     end
   end
+  
+  #returns a formatted string of a difference between two times
+  #params: the two times to be compared, given in float
+  def time_difference(this_time, previous_time)
+    return "#{((this_time - previous_time) / 60 / 60).to_i}h 
+    #{((this_time - previous_time) / 60 % 60).to_i}m 
+    #{((this_time - previous_time) % 60 % 60).to_i}s"
+  end
 
-  #count the number of users that are currently on a specific task  the results as an array
+  #count the number of users that are currently on a specific task returns the results as an array
   #TODO refactor, use database instead and store the users current task in there
   #this is very bad code
   def get_tasks_playercount
@@ -132,6 +131,7 @@ module AdminHelper
   end
   
   #build a chart 
+  #TODO replace with some plugin
   def get_task_chart_labels
     task_chart_labels = ""
     episodes = Episode.find(:all)

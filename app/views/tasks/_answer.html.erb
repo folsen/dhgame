@@ -1,0 +1,8 @@
+<div class="answer">
+  <% fields_for_object(answer) do |answer_form| %>
+    <p>
+     <%= answer_form.text_field :answer %>
+     <%= link_to_function "remove", "$(this).up('.answer').remove()" %>
+    </p>
+  <% end %>
+</div>
