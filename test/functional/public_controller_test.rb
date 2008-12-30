@@ -5,11 +5,6 @@ require 'public_controller'
 class PublicController; def rescue_action(e) raise e end; end
 
 class PublicControllerTest < Test::Unit::TestCase
-  def setup
-    @controller = PublicController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
 
   # Replace this with your real tests.
   def test_truth

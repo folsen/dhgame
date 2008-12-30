@@ -1,5 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
-  id: 1
+  id: 3
+  name: "First Episode"
+  desc: "This is the first"
+  start_time: "2008-01-01 01:00:00"
+  headstart: 0
+  position: 1
+  headstart_count: 0
 two:
   id: 2
+  name: "Second Episode"
+  desc: "The Second one"
+  start_time: "2009-01-01 01:00:00"
+  position: 2
+  headstart: 10
+  headstart_count: 5
