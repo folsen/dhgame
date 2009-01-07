@@ -1,8 +1,8 @@
 class CreateAnswers < ActiveRecord::Migration
   def self.up
-    create_table :answers do |t|
-      t.column :answer,         :string
-      t.column :task_id,        :integer
+    create_table :answers, :force => true do |t|
+      t.string  :answer
+      t.integer :task_id
     end
   end
 

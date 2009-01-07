@@ -51,14 +51,13 @@ class User < ActiveRecord::Base
   
   #creates a progress for the user and task
   def make_progress(task_object, answer)
-    #comment until testing phase is over
-    #TODO uncomment sms function
-    #if task_object.progresses.empty?
-    #  api = Clickatell::API.authenticate('3138951', 'ique', 'g9gmxc46')
-    #  msg = "#{self.login} just passed #{task_object.name}"
-    #  api.send_message('46735122587', msg)
-    #  api.send_message('46736893980', msg)
-    #end
+    if APP_SETTINGS['send_sms'] && task_object.progresses.empty?
+      api = Clickatell::API.authenticate(APP_SETTINGS['clickatell']['api'], APP_SETTINGS['clickatell']['user'], APP_SETTINGS['clickatell']['pass'])
+      msg = "#{self.login} just passed #{task_object.name}"
+      APP_SETTINGS['contacts'].each do |key, number|
+        api.send_message(number, msg)
+      end
+    end
     p = Progress.create(:task => task_object, :episode => task_object.episode, :answer => answer, :user => self)
     self.save
     p.save

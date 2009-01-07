@@ -25,6 +25,6 @@ role :db,  "dhgame.eu", :primary => true
 
 namespace :deploy do
   task :restart do
-    run "mongrel_cluster_ctl restart --clean"
+    
   end
 end
