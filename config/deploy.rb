@@ -24,7 +24,8 @@ role :app, "dhgame.eu"
 role :db,  "dhgame.eu", :primary => true
 
 namespace :deploy do
-  task :restart do
-    
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
   end
 end
