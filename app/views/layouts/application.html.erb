@@ -2,55 +2,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" ></meta>
+  <%= stylesheet_link_tag 'application' %>
 	<%= stylesheet_link_tag 'standards' %>
 	<%= stylesheet_link_tag 'jsProgressBarHandler' %>
 	<%= javascript_include_tag :defaults %>
 	<%= javascript_include_tag 'jsProgressBarHandler' %>
-
-	<title>Dreamhack Game Platform</title>
+	<title>The Dreamhack Game</title>
 </head>
 <body>
-  <div id="top" class="generals">
-    <%= image_button_link %>
-    <div id="menu">
-      <div style="float: left">
-		    <%= home_link %> | <%= info_link %> | <%= help_link %>
-		    <% if authorized? %>
-		    |
-		    <%= link_to "Creation", :action => :create, :controller => :admin %> | 
-		    <%= link_to "Users", users_path %>
-		    | <%= link_to "Stats", :action => :stats, :controller => :admin %>
-		    <% end %>
+  <div id="wrapper">
+    <div id="top">
+      <div id="menu">
+        <div class="left menu">
+	  	    <%= home_link %>  <%= info_link %>  <%= help_link %>
+	  	    <% if authorized? %>
+	  	    
+	  	    <%= link_to "creation", :action => :create, :controller => :admin %>  
+	  	    <%= link_to "users", users_path %>
+	  	    <%= link_to "stats", :action => :stats, :controller => :admin %>
+	  	    <% end %>
+        </div>
+        <div class="right menu">
+	  	    <% if current_user %>
+	  		  <%= link_to current_user.login, edit_user_path(current_user), :id => current_user.id %>
+	  		  | <%= link_to 'logout', logout_path %>
+	  	    <% end %>
+        </div>
       </div>
-      <div style="float: right">
-		    <% if current_user %>
-			  <%= link_to current_user.login, edit_user_path(current_user), :id => current_user.id %>
-			  | <%= link_to 'Logout', logout_path %>
-		    <% end %>
+      <div id="top_text">
+        <%= yield :title %>
       </div>
     </div>
-  </div>
-  <div id="content" class="generals">
-
-    <%= yield %>
-
-    <% if flash[:error] %>
-    <div id="box_of_warning">
-	    <%= flash[:error] %>
+    <div id="content">
+      <% if flash[:error] %>
+      <div id="box_of_warning">
+	      <%= flash[:error] %>
+      </div>
+      <% end %>
+      <% if flash[:notice] %>
+      <div id="box_of_notice">
+	      <%= flash[:notice] %>
+      </div>
+      <% end %>
+      
+      <%= yield %>
+    
     </div>
-    <% end %>
-    <% if flash[:notice] %>
-    <div id="box_of_notice">
-	    <%= flash[:notice] %>
+    <div id="bottom">
+      <div class="bottom-text"> 
+        Internet Explorer gives you aids.
+      </div>
     </div>
-    <% end %>
-
-  </div>
-  <div id="bottom" class="generals">
-  </div>
-  <div class="bottom-text generals"> 
-    This page should not be used with Internet Explorer, in fact, no page
-    should be used with Internet Explorer.
-  </div>
+  </div> <!-- close wrapper -->
 </body>
 </html>

@@ -1,43 +1,50 @@
-<div class="top_menu_center_aligned">
-	<%= link_to "New Task", new_task_path %> | <%= link_to "New Episode", new_episode_path %>
-</div>
+<% content_for :title do %>
+  <div class="top_menu_center_aligned">
+  	<%= link_to "New Task", new_task_path %> | <%= link_to "New Episode", new_episode_path %>
+  </div>
+<% end %>
 <br />
 <% @episodes.each do |episode| %>
 <div class="episode_box">
-<% if episode.tasks.empty? -%>
-  <span class="redLink">
-<% else -%>
-  <span>
-<% end -%>
-
-<% if episode.start_time - episode.headstart.minutes > Time.now %>
-<h3><%= link_to episode.name, edit_episode_path(episode) %></h3>
-<% else %>
-<h3><%= episode.name %></h3>
-<% end %>
-
-</span>
-<p><% episode.desc %></p>
-<h5 style="cursor:pointer;">Tasks</h5>
-<div id="task_list_container<%=episode.id%>" style="" class="task_list_container">
-<ol id="task_list_episode<%=episode.position%>" class="tast_list">
-<% episode.tasks.each do |task| %>
-<li style="cursor:move;" id="task_<%= task.id %>">
-<div class="task_list_item">
-<% if task.answers.empty? -%>
-  <span class="redLink">
-<% else -%>
-  <span>
-<% end -%>
-<%= task.name %> -
-<%= link_to "Show", task_path(task) %>
-<%= link_to "Edit", edit_task_path(task) %>
-</span>
-</div>
-</li>
-<% end %>
-</ol>
-</div>
+  <% if episode.tasks.empty? -%>
+    <span class="redLink">
+  <% else -%>
+    <span>
+  <% end -%>
+  
+  <% if episode.start_time - episode.headstart.minutes > Time.now %>
+    <h3><%= link_to episode.name, edit_episode_path(episode) %></h3>
+  <% else %>
+    <h3><%= episode.name %></h3>
+  <% end %>
+  </span>
+  
+  <% unless episode.desc.empty? %>
+    <p><% episode.desc %></p>
+  <% end %>
+  
+  <div id="task_list_container<%=episode.id%>" style="" class="task_list_container">
+    <ol id="task_list_episode<%=episode.position%>" class="tast_list">
+      <% if episode.tasks.empty? %>
+        This episode has no tasks :(
+      <% end %>
+      <% episode.tasks.each do |task| %>
+        <li style="cursor:move;" id="task_<%= task.id %>">
+          <div class="task_list_item">
+            <% if task.answers.empty? -%>
+              <span class="redLink">
+              <% else -%>
+              <span>
+            <% end -%>
+            <%= task.name %> -
+            <%= link_to "Show", task_path(task) %>
+            <%= link_to "Edit", edit_task_path(task) %>
+            </span>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+  </div>
 </div>
 <% if episode.start_time - episode.headstart.minutes > Time.now %>
 <%= sortable_element "task_list_episode#{episode.position}", 

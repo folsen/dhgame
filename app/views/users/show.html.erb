@@ -1,4 +1,7 @@
-<h3>Viewing <%= @user.login %> </h3>
+<% content_for :title do %>
+  <h1>Viewing <%= @user.login %> </h1>
+<% end %>
+
 <div style="overflow: auto;">
 <div style="float: left; width: 40%;">
 <table>

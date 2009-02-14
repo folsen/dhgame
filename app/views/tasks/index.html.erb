@@ -1,8 +1,10 @@
-<h2>Welcome, <%= current_user.login %>...</h2>
+<% content_for :title do %>
+<h1>Welcome, <%= current_user.login %>...</h1>
+<% end %>
 
-  <p>
-  <%= episode_link_for_user(current_user) %>
-  </p>
+<p>
+<%= episode_link_for_user(current_user) %>
+</p>
 
 <div class="result_box">
   <% unless current_user.progresses.empty? %>

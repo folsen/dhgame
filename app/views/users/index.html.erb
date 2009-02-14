@@ -1,5 +1,7 @@
-<h3>Users</h3>
-<h4>Welcome, Admin - Use your godgiven right to administrate the feeble users...</h4>
+<% content_for :title do %>
+  <h1>Users</h1>
+<% end %>
+<strong>Welcome, Admin - Use your godgiven right to administrate the feeble users...</strong>
 <span style="display:none;float:right;" id="admin_spin"><%= image_tag "ajax-loader.gif" %></span>
 <p style="text-align:center;">
 <% form_remote_tag :url => {:action => :search_users}, :before => "Element.show('admin_spin');$('tableContent').innerHTML = '';", :complete =>"Element.hide('admin_spin')" do %>

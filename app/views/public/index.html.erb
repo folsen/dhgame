@@ -1,5 +1,6 @@
-<h1>The Dreamhack Game</h1>
-
+<% content_for :title do %>
+  <h1>The Dreamhack Game</h1>
+<% end %>
 
 <div class="login-form"> 
   <% form_tag register_path do %>
@@ -16,21 +17,26 @@
   <p><%= submit_tag 'Log in' %></p>
   <% end -%>
 	
-	<%= link_to "Sign Up Here!", signup_path, :style => "color: red;" %>
+	<%= link_to "Sign Up Here!", signup_path %>
 </div>
 
 <div style="width: 550px;">
-	The DreamHack Game is the traditional contest where intellect, 
-	craftiness and the ability to think logically makes you go far.
-	<br /><br />
-	The requirements for playing the game is that you are in place at DreamHack in 
-	Elmia and have registered at this site. You can register now, so do it!
-	<br /><br />
-	System requirements are that you can use different types of movie and music formats. 
-	You should have Macromedia Flash Player installed and <i>Javascript enabled</i>. 
-	Other goods things to have is a camera, cell-phone, notepad, clock and miscellaneous 
-	code-breaking devices.
-	<br /><br />
+  <p>
+	  The DreamHack Game is the traditional contest where intellect, 
+	  craftiness and the ability to think logically makes you go far.
+	</p>
+	<p>
+	  The requirements for playing the game is that you are in place at DreamHack in 
+	  Elmia and have registered at this site. You can register now, so do it!
+	</p>
+	<p>
+	  System requirements are that you can use different types of movie and music formats. 
+	  You should have Macromedia Flash Player installed and <i>Javascript enabled</i>. 
+	  Other goods things to have is a camera, cell-phone, notepad, clock and miscellaneous 
+	  code-breaking devices.
+	</p>
+	<p>
 	You do not need any special knowledge to compete in The DreamHack Game, 
 	you only need to know how to obtain it.
+	</p>
 </div>
