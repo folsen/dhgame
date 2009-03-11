@@ -3,7 +3,7 @@ class AdminController < ApplicationController
     
   # Give all the users that are not admin, all the episodes and the current_user
   def index
-    @users          = User.find_all_by_admin(0)
+    @users          = User.find_all_by_admin(false)
     @episodes       = Episode.find(:all)
   end
   
@@ -15,7 +15,7 @@ class AdminController < ApplicationController
   #Renders the stats page for the admin
   def stats 
     @episodes       = Episode.find(:all)
-    @users          = User.find_all_by_admin(0)
+    @users          = User.find_all_by_admin(false)
   end
   
   #This is used when ordering tasks and episodes on the creation page
