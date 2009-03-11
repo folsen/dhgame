@@ -1,3 +1,8 @@
+/* global stuff */
+th {
+	text-align: left;
+}
+
 /* Formy Stuff */
 
 #task_desc {
@@ -102,4 +107,12 @@ form .fieldWithErrors {
 	width:180px;
 	text-align:right;
 	float:right;
+}
+
+/*stats stuff*/
+.diagram { 
+	float: left; 
+	background-color: black;
+	margin-right: 10px;
+	color: white;
 }

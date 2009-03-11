@@ -4,8 +4,7 @@ class TasksController < ApplicationController
 
   #render the index action, if you have completed the game, render that
   def index
-    @progress = current_user.progresses
-    if !@progress.empty? && @progress.last.task.last? && @progress.last.episode.last?     
+    if !current_user.task.nil? && current_user.task.last? && current_user.task.episode.last?   
       render :text => "You have completed the game!"
     end
   end
@@ -80,25 +79,18 @@ class TasksController < ApplicationController
   end
 
   #try to answer a task from a form
-  #TODO Rewrite this!
   def answer
     answer  = params[:answer][:text].downcase unless params[:answer][:text].nil?
-    task    = Task.find_by_id(params[:answer][:task_id])
-    if current_user.validate_task_request?(task)
-      if task.check_answer(answer)
-        current_user.make_progress(task, answer) unless authorized?
-        if task.last?
-          redirect_to tasks_path
-        end
-        redirect_to task_path(task.next_task)
-      else
-        logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}")
-        redirect_to task_path(task) 
+    task    = current_user.task
+    if task.check_answer(answer)
+      current_user.make_progress(answer) unless authorized? #current_user.task changes unless admin
+      if task.last?
+        redirect_to tasks_path and return
       end
-    else # did not validate
-      flash[:notice] = "You are not allowed to answer this task!"
-      redirect_to tasks_path 
+    else
+      logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}") 
     end
+    redirect_to task_path(current_user.task)
   end
 
 end

@@ -30,5 +30,47 @@ class AdminController < ApplicationController
     end 
     render :nothing => true
   end
+  
+  def graph
+    g = Gruff::Bar.new('480x210')
+        g.theme = {
+           :colors => ['#FFA400', '#3bb000', '#1e90ff', '#efba00', '#0aaafd'],
+           :marker_color => '#aaa',
+           :background_colors => ['#CEF2ED', '#fff']
+         }
+
+    g.hide_title = true
+    g.hide_legend = true
     
+    data_array = []
+    
+    Task.all.each do |t|
+      if params[:type] == "progresses"
+        data_array << t.progresses.count
+      elsif params[:type] == "players"
+        data_array << t.users.count
+      end
+    end
+    
+    g.data("Players",data_array)
+    
+    g.labels = graph_labels
+    
+    
+    send_data(g.to_blob, :disposition => 'inline', :type => 'image/png', :filename => "progress-stats.png")
+  end
+  
+  private
+  
+  def graph_labels
+    labelhash = {}
+    Episode.all.each do |e|
+      e.tasks.each_with_index do |t, i|
+        labelhash[i] = {}
+        labelhash[i] = e.position.to_s + "." + t.position.to_s
+      end
+    end
+    return labelhash
+  end
+  
 end

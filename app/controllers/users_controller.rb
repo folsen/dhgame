@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   #list all users - only available to admin
   def index
-    @users = User.find(:all, :limit => 100)
+    @users = User.paginate(:page => params[:page], :order => "team")
   end
   
   #show a single user - only available to admin
@@ -77,9 +77,9 @@ class UsersController < ApplicationController
 	def search_users
 	  query = "%" + params[:user][:query] + "%"
 	  if params[:user][:query] == ""
-	    users = User.find(:all)
+	    users = User.paginate(:page => params[:page])
 	  else
-	    users = User.find(:all, :conditions => ["login like ? OR firstname like ? OR lastname like ? OR team like ? OR nationality like ?", query, query, query, query, query])
+	    users = User.paginate(:page => params[:page], :conditions => ["login like ? OR firstname like ? OR lastname like ? OR team like ? OR nationality like ?", query, query, query, query, query])
     end
     render :update do |page|
 	    page.replace_html "tableContent", {:partial => "users", :locals => {:users => users}}

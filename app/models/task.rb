@@ -5,12 +5,14 @@ class Task < ActiveRecord::Base
   acts_as_list :scope => :episode_id
   
   belongs_to :episode
+  has_many :users
   
   has_many :materials, :dependent => :destroy
   has_many :answers, :dependent => :destroy
   has_many :progresses, :dependent => :destroy
   
-  after_update :save_answers  
+  after_update :save_answers
+  
 
   def new_material_attributes=(material_attributes)
     material_attributes.each do |attributes|
@@ -52,12 +54,9 @@ class Task < ActiveRecord::Base
   #returns the id of the first task of the first episode
   #TODO refactor with some sql or something
   def self.first_task
-     firsts = Task.find_all_by_position(1)
-     firsts.each do |t|
-       if t.episode.position == 1
-         return t
-       end
-     end
+    e = Episode.find_by_position(1)
+    t = Task.find(:first, :conditions => {:position => 1, :episode_id => e.id})
+    return t
    end
   
   #it is used to get the next task when you've supplied a correct answer
@@ -78,7 +77,7 @@ class Task < ActiveRecord::Base
         return true
       end
     end
-      return false
+    return false
   end
   
 end

@@ -27,7 +27,6 @@
 		<label for="task_answer">Svar:</label>
 		<input type="text" id="text_input" disabled name="answer[text]" />
 	</p>
-	<%= hidden_field 'answer', 'task_id', :value => @task.id %>
 	<input id="submit_button" name="commit" disabled type="submit" value="Skicka" />
 	<% end %>
 </div>

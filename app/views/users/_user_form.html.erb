@@ -14,14 +14,16 @@
 	<legend>Usual Stuff</legend> 
 
   <table>
-    <tr>
-      <td>
-        <%= label_tag "username" %>
-      </td>
-      <td>
-        <%= form.text_field :login, :size => 40 %>
-      </td>
-    </tr>
+    <% if controller.action_name == "new" %>
+      <tr>
+        <td>
+          <%= label_tag "username" %>
+        </td>
+        <td>
+          <%= form.text_field :login, :size => 40 %>
+        </td>
+      </tr>
+    <% end %>
     <tr>
       <td>
         <%= label_tag "full_name", "Real name" %>

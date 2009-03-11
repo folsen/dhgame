@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
   has_many :progresses
+  belongs_to :task
+  
+  cattr_reader :per_page
+  @@per_page = 50
+  
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
@@ -36,31 +41,19 @@ class User < ActiveRecord::Base
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
   end
-  
-  #TODO implement
-  #This sets the episode and task columns to the right position
-  def current_position=(task)
-    self.episode = task.episode.position
-    self.task = task.position
-  end
-  
-  #This gets the episode and task columns to the right position
-  def current_position
-    "#{episode}.#{task}"
-  end
-  
+
   #creates a progress for the user and task
-  def make_progress(task_object, answer)
-    if APP_SETTINGS['send_sms'] && task_object.progresses.empty?
+  def make_progress(answer)
+    if APP_SETTINGS['send_sms'] && self.task.progresses.empty?
       api = Clickatell::API.authenticate(APP_SETTINGS['clickatell']['api'], APP_SETTINGS['clickatell']['user'], APP_SETTINGS['clickatell']['pass'])
-      msg = "#{self.login} just passed #{task_object.name}"
+      msg = "#{self.login} just passed #{self.task.name}"
       APP_SETTINGS['contacts'].each do |key, number|
         api.send_message(number, msg)
       end
     end
-    p = Progress.create(:task => task_object, :episode => task_object.episode, :answer => answer, :user => self)
-    self.save
-    p.save
+    p = Progress.create(:task => self.task, :episode => self.task.episode, :answer => answer, :user => self)
+    #set the users task to the next one
+    self.task = self.task.next_task
   end
 
   #returns array of all the teammates a user has
@@ -103,23 +96,17 @@ class User < ActiveRecord::Base
       return false
     end
     
-    progress = self.progresses #get the users progresses into progress
-    #if the user has no previous progress and it's the first task of the first episode
-    if progress.empty? && task_object.position == 1 && task_object.episode.position == 1
+    #if the user hasnt had any progress (i.e. self.task is nil) and the task object is the first task of first episode
+    if self.task.nil? && task_object.position == 1 && task_object.episode.position == 1
+      self.task = task_object #the users task is now the first task
       return true
-    #otherwise if the progress isnt empty and the users previous passed task + 1 is the same as this tasks position
-    #i.e. he is on the right task and his last progress episode is the same as this episode
-    elsif !progress.empty? && progress.last.task.position + 1 == task_object.position && progress.last.episode.position == task_object.episode.position
-      return true
-    #or if the progresses isnt empty and the tasks position is 1 and the last progress episode + 1 is this episode
-    #i.e. he is on the first task of a new episode
-    elsif  !progress.empty? && task_object.position == 1 && progress.last.episode.position + 1 == task_object.episode.position
-      return true
-    else
-      #if it's none of these, he is requesting the wrong task
-      return false
-    end
       
+    #if users task is the task requested
+    elsif self.task == task_object
+      return true
+    end
+    
+    return false  
   end
 
 end

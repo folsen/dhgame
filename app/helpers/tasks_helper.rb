@@ -16,12 +16,7 @@ module TasksHelper
   
   #create a link for inserting proper html into the description box
   def insert_html_link(material)
-    if material.data_content_type == "image/jpg" || material.data_content_type == "image/gif" || material.data_content_type == "image/png" || material.data_content_type == "image/jpeg"
-      inserted_html = ' <a href="/assets/' + material.data_file_name + '"><img width="400" src="/assets/' + material.data_file_name + '"/></a>'
-    else
-      inserted_html = ' <!-- /assets/' + material.data_file_name + '-->'
-    end
-    link_to_function material.data_file_name, "$('task_desc').value += '#{inserted_html}'"
+    link_to_function material.data_file_name, "$('task_desc').value += '#{material.example_usage}'"
   end
   
   #return a link for the user to click to start the game
@@ -43,7 +38,7 @@ module TasksHelper
       return "The Game is still being prepared. Hang loose..."
       
     elsif first_episode && first_episode.start_time > Time.now
-      return "The Game hasn't started yet! It starts at #{eps.start_time.to_s(:short)}"
+      return "The Game hasn't started yet! It starts at #{first_episode.start_time.to_s(:short)}"
       
     elsif progress.empty?
       return link_to("Start Game", task_path(Task.first_task))
