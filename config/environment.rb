@@ -24,4 +24,7 @@ Rails::Initializer.run do |config|
   #config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
 end
 
+require 'gruff'
+require 'will_paginate'  
+
 APP_SETTINGS = YAML.load_file("#{RAILS_ROOT}/config/settings.yml")
