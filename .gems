@@ -1,4 +1,4 @@
 clickatell
 right_aws
 gruff
-mislav-will_paginate
+mislav-will_paginate --source http://gems.github.com
