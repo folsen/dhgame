@@ -17,11 +17,11 @@ Rails::Initializer.run do |config|
     :session_key => '_dhg',
     :secret      => '971192b51828d97a2e233e44c37d30eeeec2eb3933db48ac0775344e1e6bb31ac36d8c20d20609c5de2af9443dedbdae7af1a22912671daafc63aed154233da2'
   }
-  config.gem "clickatell"
-  config.gem "right_aws"
-  config.gem "gruff"
-  config.gem "rmagick"
-  config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  #config.gem "clickatell"
+  #config.gem "right_aws"
+  #config.gem "gruff"
+  #config.gem "rmagick"
+  #config.gem 'mislav-will_paginate', :version => '~> 2.2.3', :lib => 'will_paginate', :source => 'http://gems.github.com'
 end
 
 APP_SETTINGS = YAML.load_file("#{RAILS_ROOT}/config/settings.yml")
