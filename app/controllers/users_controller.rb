@@ -38,7 +38,6 @@ class UsersController < ApplicationController
       redirect_to("/")
       flash[:notice] = "Thanks for signing up!"
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
     end
   end
@@ -82,7 +81,7 @@ class UsersController < ApplicationController
 	    users = User.paginate(:page => params[:page], :conditions => ["login like ? OR firstname like ? OR lastname like ? OR team like ? OR nationality like ?", query, query, query, query, query])
     end
     render :update do |page|
-	    page.replace_html "tableContent", {:partial => "users", :locals => {:users => users}}
+	    page.replace_html "tableContent", {:partial => "users", :locals => {:users => users, :paginate => true }}
     end
   end
   

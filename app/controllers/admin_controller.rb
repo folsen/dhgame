@@ -32,7 +32,7 @@ class AdminController < ApplicationController
   end
   
   def graph
-    g = Gruff::Bar.new('480x210')
+    g = Gruff::Bar.new('450x250')
         g.theme = {
            :colors => ['#FFA400', '#3bb000', '#1e90ff', '#efba00', '#0aaafd'],
            :marker_color => '#aaa',
@@ -44,12 +44,18 @@ class AdminController < ApplicationController
     
     data_array = []
     
+    prev_t = nil
     Task.all.each do |t|
       if params[:type] == "progresses"
         data_array << t.progresses.count
       elsif params[:type] == "players"
-        data_array << t.users.count
+        if t == Task.first_task
+          data_array << User.count(:all, :conditions => {:admin => false}) - t.progresses.count
+        else
+          data_array << prev_t.progresses.count - t.progresses.count
+        end
       end
+      prev_t = t
     end
     
     g.data("Players",data_array)
@@ -64,10 +70,12 @@ class AdminController < ApplicationController
   
   def graph_labels
     labelhash = {}
+    i = 0
     Episode.all.each do |e|
-      e.tasks.each_with_index do |t, i|
+      e.tasks.each do |t|
         labelhash[i] = {}
         labelhash[i] = e.position.to_s + "." + t.position.to_s
+        i = i + 1
       end
     end
     return labelhash

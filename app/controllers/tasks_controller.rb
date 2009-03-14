@@ -4,9 +4,7 @@ class TasksController < ApplicationController
 
   #render the index action, if you have completed the game, render that
   def index
-    if !current_user.task.nil? && current_user.task.last? && current_user.task.episode.last?   
-      render :text => "You have completed the game!"
-    end
+
   end
   
   #show a task, requested via id in the params
@@ -28,13 +26,13 @@ class TasksController < ApplicationController
   #render the page to create a new task
   def new
     @task = Task.new
-    @episodes = Episode.find(:all, :conditions => "start_time > '#{Time.now.to_s(:db)}'")
+    @episodes = Episode.all
   end
   
   #edit a task - only available to admins
   def edit
     @task = Task.find(params[:id])
-    @episodes = Episode.find(:all, :conditions => "start_time > '#{Time.now.to_s(:db)}'")
+    @episodes = Episode.all
   end
   
   #create and save the task from the paramaters from the form - only available to admins
@@ -53,8 +51,14 @@ class TasksController < ApplicationController
   def update
     params[:task][:existing_material_attributes] ||= {}
     params[:task][:existing_answer_attributes] ||= {}
-    
+
     @task = Task.find(params[:id])
+    #if you change the episode, set the position of the task to last of the new episode
+    logger.debug("params" + params[:task][:episode_id])
+    logger.debug("@task" + @task.episode_id.to_s)
+    if params[:task][:episode_id] != @task.episode_id.to_s
+      params[:task][:position] = Episode.find(params[:task][:episode_id]).tasks.count + 1
+    end
     @task.update_attributes(params[:task])
     if @task.errors.empty?
       flash[:notice] = "Your changes are saved"
@@ -88,7 +92,7 @@ class TasksController < ApplicationController
         redirect_to tasks_path and return
       end
     else
-      logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}") 
+      logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}")
     end
     redirect_to task_path(current_user.task)
   end

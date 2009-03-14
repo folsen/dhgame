@@ -10,6 +10,6 @@
 <% end %>
 <p>
 	<div style="display:inline;" id="tableContent">
-    <%= render :partial => 'users', :locals => { :users => @users } %>
+    <%= render :partial => 'users', :locals => { :users => @users, :paginate => true } %>
 	</div>
 </p>

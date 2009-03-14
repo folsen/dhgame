@@ -28,8 +28,8 @@ module TasksHelper
   #Proceed with the game...
   #The next episode starts at ... the first .. people will get .. minutes headstart if headstart is set
   #The game is still beeing prepared. Hang loose...
-  def episode_link_for_user(user_object)
-    progress = user_object.progresses
+  def game_link
+    progress = current_user.progresses
     first_episode = Episode.find_by_position(1)
     last_completed_task = progress.last.task unless progress.empty?
     next_episode = last_completed_task.episode.lower_item unless last_completed_task.nil?
@@ -41,16 +41,16 @@ module TasksHelper
       return "The Game hasn't started yet! It starts at #{first_episode.start_time.to_s(:short)}"
       
     elsif progress.empty?
-      return link_to("Start Game", task_path(Task.first_task))
+      return link_to("Click to begin the adventure", task_path(Task.first_task))
       
     elsif !last_completed_task.last?
-      return link_to("Proceed with the game...", task_path(last_completed_task.next_task))
+      return link_to("You're not finished yet! Click here to continue.", task_path(last_completed_task.next_task))
       
     elsif next_episode.nil?
-      return "You have finished The Game."
+      return "You have finished The Game! Congratulations, you are one of few."
       
-    elsif next_episode.start_time < Time.now || user_object.headstart_has_begun?(next_episode)
-      return link_to("Proceed with the game...", task_path(next_ep.tasks.first))
+    elsif next_episode.start_time < Time.now || current_user.headstart_has_begun?(next_episode)
+      return link_to("Click to continue with the next episode", task_path(next_episode.tasks.first))
       
     elsif next_episode.headstart != 0
       return "The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}, the best " + 

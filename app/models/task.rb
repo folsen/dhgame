@@ -12,7 +12,6 @@ class Task < ActiveRecord::Base
   has_many :progresses, :dependent => :destroy
   
   after_update :save_answers
-  
 
   def new_material_attributes=(material_attributes)
     material_attributes.each do |attributes|

@@ -3,6 +3,9 @@ th {
 	text-align: left;
 }
 
+#user_table td {
+	vertical-align: top;
+}
 /* Formy Stuff */
 
 #task_desc {

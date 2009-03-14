@@ -21,6 +21,20 @@ class User < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 50
   
+  #get the task that the user is currently on
+  def task
+    if self.progresses.empty?
+      return Task.first_task
+    end
+    t = self.progresses.last.task
+    if t.last?
+      #if there are no more tasks, it returns nil
+      task = t.episode.lower_item.tasks.first unless t.episode.lower_item.nil? 
+    else
+      task = t.lower_item
+    end
+    return task
+  end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
@@ -44,48 +58,44 @@ class User < ActiveRecord::Base
 
   #creates a progress for the user and task
   def make_progress(answer)
-    if APP_SETTINGS['send_sms'] && self.task.progresses.empty?
+    if APP_SETTINGS['send_sms'] && task.progresses.empty?
       api = Clickatell::API.authenticate(APP_SETTINGS['clickatell']['api'], APP_SETTINGS['clickatell']['user'], APP_SETTINGS['clickatell']['pass'])
       msg = "#{self.login} just passed #{self.task.name}"
       APP_SETTINGS['contacts'].each do |key, number|
         api.send_message(number, msg)
       end
     end
-    p = Progress.create(:task => self.task, :episode => self.task.episode, :answer => answer, :user => self)
-    #set the users task to the next one
-    self.task = self.task.next_task
+    p = Progress.create(:task => task, :episode => task.episode, :answer => answer, :user => self)
   end
 
   #returns array of all the teammates a user has
   def teammates
     teammates = User.find(:all, :conditions => ["team = ?", self.team]) unless self.team.empty? || self.team == "Single Player"
-    if teammates.nil?
-      return []
-    else
-      return teammates
-    end
+    
+    return teammates.nil? ? [] : teammates
   end
   
-  #checks if the users headstart has begun on an episode
+  #checks if the user has a headstart and if it has begun on an episode
+  #will crash if the episode previous to the argument episode does not have any tasks
   #TEST
-  def headstart_has_begun?(episode_object)
-    progress = self.progresses
-    if progress.nil?
-      return false
-    else
-      #get the latest progresses for the previous episode and check if this user is in there
-      previous_ep = episode_object.higher_item
-      unless previous_ep.nil?
-        latest = Progress.find(:all, :conditions => {:position => 1..episode_object.headstart_count, 
-          :task_id => previous_ep.tasks.last.id})
-        latest.each do |p|
-          if p.user == self && episode_object.start_time - episode_object.headstart.minutes < Time.now
-            return true
-          end
-        end
+  def headstart_has_begun?(episode)
+    
+    if episode.start_time - episode.headstart.minutes < Time.now
+      
+      #just in case this method should be called with the first episode as argument
+      if episode.higher_item.nil?
+        return false
       end
-      return false
+
+      p = Progress.find(:first, :conditions => {:user_id => self.id, :task_id => episode.higher_item.tasks.last.id })
+      
+      if p.position <= episode.headstart_count
+        return true
+      end
     end
+    
+    return false
+    
   end
   
   #check to see if a user is allowed to access a task
@@ -96,13 +106,8 @@ class User < ActiveRecord::Base
       return false
     end
     
-    #if the user hasnt had any progress (i.e. self.task is nil) and the task object is the first task of first episode
-    if self.task.nil? && task_object.position == 1 && task_object.episode.position == 1
-      self.task = task_object #the users task is now the first task
-      return true
-      
     #if users task is the task requested
-    elsif self.task == task_object
+    if self.task == task_object
       return true
     end
     

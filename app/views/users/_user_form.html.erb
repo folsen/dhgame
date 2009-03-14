@@ -14,7 +14,7 @@
 	<legend>Usual Stuff</legend> 
 
   <table>
-    <% if controller.action_name == "new" %>
+    <% if controller.action_name == "new" || controller.action_name == "create" %>
       <tr>
         <td>
           <%= label_tag "username" %>

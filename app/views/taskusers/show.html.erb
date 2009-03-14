@@ -2,4 +2,4 @@
   <h1>Users on task <%= @task.name %></h1>
 <% end %>
 
-<%= render :partial => '/users/users', :locals => { :users => @users } %>
+<%= render :partial => '/users/users', :locals => { :users => @users, :paginate => false } %>

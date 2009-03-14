@@ -6,17 +6,19 @@
 <br />
 <% @episodes.each do |episode| %>
 <div class="episode_box">
+  
   <% if episode.tasks.empty? -%>
     <span class="redLink">
   <% else -%>
     <span>
   <% end -%>
   
-  <% if episode.start_time - episode.headstart.minutes > Time.now %>
-    <h3><%= link_to episode.name, edit_episode_path(episode) %></h3>
-  <% else %>
-    <h3><%= episode.name %></h3>
-  <% end %>
+    <h3>
+      <%= link_to episode.name, edit_episode_path(episode) %>
+      <% if episode.start_time - episode.headstart.minutes < Time.now %>
+        Warning! This episode is LIVE!
+      <% end %>
+    </h3>
   </span>
   
   <% unless episode.desc.empty? %>
@@ -46,11 +48,11 @@
     </ol>
   </div>
 </div>
-<% if episode.start_time - episode.headstart.minutes > Time.now %>
+
 <%= sortable_element "task_list_episode#{episode.position}", 
       :complete => visual_effect(:highlight, 'list'), 
       :url => { :action => "order", :episode_position => episode.position } %>
 <% end %>
-<% end %>
+
 
 
