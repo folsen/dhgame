@@ -28,5 +28,6 @@ end
 
 require 'gruff'
 require 'will_paginate'  
+require 'clickatell'
 
 APP_SETTINGS = YAML.load_file("#{RAILS_ROOT}/config/settings.yml")
