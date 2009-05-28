@@ -67,7 +67,8 @@ class User < ActiveRecord::Base
         api.send_message(number, msg)
       end
     end
-    p = Progress.create(:task => task, :episode => task.episode, :answer => answer, :user => self)
+    self.progresses.build(:task => task, :episode => task.episode, :answer => answer)
+    self.save
   end
 
   #returns array of all the teammates a user has
