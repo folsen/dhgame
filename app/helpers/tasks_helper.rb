@@ -35,28 +35,28 @@ module TasksHelper
     next_episode = last_completed_task.episode.lower_item unless last_completed_task.nil?
     
     if first_episode.nil?
-      return "The Game is still being prepared. Hang loose..."
+      return "<br />The Game is still being prepared. Hang loose..."
       
     elsif first_episode && first_episode.start_time > Time.zone.now
-      return "The Game hasn't started yet! It starts at #{first_episode.start_time.to_s(:short)}"
+      return "<br />The Game will start at #{first_episode.start_time.to_s(:short)}"
       
     elsif progress.empty?
-      return link_to("Click to begin the adventure", task_path(Task.first_task))
+      return link_to("<br />Click to begin the adventure", task_path(Task.first_task))
       
     elsif !last_completed_task.last?
-      return link_to("You're not finished yet! Click here to continue.", task_path(last_completed_task.next_task))
+      return link_to("<br />You're not finished yet! Click here to continue.", task_path(last_completed_task.next_task))
       
     elsif next_episode.nil?
-      return "You have finished The Game! Congratulations, you are one of few."
+      return "<br />You have finished The Game! Congratulations, you are one of few."
       
     elsif next_episode.start_time < Time.zone.now || current_user.headstart_has_begun?(next_episode)
-      return link_to("Click to continue with the next episode", task_path(next_episode.tasks.first))
+      return link_to("<br />Click to continue with the next episode", task_path(next_episode.tasks.first))
       
     elsif next_episode.headstart != 0
-      return "The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}, the best " + 
+      return "<br />The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}, the best " + 
               "#{next_episode.headstart_count} people will get a #{next_episode.headstart} minute headstart!"
     else
-      return "The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}!"
+      return "<br />The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}!"
     end
   end
   
