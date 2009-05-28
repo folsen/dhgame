@@ -49,19 +49,21 @@ class AdminController < ApplicationController
     data_array = []
     
     prev_t = nil
-    Task.all.each do |t|
-      if params[:type] == "progresses"
-        data_array << t.progresses.count
-      elsif params[:type] == "players"
-        if t == Task.first_task
-          data_array << User.count(:all, :conditions => {:admin => false}) - t.progresses.count
-        else
-          data_array << prev_t.progresses.count - t.progresses.count
+    Episode.find(:all, :order => "position").each do |e|
+      e.tasks.each do |t|
+        if params[:type] == "progresses"
+          data_array << t.progresses.count
+        elsif params[:type] == "players"
+          if t == Task.first_task
+            data_array << User.count(:all, :conditions => {:admin => false}) - t.progresses.count
+          else
+            data_array << prev_t.progresses.count - t.progresses.count
+          end
         end
+        prev_t = t
       end
-      prev_t = t
     end
-    
+
     g.data("Players",data_array)
     
     g.labels = graph_labels
@@ -75,10 +77,10 @@ class AdminController < ApplicationController
   def graph_labels
     labelhash = {}
     i = 0
-    Episode.all.each do |e|
+    Episode.find(:all, :order => "position").each do |e|
       e.tasks.each do |t|
         labelhash[i] = {}
-        labelhash[i] = e.position.to_s + "." + t.position.to_s
+        labelhash[i] = t.name[0..5]
         i = i + 1
       end
     end

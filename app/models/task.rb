@@ -5,12 +5,11 @@ class Task < ActiveRecord::Base
   acts_as_list :scope => :episode_id
   
   belongs_to :episode
-  has_many :users
   
   has_many :materials, :dependent => :destroy
   has_many :answers, :dependent => :destroy
   has_many :progresses, :dependent => :destroy
-  has_many :wrong_answers
+  has_many :wrong_answers, :dependent => :destroy
   
   after_update :save_answers
 
