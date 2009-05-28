@@ -1,0 +1,10 @@
+<% solution = Solution.last -%>
+<% if !solution.nil? && solution.release_at < Time.now -%>
+  <p>
+    <h3> <%= solution.title %> </h3>
+    <%= solution.description %>
+    <br /> <br />
+    <%= link_to "Click to download solutions", solution.pdf.url %>
+    <br /><br />
+  </p>
+<% end -%>

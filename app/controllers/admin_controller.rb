@@ -18,9 +18,13 @@ class AdminController < ApplicationController
     @users          = User.find_all_by_admin(false)
   end
   
-  #This is used when ordering tasks and episodes on the creation page
-  #Though i seriously have no idea what it actually does
-  #TODO find out what this actually does
+  def wrong_answers
+    @wrong_answers = WrongAnswer.paginate(:page => params[:page], :order => "created_at DESC")
+  end
+  
+  # This is used when ordering tasks and episodes on the creation page
+  # it's called after a drop has been made and gets all the tasks
+  # and updates their order in the database accordingly
   def order
     episode_position = params[:episode_position]
     tasks = params["task_list_episode#{episode_position}"]

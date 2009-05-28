@@ -16,7 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :tasks, :member => { :answer => :post }
   map.resources :episodes
-  
+  map.resources :solutions
   map.resources :material
 
   map.root :controller => "public", :action => "index"

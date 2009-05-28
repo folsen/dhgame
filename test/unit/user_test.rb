@@ -93,6 +93,16 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil users(:quentin).remember_token_expires_at
     assert users(:quentin).remember_token_expires_at.between?(before, after)
   end
+  
+  def test_teaser_winner
+    user1 = User.create(:login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69', :teaser => "red")
+    user2 = User.create(:login => 'quire2', :email => 'quire2@example.com', :password => 'quire69', :password_confirmation => 'quire69', :teaser => "blue")
+    user3 = User.create(:login => 'quire2', :email => 'quire2@example.com', :password => 'quire69', :password_confirmation => 'quire69', :teaser => "blue")
+    
+    assert !user1.teaser_winner?
+    assert user2.teaser_winner?
+    assert !user3.teaser_winner?
+  end
 
 protected
   def create_user(options = {})

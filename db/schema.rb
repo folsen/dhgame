@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090107233309) do
+ActiveRecord::Schema.define(:version => 20090528155722) do
 
   create_table "answers", :force => true do |t|
     t.string  "answer"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(:version => 20090107233309) do
     t.integer  "position"
   end
 
+  create_table "solutions", :force => true do |t|
+    t.datetime "release_at"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+  end
+
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.text     "desc"
@@ -73,8 +85,17 @@ ActiveRecord::Schema.define(:version => 20090107233309) do
     t.boolean  "admin",                                    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "teaser"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+
+  create_table "wrong_answers", :force => true do |t|
+    t.string   "answer"
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -1,10 +1,13 @@
 --- 
 title: The DreamHack Game
 send_sms: false
+wrong_answers_to_store: 100
 contacts:
   1: "46735122587"
-  2: "46736893980"
 clickatell:
   api: "3138951"
   user: ique
   pass: g9gmxc46
+teaser:
+  use: true
+  answer: blue

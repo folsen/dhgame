@@ -1,0 +1,26 @@
+<% content_for :title do %>
+  <h1>Edit solution PDF</h1>
+<% end %>
+<% form_for @solution, :html => { :multipart => true } do |f| -%>
+  <p>
+    <%= f.label :title, "Title" %> <br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description, "Description" %> <br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    File: <%= link_to @solution.pdf_file_name, @solution.pdf.url%>
+    <br /><br />
+    <%= f.label :pdf, "Use other file" %> <br />
+    <%= f.file_field :pdf %>
+  </p>
+  <p>
+    <%= f.label :release_at, "Release At" %> <br />
+    <%= datetime_select('solution', 'release_at') %>
+  </p>
+  
+  <%= f.submit "Change", :disable_with => 'Changeing...' %>
+  
+<% end -%>

@@ -39,3 +39,10 @@
     </td>
   </tr>
 </table>
+<div style="padding: 5px">
+  <h3>Wrong answers</h3>
+  <% @user.wrong_answers.each do |wrong_answer| %>
+    <strong><%= wrong_answer.answer %></strong> on
+    <%= link_to wrong_answer.task.name, task_path(wrong_answer.task) %><br />
+  <% end %>
+</div>

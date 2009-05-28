@@ -1,0 +1,17 @@
+<% content_for :title do %>
+  <h1>Solutions</h1>
+<% end %>
+<br />
+<%= link_to "Upload new", new_solution_path %>
+
+<h3>Uploaded solutions</h3>
+<ul>
+  <% @solutions.each do |solution| %>
+    <li><%= link_to solution.title, edit_solution_path(solution) %> 
+      - will be released at <%= solution.release_at.to_s(:long) %>
+      <% if Solution.last == solution %>
+      <em>- only this one will be used</em>
+      <% end %>
+      </li>
+  <% end %>
+</ul>

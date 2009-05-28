@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
   has_many :progresses
+  has_many :wrong_answers
+  
   belongs_to :task
   
   cattr_reader :per_page
@@ -112,6 +114,22 @@ class User < ActiveRecord::Base
     end
     
     return false  
+  end
+
+  def teaser_winner?
+    #did the user give the correct answer?
+    if teaser == APP_SETTINGS['teaser']['answer']
+      User.find(:all, :order => "created_at ASC").each do |user|
+        # find the first use that gave the correct answer
+        if user.teaser == APP_SETTINGS['teaser']['answer']
+          # is that user this user? if it is, he won, otherwise someone beat him to it
+          return user == self
+        end
+      end
+    else
+      #didnt give the right answer
+      return false
+    end
   end
 
 end

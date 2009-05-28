@@ -10,6 +10,7 @@ class Task < ActiveRecord::Base
   has_many :materials, :dependent => :destroy
   has_many :answers, :dependent => :destroy
   has_many :progresses, :dependent => :destroy
+  has_many :wrong_answers
   
   after_update :save_answers
 

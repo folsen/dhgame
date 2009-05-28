@@ -1,0 +1,12 @@
+<% content_for :title do %>
+  <h1>List of wrong answers. Let hilarity ensue!</h1>
+<% end %>
+
+<div style="padding: 15px">
+  <% @wrong_answers.each do |wrong_answer| %>
+    <%= link_to wrong_answer.user.login, user_path(wrong_answer.user) %> tried 
+    <strong>"<%= wrong_answer.answer %>"</strong> on 
+    <%= link_to wrong_answer.task.name, task_path(wrong_answer.task) %><br />
+  <% end %>
+</div>
+<%= will_paginate @wrong_answers %>

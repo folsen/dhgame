@@ -2,6 +2,10 @@
 <h1>Welcome, <%= current_user.login %>...</h1>
 <% end %>
 
+<%= render :partial => "teaser_message" %>
+
+<%= render :partial => "solutions" %>
+
 <p>
 <%= game_link %>
 </p>

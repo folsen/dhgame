@@ -54,8 +54,6 @@ class TasksController < ApplicationController
 
     @task = Task.find(params[:id])
     #if you change the episode, set the position of the task to last of the new episode
-    logger.debug("params" + params[:task][:episode_id])
-    logger.debug("@task" + @task.episode_id.to_s)
     if params[:task][:episode_id] != @task.episode_id.to_s
       params[:task][:position] = Episode.find(params[:task][:episode_id]).tasks.count + 1
     end
@@ -92,6 +90,7 @@ class TasksController < ApplicationController
         redirect_to tasks_path and return
       end
     else
+      WrongAnswer.create(:user_id => current_user.id, :task_id => task.id, :answer => answer)
       logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}")
     end
     redirect_to task_path(current_user.task)

@@ -1,0 +1,25 @@
+<% content_for :title do %>
+  <h1>Upload new solution PDF</h1>
+<% end %>
+
+<% form_for @solution, :html => { :multipart => true }do |f| -%>
+  <p>
+    <%= f.label :title, "Title" %> <br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description, "Description" %> <br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :pdf, "File to upload (preferably a PDF)" %> <br />
+    <%= f.file_field :pdf %>
+  </p>
+  <p>
+    <%= f.label :release_at, "Release At" %> <br />
+    <%= datetime_select('solution', 'release_at') %>
+  </p>
+  
+  <%= f.submit "Upload", :disable_with => 'Uploading...' %>
+  
+<% end -%>

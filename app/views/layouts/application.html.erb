@@ -14,12 +14,15 @@
     <div id="top">
       <div id="menu">
         <div class="left menu">
-	  	    <%= home_link %>  <%= info_link %>  <%= help_link %>
-	  	    <% if authorized? %>
-	  	    
-	  	    <%= link_to "creation", :action => :create, :controller => :admin %>  
-	  	    <%= link_to "users", users_path %>
-	  	    <%= link_to "stats", :action => :stats, :controller => :admin %>
+	  	    <%= home_link %>  
+	  	    <% if !authorized? %>
+	  	      <%= info_link %>  <%= help_link %>
+	  	    <% else %>
+	  	      <%= link_to "creation", :action => :create, :controller => :admin %>  
+	  	      <%= link_to "users", users_path %>
+	  	      <%= link_to "stats", :action => :stats, :controller => :admin %>
+	  	      <%= link_to "answers", :action => :wrong_answers, :controller => :admin %>
+	  	      <%= link_to "solutions", :action => :index, :controller => :solutions %>
 	  	    <% end %>
         </div>
         <div class="right menu">
@@ -50,10 +53,11 @@
     </div>
     <div id="bottom">
       <div class="bottom-text"> 
-        Internet Explorer gives you aids.
+        Don't use Internet Explorer.
       </div>
     </div>
   </div> <!-- close wrapper -->
+  <% if !authorized? -%>
   <!-- google stats -->
   <script type="text/javascript">
   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -64,5 +68,6 @@
   var pageTracker = _gat._getTracker("UA-8742990-1");
   pageTracker._trackPageview();
   } catch(err) {}</script>
+  <% end -%>
 </body>
 </html>

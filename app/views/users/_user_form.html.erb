@@ -116,6 +116,17 @@
   </table>
 </fieldset>
 <br /><br />
+<% if controller.action_name == "new" || controller.action_name == "create" %>
+  <fieldset>
+    <legend>Contest stuff</legend>
+    If you managed to crack the teaser in the newsletter and want to try winning that ticket, enter the answer here!
+    <br /><br />
+    <center>
+      <%= form.text_field :teaser, :size => 40 %>
+    </center>
+  </fieldset>
+  <br /><br />
+<% end %>
 	<fieldset>
 		<legend>Clickety Stuff</legend>
 		<% if authorized? -%>
