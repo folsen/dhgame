@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
       api = Clickatell::API.authenticate(APP_SETTINGS['clickatell']['api'], APP_SETTINGS['clickatell']['user'], APP_SETTINGS['clickatell']['pass'])
       msg = "#{self.login} just passed #{self.task.name}"
       APP_SETTINGS['contacts'].each do |key, number|
+        logger.info("Sending sms to #{number}")
         api.send_message(number, msg)
       end
     end
