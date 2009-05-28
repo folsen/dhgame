@@ -10,11 +10,11 @@ def secure_digest(*args)
 end
 
 def make_token
-  secure_digest(Time.now, (1..10).map{ rand.to_s })
+  secure_digest(Time.zone.now, (1..10).map{ rand.to_s })
 end
 
 def make_site_keys_rb
-  site_key = secure_digest(Time.now, (1..10).map{ rand.to_s })
+  site_key = secure_digest(Time.zone.now, (1..10).map{ rand.to_s })
   site_key_erb = <<-EOF
 # key of 40 chars length
 REST_AUTH_SITE_KEY         = '#{site_key}'

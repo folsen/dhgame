@@ -1,5 +1,5 @@
 <% solution = Solution.last -%>
-<% if !solution.nil? && solution.release_at < Time.now -%>
+<% if !solution.nil? && solution.release_at < Time.zone.now -%>
   <p>
     <h3> <%= solution.title %> </h3>
     <%= solution.description %>

@@ -37,7 +37,7 @@ module TasksHelper
     if first_episode.nil?
       return "The Game is still being prepared. Hang loose..."
       
-    elsif first_episode && first_episode.start_time > Time.now
+    elsif first_episode && first_episode.start_time > Time.zone.now
       return "The Game hasn't started yet! It starts at #{first_episode.start_time.to_s(:short)}"
       
     elsif progress.empty?
@@ -49,7 +49,7 @@ module TasksHelper
     elsif next_episode.nil?
       return "You have finished The Game! Congratulations, you are one of few."
       
-    elsif next_episode.start_time < Time.now || current_user.headstart_has_begun?(next_episode)
+    elsif next_episode.start_time < Time.zone.now || current_user.headstart_has_begun?(next_episode)
       return link_to("Click to continue with the next episode", task_path(next_episode.tasks.first))
       
     elsif next_episode.headstart != 0

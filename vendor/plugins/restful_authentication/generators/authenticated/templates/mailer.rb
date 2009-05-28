@@ -19,7 +19,7 @@ class <%= class_name %>Mailer < ActionMailer::Base
       @recipients  = "#{<%= file_name %>.email}"
       @from        = "ADMINEMAIL"
       @subject     = "[YOURSITE] "
-      @sent_on     = Time.now
+      @sent_on     = Time.zone.now
       @body[:<%= file_name %>] = <%= file_name %>
     end
 end

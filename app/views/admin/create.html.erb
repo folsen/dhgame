@@ -15,7 +15,7 @@
   
     <h3>
       <%= link_to episode.name, edit_episode_path(episode) %>
-      <% if episode.start_time - episode.headstart.minutes < Time.now %>
+      <% if episode.start_time - episode.headstart.minutes < Time.zone.now %>
         Warning! This episode is LIVE!
       <% end %>
     </h3>

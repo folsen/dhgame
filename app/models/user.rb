@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   #TEST
   def headstart_has_begun?(episode)
     
-    if episode.start_time - episode.headstart.minutes < Time.now
+    if episode.start_time - episode.headstart.minutes < Time.zone.now
       
       #just in case this method should be called with the first episode as argument
       if episode.higher_item.nil?
@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
   #TEST this right fucking here
   def validate_task_request?(task_object)
     #if the task object doesnt exist or the episode hasn't been released yet
-    if task_object.nil? || (task_object.episode.start_time > Time.now  && !headstart_has_begun?(task_object.episode))
+    if task_object.nil? || (task_object.episode.start_time > Time.zone.now  && !headstart_has_begun?(task_object.episode))
       return false
     end
     

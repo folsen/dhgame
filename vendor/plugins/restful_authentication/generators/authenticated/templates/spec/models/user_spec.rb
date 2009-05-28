@@ -181,7 +181,7 @@ describe <%= class_name %> do
    desired_encryption_expensiveness_ms = 0.1
    it "takes longer than #{desired_encryption_expensiveness_ms}ms to encrypt a password" do
      test_reps = 100
-     start_time = Time.now; test_reps.times{ <%= class_name %>.authenticate('quentin', 'monkey'+rand.to_s) }; end_time   = Time.now
+     start_time = Time.zone.now; test_reps.times{ <%= class_name %>.authenticate('quentin', 'monkey'+rand.to_s) }; end_time   = Time.zone.now
      auth_time_ms = 1000 * (end_time - start_time)/test_reps
      auth_time_ms.should > desired_encryption_expensiveness_ms
    end

@@ -322,9 +322,9 @@ class AttachmentTest < Test::Unit::TestCase
         @attachment.stubs(:instance_read).with(:file_name).returns("5k.png")
         @attachment.stubs(:instance_read).with(:content_type).returns("image/png")
         @attachment.stubs(:instance_read).with(:file_size).returns(12345)
-        now = Time.now
+        now = Time.zone.now
         Time.stubs(:now).returns(now)
-        @attachment.stubs(:instance_read).with(:updated_at).returns(Time.now)
+        @attachment.stubs(:instance_read).with(:updated_at).returns(Time.zone.now)
       end
 
       should "return a correct url even if the file does not exist" do
@@ -333,11 +333,11 @@ class AttachmentTest < Test::Unit::TestCase
       end
 
       should "make sure the updated_at mtime is in the url if it is defined" do
-        assert_match %r{#{Time.now.to_i}$}, @attachment.url(:blah)
+        assert_match %r{#{Time.zone.now.to_i}$}, @attachment.url(:blah)
       end
  
       should "make sure the updated_at mtime is NOT in the url if false is passed to the url method" do
-        assert_no_match %r{#{Time.now.to_i}$}, @attachment.url(:blah, false)
+        assert_no_match %r{#{Time.zone.now.to_i}$}, @attachment.url(:blah, false)
       end
 
       context "with the updated_at field removed" do
@@ -371,7 +371,7 @@ class AttachmentTest < Test::Unit::TestCase
 
         context "and assigned a file" do
           setup do
-            now = Time.now
+            now = Time.zone.now
             Time.stubs(:now).returns(now)
             @attachment.assign(@file)
           end
@@ -490,7 +490,7 @@ class AttachmentTest < Test::Unit::TestCase
       end
 
       should "return the right value when sent #avatar_updated_at" do
-        now = Time.now
+        now = Time.zone.now
         Time.stubs(:now).returns(now)
         @dummy.avatar = @file
         assert_equal now.to_i, @dummy.avatar.updated_at

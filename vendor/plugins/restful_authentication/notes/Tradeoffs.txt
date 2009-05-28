@@ -72,7 +72,7 @@ Now, adding even a 0.2s delay to page requests isn't justifiable for most online
 applications, and storing r is unnecessary (at least on your first design
 iteration).  But 
   On a 1G Slicehost already under moderate load:
-  irb(main):005:0> puts Time.now; (10**6).times{ secure_digest(Time.now, rand) }; puts Time.now
+  irb(main):005:0> puts Time.zone.now; (10**6).times{ secure_digest(Time.zone.now, rand) }; puts Time.zone.now
   Fri May 16 08:26:16 +0000 2008
   Fri May 16 08:30:58 +0000 2008
   => 280s/1M ~= 0.000_3 ms / digest

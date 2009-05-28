@@ -50,12 +50,12 @@ module Authorization
         @activated
       end
       def do_delete
-        self.deleted_at = Time.now.utc
+        self.deleted_at = Time.zone.now.utc
       end
 
       def do_activate
         @activated = true
-        self.activated_at = Time.now.utc
+        self.activated_at = Time.zone.now.utc
         self.deleted_at = self.activation_code = nil
       end
     end # instance methods
