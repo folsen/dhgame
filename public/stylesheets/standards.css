@@ -6,6 +6,9 @@ th {
 #user_table td {
 	vertical-align: top;
 }
+img {
+	border: 0px;
+}
 /* Formy Stuff */
 
 #task_desc {
