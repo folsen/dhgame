@@ -1,4 +1,4 @@
-<% if APP_SETTINGS['teaser']['use'] && Time.zone.now < Episode.find_by_position(1).start_time %>
+<% if APP_SETTINGS['teaser']['use'] && (Episode.find_by_position(1).nil? || Time.zone.now < Episode.find_by_position(1).start_time) %>
   <% if current_user.teaser_winner? %>
     <p>
       Congratulations!<br /> 
