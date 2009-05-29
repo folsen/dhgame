@@ -116,7 +116,7 @@
   </table>
 </fieldset>
 <br /><br />
-<% if (controller.action_name == "new" || controller.action_name == "create") && APP_SETTINGS['teaser']['use'] && Time.zone.now < Episode.find_by_position(1).start_time %>
+<% if (controller.action_name == "new" || controller.action_name == "create") && APP_SETTINGS['teaser']['use'] && (Episode.find_by_position(1).nil? || Time.zone.now < Episode.find_by_position(1).start_time) %>
   <fieldset>
     <legend>Contest stuff</legend>
     If you managed to crack the teaser in the newsletter and want to try winning that ticket, enter the answer here!
