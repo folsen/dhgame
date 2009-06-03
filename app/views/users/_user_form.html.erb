@@ -77,7 +77,11 @@
         <%= label_tag "team" %>
       </td>
       <td>
-        <%= form.text_field :team, :size => 40, :value => "Single Player" %>
+        <% if (controller.action_name == "new" || controller.action_name == "create") %>
+          <%= form.text_field :team, :size => 40, :value => "Single Player" %>
+        <% else %>
+          <%= form.text_field :team, :size => 40 %>
+        <% end %>
       </td>
     </tr>
 
