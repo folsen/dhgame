@@ -8,9 +8,11 @@
   <% else %>
    <p>
      Sorry :( <br /> 
-     You didn't win the teaser contest this time,
-     you had the wrong answer or someone else beat you to it. <br />
-     The right answer was <strong><%= APP_SETTINGS['teaser']['answer'] %></strong>.
+     <% if current_user.teaser.downcase == "blue" || current_user.teaser.downcase == "password is blue" %>
+      You had the right answer, but someone was faster than you. This game is about speed!
+     <% else %>
+      You didn't have the right answer. Come back for the real game and try again!
+     <% end %>
    </p>
   <% end %>
 <% end %>
