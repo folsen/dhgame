@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :admin_required
+  before_filter :admin_required, :except => :api_wrong_answers
     
   # Give all the users that are not admin, all the episodes and the current_user
   def index
@@ -70,6 +70,14 @@ class AdminController < ApplicationController
     
     
     send_data(g.to_blob, :disposition => 'inline', :type => 'image/png', :filename => "progress-stats.png")
+  end
+  
+  def api_wrong_answers
+    if params[:api_key] == "67e39387eead2e892ffb01a19e0e7ce7" && params[:since]
+      params[:since] = Time.parse(params[:since])
+      answers = WrongAnswer.find(:all, :conditions => ["created_at > ?", params[:since]])
+      render :xml => answers.to_xml
+    end
   end
   
   private
