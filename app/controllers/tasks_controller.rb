@@ -90,7 +90,7 @@ class TasksController < ApplicationController
         redirect_to tasks_path and return
       end
     else
-      WrongAnswer.create(:user_id => current_user.id, :login => current_user.login, :task_name => task.name, :task_id => task.id, :answer => answer)
+      #WrongAnswer.create(:user_id => current_user.id, :login => current_user.login, :task_name => task.name, :task_id => task.id, :answer => answer)
       logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}")
     end
     redirect_to task_path(current_user.task)
