@@ -1,84 +1,86 @@
-/* Layout stuff - stuff to change betweeen games*/
-body {
-	background: #000 url('/images/bg.jpg') fixed left top;
-	background-repeat: no-repeat;
-	color: #343434;
-	font-family: Helvetica, Arial;
-	font-size: 14px;
-}
+/* Design specific CSS */
+html,body { background-color: #21262a;}
 a {
-	color: black;
-	text-decoration: none;	
+	color: #fe8a00;
+	text-decoration: none;
 }
-a:hover {
-	color: #CECECE;
+#superwrapper { 
+	margin: 0px auto; 
+	background: url('/images/bg_repeater.png') repeat-x;
 }
 #wrapper {
 	margin: auto;
-	width: 831px;
-	position: relative;
-	left: -40px;
+	color: #dddddd;
 }
+#header {
+	background: url('/images/menu.png') no-repeat;
+	height: 340px;
+	width: 470px;
+	margin:auto;
+	position:relative;
+}
+.nopadding {padding:0;}
+.message-box {
+	background-color: #95a650;
+	padding: 18px;
+	color: #282828;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	width: 198px;
+}
+.message-box a { color: #29338f; }
+.loginbox { width: 84px; }
+.disclaimer { font-size: 10px; font-style: italic;}
+.shadowy {background: url('/images/menu.png') no-repeat 132px -355px;}
+
+/* Styles of the sprited menu */
+
 #menu {
-	width: 481px;
-	height: 48px;
 	position: absolute;
-	left: 270px;
-	top: 90px;
-	background-image: url('/images/tape.png');
-}
-#menu a {
-	color: #343434;
-	padding: 0px 5px 0px 5px;
-}
-.menu {
-	margin: 17px 15px 0px 15px;
-}
-.left {
-	float: left;
-} 
-.right {
-	float: right;
-}
-#top { 
-	position: relative;
-	height: 270px; 
-	background-image: url('/images/top.png');
-}
-#top_text {
-	position: absolute;
-	bottom: 0px;
-	left: 105px;
-}
-#content {
-	padding: 0px 10px 0px 10px;
-	width: 707px;
-	margin-left: 92px;
-	background-image: url('/images/repeater.jpg'); 
-	background-repeat: repeat-y;
-}
-#bottom {
-	width: 729px; 
-	height: 124px; 
-	margin-left: 90px;
-	background-image: url('/images/bottom.png');
-	position: relative;
-}
-.bottom-text {
-	position: absolute;
-	bottom: 30px;	
-	right: 20px;
-	color: #6d593d;
-	font-size: 12px;
-}
-ul, ol {
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-h1 {
-	margin-bottom: 0px;
-}
-p {
+	top: 320px;
+	left:44px;
+	list-style: none;
 	margin: 0;
-	padding: 5px 0px 5px 0px;
+	padding: 0;
+}
+#menu li {
+	margin-right: 18px;
+	float: left;
+	cursor: pointer;
+}
+#menu li.home {
+	background: url('/images/menu_sprite.png') no-repeat 0 1px;
+	width: 45px;
+	height: 19px;
+}
+#menu li.home.active {
+	background: url('/images/menu_sprite.png') no-repeat 0 -20px;
+}
+#menu li.rules {
+	background: url('/images/menu_sprite.png') no-repeat -107px 1px;
+	width: 79px;
+	height: 19px;
+	margin-left: 42px;
+}
+#menu li.rules.active {
+	background: url('/images/menu_sprite.png') no-repeat -107px -20px;
+}
+#menu li.help {
+	background: url('/images/menu_sprite.png') no-repeat -242px 1px;
+	width: 36px;
+	height: 19px;
+	margin-left: 41px;
+}
+#menu li.help.active {
+	background: url('/images/menu_sprite.png') no-repeat -242px -20px;
+}
+#menu li.profile {
+	background: url('/images/menu_sprite.png') no-repeat -336px 1px;
+	width: 48px;
+	height: 19px;
+	margin-left: 40px;
+}
+#menu li.profile.active {
+	background: url('/images/menu_sprite.png') no-repeat -336px -20px;
 }

@@ -1,76 +1,43 @@
-<% content_for :title do %>
-  <h1>The Dreamhack Game</h1>
-<% end %>
-
-<div class="login-form"> 
-  <% form_tag register_path do %>
-  <p><%= label_tag 'login' %><br />
-  <%= text_field_tag 'login', @login %></p>
-
-  <p><%= label_tag 'password' %><br/>
-  <%= password_field_tag 'password', nil %></p>
-
-
-  <p><%= label_tag 'remember_me', 'Remember me' %>
-  <%= check_box_tag 'remember_me', '1', @remember_me %></p>
-
-  <p><%= submit_tag 'Log in' %></p>
-  <% end -%>
-	
-	<%= link_to "Sign Up Here!", signup_path %>
+<div class="width2 column first">
+	<h1>The DreamHack Game</h1>
+	<%= render :partial => "/tasks/solutions" %>
+	<p class="leading">
+		The DreamHack Game is the traditional contest where intellect, craftiness and the ability to think logically makes you go far.
+	</p>
+	<p class="leading">
+		The requirements for playing the game is that you are in place at DreamHack in Elmia and have registered at this site. You can register now, so do it!
+	</p>
+	<p class="leading">
+		System requirements are that you can use different types of movie and music formats. You should have Macromedia Flash Player installed and Javascript enabled. Other goods things to have is a camera, cell-phone, notepad, clock and miscellaneous code-breaking devices.
+	</p>
+	<p class="leading">
+		You do not need any special knowledge to compete in The DreamHack Game, you only need to know how to obtain it.
+	</p>
 </div>
+<div class="width1 column message-box">
+	<%= flash[:notice] %>
+	<%= flash[:error] %>
+	<% form_tag register_path do %>
+		<fieldset class="nopadding">
+			<legend>Start playing the game</legend>
+			<label class="no-gutter">
+				Login
+				<%= text_field_tag 'login', @login, :class => "loginbox" %>
+			</label>
 
-<div style="width: 550px;">
-  <%= render :partial => "/tasks/solutions" %>
-  <p>
-	  The DreamHack Game is the traditional contest where intellect, 
-	  craftiness and the ability to think logically makes you go far.
-	</p>
-	<p>
-	  The requirements for playing the game is that you are in place at DreamHack in 
-	  Elmia and have registered at this site. You can register now, so do it!
-	</p>
-	<p>
-	  System requirements are that you can use different types of movie and music formats. 
-	  You should have Macromedia Flash Player installed and <i>Javascript enabled</i>. 
-	  Other goods things to have is a camera, cell-phone, notepad, clock and miscellaneous 
-	  code-breaking devices.
-	</p>
-	<p>
-	You do not need any special knowledge to compete in The DreamHack Game, 
-	you only need to know how to obtain it.
-	</p>
-	<h2>Prizes</h2>
-	<p>
-	  This event we have some fabulous new prizes!
-	  <h3> First place </h3>
-	  <ul>
-	    <li>10 tickets for the next DreamHack, for you and your entire team!</li>
-	    <li>
-	      This awesome ICY BOX external RAID-cabinet from deltaco<br />
-	      <center>
-	        <a href="http://www.deltaco.se/?itemid=(IB-NAS4220-B)"><img src="http://www.deltaco.se/support/images1/ib-nas4220-b.jpg" /></a>
-	      </center>
-	    </li>
-	  </ul>
-	  <h3>Second place</h3>
-	  <ul>
-	    <li>
-	      This ICY BOX external mediaplayer from deltaco<br />
-	      <center>
-	        <a href="http://www.deltaco.se/?itemid=(IB-MP308)"><img src="http://www.deltaco.se/support/images1/ib-mp308.jpg" /></a>
-	      </center>
-	    </li>
-	  </ul>
-	  <h3>Third place</h3>
-	  <ul>
-	    <li>
-	      This ICY BOX external NAS-cabinet from deltaco<br />
-	      <center>
-	        <a href="http://www.deltaco.se/?itemid=(IB-NAS902STUS2-B)"><img src="http://www.deltaco.se/support/images1/ib-nas902stus2-b.jpg" /></a>
-	      </center>
-	    </li>
-	  </ul>
-	</p>
-	<br />
+			<label class="">
+				Password
+				<%= password_field_tag 'password', nil, :class => "loginbox" %>
+			</label>
+		</fieldset>
+		<fieldset class="no-gutter nopadding">
+			<%= check_box_tag 'remember_me', '', @remember_me || true, :class => "checkbox" %>
+			<label for="remember_me" class="unitx1 checkbox-label" style="padding-left:4px;">Remember me</label>					  
+			<%= submit_tag 'Log in' %>
+		</fieldset>
+		<fieldset  style="padding-bottom:5px;">
+			<legend class="nopadding">Don't have an account? That's alright...</legend>
+			<h3 class="align-right" ><a href="/signup">Sign Up Here!</a></h3>
+		</fieldset>
+	<% end %>
 </div>

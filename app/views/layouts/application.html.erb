@@ -1,65 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" ></meta>
-  <%= stylesheet_link_tag 'application' %>
-	<%= stylesheet_link_tag 'standards' %>
-	<%= stylesheet_link_tag 'jsProgressBarHandler' %>
-	<%= javascript_include_tag :defaults %>
-	<%= javascript_include_tag 'jsProgressBarHandler' %>
-	<%= javascript_include_tag 'md5' %>
 	<title>The Dreamhack Game</title>
+	<%= stylesheet_link_tag 'baseline.compress' %>
+	<%= stylesheet_link_tag 'application' %>
+	<%= javascript_include_tag 'mootools-core.js' %>
+	<%= javascript_include_tag 'application.js' %>
 </head>
 <body>
-  <div id="wrapper">
-    <div id="top">
-      <div id="menu">
-        <div class="left menu">
-	  	    <%= home_link %>  
-	  	    <% if !authorized? %>
-	  	      <%= info_link %>  <%= help_link %>
-	  	    <% else %>
-	  	      <%= link_to "creation", :action => :create, :controller => :admin %>  
-	  	      <%= link_to "users", users_path %>
-	  	      <%= link_to "stats", :action => :stats, :controller => :admin %>
-	  	      <%= link_to "answers", :action => :wrong_answers, :controller => :admin %>
-	  	      <%= link_to "solutions", :action => :index, :controller => :solutions %>
-	  	    <% end %>
-        </div>
-        <div class="right menu">
-	  	    <% if current_user %>
-	  		  <%= link_to current_user.login, edit_user_path(current_user), :id => current_user.id %>
-	  		  | <%= link_to 'logout', logout_path %>
-	  	    <% end %>
-        </div>
-      </div>
-      <div id="top_text">
-        <%= yield :title %>
-      </div>
-    </div>
-    <div id="content">
-      <% if flash[:error] %>
-      <div id="box_of_warning">
-	      <%= flash[:error] %>
-      </div>
-      <% end %>
-      <% if flash[:notice] %>
-      <div id="box_of_notice">
-	      <%= flash[:notice] %>
-      </div>
-      <% end %>
-      
-      <%= yield %>
-    
-    </div>
-    <div id="bottom">
-      <div class="bottom-text"> 
-        Don't use Internet Explorer.
-      </div>
-    </div>
-  </div> <!-- close wrapper -->
-  <% if !authorized? -%>
-  <!-- google stats -->
+	<div id="superwrapper">
+		<div class="width3" id="wrapper">
+			<div class="width3" id="header">
+				<ul id="menu">
+					<li class="home active"></li>
+					<li class="rules"></li>
+					<li class="help"></li>
+					<li class="profile"></li>
+				</ul>
+			</div>
+
+			<div class="width3 nopadding shadowy">
+				<%= yield %>
+				<br style="clear:both;">
+			</div>
+
+			<div class="width3 clear align-right disclaimer">
+				This page was not intended for use with Internet Explorer
+			</div>
+		</div>
+	</div>
+	<!-- google stats -->
   <script type="text/javascript">
   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -69,6 +39,5 @@
   var pageTracker = _gat._getTracker("UA-8742990-1");
   pageTracker._trackPageview();
   } catch(err) {}</script>
-  <% end -%>
 </body>
 </html>

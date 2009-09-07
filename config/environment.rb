@@ -1,4 +1,4 @@
-RAILS_GEM_VERSION = '2.2.2'
+RAILS_GEM_VERSION = '2.3.4'
 
 # Be sure to restart your web server when you modify this file.
 
