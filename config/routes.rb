@@ -13,13 +13,19 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => "sessions", :action => 'create'
   map.login '/login', :controller => 'public', :action => 'index'
   map.signup '/signup', :controller => 'users', :action => 'new'
+  
+  map.root :controller => "public", :action => "index"
+  # TODO refactor these into one method
+  map.home "/home", :controller => 'public', :action => 'home'
+  map.rules '/rules', :controller => 'public', :action => 'info'
+  map.help '/help', :controller => 'public', :action => 'help'
+  map.profile '/profile', :controller => 'users', :action => 'edit'
+  
   map.resources :users
   map.resources :tasks, :member => { :answer => :post }
   map.resources :episodes
   map.resources :solutions
   map.resources :material
-
-  map.root :controller => "public", :action => "index"
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'

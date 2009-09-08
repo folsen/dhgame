@@ -1,43 +1,45 @@
-<div class="width2 column first">
-	<h1>The DreamHack Game</h1>
-	<%= render :partial => "/tasks/solutions" %>
-	<p class="leading">
-		The DreamHack Game is the traditional contest where intellect, craftiness and the ability to think logically makes you go far.
-	</p>
-	<p class="leading">
-		The requirements for playing the game is that you are in place at DreamHack in Elmia and have registered at this site. You can register now, so do it!
-	</p>
-	<p class="leading">
-		System requirements are that you can use different types of movie and music formats. You should have Macromedia Flash Player installed and Javascript enabled. Other goods things to have is a camera, cell-phone, notepad, clock and miscellaneous code-breaking devices.
-	</p>
-	<p class="leading">
-		You do not need any special knowledge to compete in The DreamHack Game, you only need to know how to obtain it.
-	</p>
-</div>
-<div class="width1 column message-box">
-	<%= flash[:notice] %>
-	<%= flash[:error] %>
-	<% form_tag register_path do %>
-		<fieldset class="nopadding">
-			<legend>Start playing the game</legend>
-			<label class="no-gutter">
-				Login
-				<%= text_field_tag 'login', @login, :class => "loginbox" %>
-			</label>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Dreamhack Game</title>
+	<%= stylesheet_link_tag 'baseline.compress' %>
+	<%= stylesheet_link_tag 'application' %>
+	<%= javascript_include_tag 'mootools-core.js' %>
+	<%= javascript_include_tag 'application.js' %>
+	<%= javascript_include_tag 'requester.js' %>
+</head>
+<body>
+	<div id="superwrapper">
+		<div class="width3" id="wrapper">
+			<div class="width3" id="header">
+				<ul id="menu">
+					<li class="home active"></li>
+					<li class="rules"></li>
+					<li class="help"></li>
+					<li class="profile"></li>
+				</ul>
+			</div>
 
-			<label class="">
-				Password
-				<%= password_field_tag 'password', nil, :class => "loginbox" %>
-			</label>
-		</fieldset>
-		<fieldset class="no-gutter nopadding">
-			<%= check_box_tag 'remember_me', '', @remember_me || true, :class => "checkbox" %>
-			<label for="remember_me" class="unitx1 checkbox-label" style="padding-left:4px;">Remember me</label>					  
-			<%= submit_tag 'Log in' %>
-		</fieldset>
-		<fieldset  style="padding-bottom:5px;">
-			<legend class="nopadding">Don't have an account? That's alright...</legend>
-			<h3 class="align-right" ><a href="/signup">Sign Up Here!</a></h3>
-		</fieldset>
-	<% end %>
-</div>
+			<div class="width3 nopadding shadowy">
+				<div id="content">
+				</div>
+				<br style="clear:both;" />
+			</div>
+
+			<div class="width3 clear align-right disclaimer">
+				This page was not intended for use with Internet Explorer
+			</div>
+		</div>
+	</div>
+	<!-- google stats -->
+  <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-8742990-1");
+  pageTracker._trackPageview();
+  } catch(err) {}</script>
+</body>
+</html>

@@ -1,8 +1,6 @@
-<% content_for :title do %>
-  <div class="top_menu_center_aligned">
+
   	<%= link_to "New Task", new_task_path %> | <%= link_to "New Episode", new_episode_path %>
-  </div>
-<% end %>
+
 <br />
 <% @episodes.each do |episode| %>
 <div class="episode_box">

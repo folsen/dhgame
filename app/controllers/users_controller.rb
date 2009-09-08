@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :except => [:new, :create]
+  before_filter :login_required, :except => [:new, :create, :edit]
   before_filter :admin_required, :only => [:index, :show, :destroy, :search_users]
   
   #list all users - only available to admin
@@ -19,6 +19,10 @@ class UsersController < ApplicationController
   
   #render the edit, however only allow admins to edit people other than themselves
   def edit
+    if !logged_in?
+      @user = User.new
+      render :action => "new", :layout => false and return
+    end
     if !authorized? && params[:id] != current_user.id.to_s
       redirect_to edit_user_path(current_user)
     end  

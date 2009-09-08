@@ -1,0 +1,43 @@
+<div class="width2 column first">
+	<h1>The DreamHack Game</h1>
+	<%= render :partial => "/tasks/solutions" %>
+	<p class="leading">
+		The DreamHack Game is the traditional contest where intellect, craftiness and the ability to think logically makes you go far.
+	</p>
+	<p class="leading">
+		The requirements for playing the game is that you are in place at DreamHack in Elmia and have registered at this site. You can register now, so do it!
+	</p>
+	<p class="leading">
+		System requirements are that you can use different types of movie and music formats. You should have Macromedia Flash Player installed and Javascript enabled. Other goods things to have is a camera, cell-phone, notepad, clock and miscellaneous code-breaking devices.
+	</p>
+	<p class="leading">
+		You do not need any special knowledge to compete in The DreamHack Game, you only need to know how to obtain it.
+	</p>
+</div>
+<div class="width1 column message-box">
+	<%= flash[:notice] %>
+	<%= flash[:error] %>
+	<% form_tag register_path do %>
+		<fieldset class="nopadding">
+			<legend>Start playing the game</legend>
+			<label class="no-gutter">
+				Login
+				<%= text_field_tag 'login', @login, :class => "loginbox" %>
+			</label>
+
+			<label class="">
+				Password
+				<%= password_field_tag 'password', nil, :class => "loginbox" %>
+			</label>
+		</fieldset>
+		<fieldset class="no-gutter nopadding">
+			<%= check_box_tag 'remember_me', '', @remember_me || true, :class => "checkbox" %>
+			<label for="remember_me" class="unitx1 checkbox-label" style="padding-left:4px;">Remember me</label>					  
+			<%= submit_tag 'Log in' %>
+		</fieldset>
+		<fieldset  style="padding-bottom:5px;">
+			<legend class="nopadding">Don't have an account? That's alright...</legend>
+			<h3 class="align-right" ><a href="/signup">Sign Up Here!</a></h3>
+		</fieldset>
+	<% end %>
+</div>
