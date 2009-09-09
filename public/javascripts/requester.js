@@ -26,7 +26,16 @@ var Requester = new Class({
 				this.content.setStyle('text-align', 'left');
 				this.content.setStyle('padding', '0');
 				window.location.hash = path.substring(path.indexOf("/")+1);
+				this._bindLinkEvents();
 			}.bind(this)
 		}).send()
+	},
+	_bindLinkEvents: function(){
+		$$('.load-remote').each(function(link){
+			link.addEvent('click', function(e){
+				e.stop();
+				requester.get(link.getProperty("href"));
+			});
+		});
 	}
 });

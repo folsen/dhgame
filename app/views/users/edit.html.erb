@@ -1,2 +1,78 @@
-<%= render :partial => "user_form" , :locals => {:submit_message => "Update information!", :html => { :method => :put }} %>
-<br />
+<h2>Edit your profile</h2>
+
+<% unless @user.nil? || @user.errors.empty? %>
+<fieldset>
+	<legend style="color:red;">Ooops!</legend>
+	<p><%= error_messages_for "user" %></p>
+</fieldset>
+<% end %>
+
+<% form_remote_for(@user) do |form| %> 
+<div class="unitx3 column first">
+	<fieldset>
+		<legend>Game stuff</legend>
+		
+		<label class="no-gutter unitx3">
+			Real Name<br />
+			<%= form.text_field :firstname, :style => "display:inline; width:172px" %>
+			<%= form.text_field :lastname, :style => "display:inline; width:172px" %>
+		</label>
+		
+		<label class="no-gutter unitx3">
+			Password
+			<%= form.password_field :password %>
+		</label>	
+			
+		<label class="no-gutter unitx3">
+			Password again (we have to make sure you're not drunk)
+			<%= form.password_field :password_confirmation %>
+		</label>
+		
+		<label class="no-gutter unitx3">
+			Team
+			<%= form.text_field :team, :value => "Single Player" %>
+		</label>
+	</fieldset>
+</div>
+<div class="unitx3 column">
+	<fieldset>
+		<legend>Contacty stuff</legend>
+		All of these fields are necessary to fill in if you plan on winning. 
+		We need to be able to find you to give you the prize, or it will go to someone else.
+
+		<label class="no-gutter unitx3">
+			Email
+			<%= form.text_field :email %>
+		</label>
+		
+		<label class="no-gutter unitx3">
+			Phone
+			<%= form.text_field :phone %>
+		</label>
+		<br style="clear:both;" />
+		<%= form.check_box :crew, :class => "checkbox", :onChange => "toggle('place_label')" %>
+		<label class="checkbox-label" style="margin:0;">
+			I am crew [<span style="cursor:pointer;" onclick="toggle('crew_info');">?</span>]
+			<span id="crew_info" style="display:none;">
+				Crew is allowed to register and take part of the contest but can not win any prize.
+			</span>
+		</label>
+		
+		<label id="place_label" class="no-gutter">
+			Place - Row/Seat<br />
+			<%= form.text_field :row, :size => 2, :style => "display:inline;" %>
+			<span style="font-size: 26px;position:relative;top:8px;">/</span>
+			<%= form.text_field :seat, :size => 3, :style => "display:inline;" %>
+		</label>
+		
+		<label class="no-gutter">
+			Country
+			<%= form.country_select 'nationality', priority_countries = ["Sweden", "Great Britain", "Denmark", "Norway", "Finland"] %>
+		</label>
+	</fieldset>
+</div>
+<br style="clear:both;" />
+<div class="width3" style="text-align:center;">
+	<%= submit_tag "Update profile", :class => "submit" %> 
+</div>
+<% end %>
