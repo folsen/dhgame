@@ -2,13 +2,17 @@ class PublicController < ApplicationController
   
   #render empty layout first page
   def index
+    render :controller => "tasks", :action => "index" and return
   end
   
   # TODO refactor these three methods below into one
   
   #render the home partial
   def home
-    render :partial => "home", :layout => false
+    if logged_in?
+      render :partial => "tasks/index" and return
+    end
+    render :partial => "home", :layout => false and return
   end
   
   #render the info page

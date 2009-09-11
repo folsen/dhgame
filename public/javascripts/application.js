@@ -1,5 +1,6 @@
 window.addEvent('domready', function(){
 	requester = new Requester();
+	game = new Game();
 	
 	if(location.hash != ""){
 		requester.get("/"+location.hash.substring(1));	

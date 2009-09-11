@@ -21,6 +21,9 @@ ActionController::Routing::Routes.draw do |map|
   map.help '/help', :controller => 'public', :action => 'help'
   map.profile '/profile', :controller => 'users', :action => 'edit'
   
+  map.play '/play', :controller => 'tasks', :action => "play"
+  map.answer '/answer', :controller => 'tasks', :action => 'answer'
+  
   map.resources :users
   map.resources :tasks, :member => { :answer => :post }
   map.resources :episodes

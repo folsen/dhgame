@@ -33,6 +33,10 @@ a {
 .loginbox { width: 84px; }
 .disclaimer { font-size: 10px; font-style: italic;}
 .shadowy {background: url('/images/menu.png') no-repeat 132px -355px;}
+.fieldWithErrors { background-color: #FFBDBD;}
+span.task {
+	font-size: 24px;
+}
 
 /* Styles of the sprited menu */
 

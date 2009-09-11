@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_filter :login_required
-  before_filter :admin_required, :except => [:index, :show, :answer]
+  before_filter :admin_required, :except => [:index, :play, :answer]
 
   #render the index action, if you have completed the game, render that
   def index
@@ -8,18 +8,24 @@ class TasksController < ApplicationController
   end
   
   #show a task, requested via id in the params
-  #TODO refactor this code so it's understandable
   def show
     begin
       @task = Task.find(params[:id])
     rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
       flash[:notice] = "Could not find that task!"
-      redirect_to :action => :index 
+      render :partial => "public/home" and return
     else
-      if !authorized? && !current_user.validate_task_request?(@task)
-        flash[:notice] = "Cheating is bad karma!"
-        redirect_to :action => :index 
-      end
+      render :partial => "tasks/show"
+    end
+  end
+  
+  #display the task that a user is currently on
+  def play
+    @task = @current_user.task
+    if @current_user.validate_task_request?(@task)
+      render :partial => "tasks/show" and return
+    else
+      render :controller => "public", :action => "home" and return
     end
   end
   
@@ -87,13 +93,15 @@ class TasksController < ApplicationController
     if task.check_answer(answer)
       current_user.make_progress(answer) unless authorized? #current_user.task changes unless admin
       if task.last?
-        redirect_to tasks_path and return
+        render :partial => "tasks/index" and return
       end
     else
       WrongAnswer.create(:user_id => current_user.id, :login => current_user.login, :task_id => task.id, :answer => answer)
       logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}")
+      status = 404
     end
-    redirect_to task_path(current_user.task)
+    @task = @current_user.task
+    render :partial => "tasks/show", :status => status || 200
   end
 
 end

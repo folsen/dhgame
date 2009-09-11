@@ -1,0 +1,48 @@
+<div class="width2 column first">
+	<h2><%= @task.name %></h2>
+
+	<p>
+		<%= @task.desc %>
+	</p>
+
+	<% unless @task.partial.empty? %>
+	<% begin %>
+	<%= render :partial => partial_path(@task), :locals => {:task => @task, :user => current_user} %>
+	<% rescue %>
+	<i>Technical Error - Notify an admin!</i>
+	<% end %>
+	<% end %>
+</div>
+<div class="width1 column message-box">
+	<span class="task">Task 1/2</span>
+	<div>
+		<%= flash[:notice] %>
+		<%= flash[:error] %>
+	</div>
+	
+	<div class="clue">
+		Clue #1:<br />
+		This is a samle clue. Try to <a href="http://google.com">google</a> or just think harder.
+	</div>
+	<div class="clue">
+		Clue #2:<br />
+		This is also a samle clue. Have you checked all the
+		<a href="http://reddit.com">latest news</a> and relevent literature?
+	</div>
+	
+	<p class="align-right">
+		Want to take a break?<br />
+		<a href="/logout" style="font-size:18px;font-weight:bold;" class="load-remote">Log out</a>
+	</p>
+</div>
+<br style="clear:both;" />
+
+<form id="answer_form" onsubmit="game.play($('answer_form').toQueryString()); return false;" method="post" action="/answer">
+	<fieldset class="width2">
+		<label class="no-gutter">
+			Answer:
+			<input type="text" id="text_input"  style="width:450px;" name="answer[text]" />
+		</label>
+		<input type="image" src="/images/go.png" style="position:relative;top:20px;">
+	</fieldset>
+</form>

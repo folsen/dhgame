@@ -1,4 +1,18 @@
 class UsersController < ApplicationController
+  
+  # Changes the insertion of a fieldWithErrors div to adding the class fieldWithErrors on the input tag
+  ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+    error_class = "fieldWithErrors"
+    if html_tag =~ /<(input|textarea|select)[^>]+class=/
+      class_attribute = html_tag =~ /class=['"]/
+      html_tag.insert(class_attribute + 7, "#{error_class} ")
+    elsif html_tag =~ /<(input|textarea|select)/
+      first_whitespace = html_tag =~ /\s/
+      html_tag[first_whitespace] = " class='#{error_class}' "
+    end
+    html_tag
+  end
+
   before_filter :login_required, :except => [:new, :create, :edit]
   before_filter :admin_required, :only => [:index, :show, :destroy, :search_users]
   
@@ -24,9 +38,10 @@ class UsersController < ApplicationController
       render :action => "new", :layout => false and return
     end
     if !authorized? && params[:id] != current_user.id.to_s
-      redirect_to edit_user_path(current_user)
-    end  
-    @user = User.find(params[:id])
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
   end
  
   def create
@@ -39,7 +54,7 @@ class UsersController < ApplicationController
       # button. Uncomment if you understand the tradeoffs.
       # reset session
       self.current_user = @user # !! now logged in
-      redirect_to("/")
+      render :controller => "public", :action => "index"
       flash[:notice] = "Thanks for signing up!"
     else
       render :action => 'new'

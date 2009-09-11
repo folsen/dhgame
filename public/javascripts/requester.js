@@ -8,27 +8,44 @@ var Requester = new Class({
 		this.content = $(this.options.contentID);
 	},
 	get: function(path){
-		this.content.setStyle('text-align', 'center');
-		this.content.setStyle('padding', '30px 0 30px 0');
-		this.content.set('html', '<img src="'+this.options.loadingSpinner+'" alt="Waiting..." />')
+		this._setupSpinner();
 		new Request.HTML({
 			url: path, 
 			update: this.options.contentID, 
 			method: 'get',
-			onFailure: function(){
-				failmsg = '<h2 style="text-align:center;">';
-				failmsg += 'It was our purpose<br />';
-				failmsg += 'Something went terribly wrong<br />';
-				failmsg += 'We couldn\'t do it</h2>';
-				this.content.set('html', failmsg);
-			}.bind(this),
-			onSuccess: function(){
-				this.content.setStyle('text-align', 'left');
-				this.content.setStyle('padding', '0');
-				window.location.hash = path.substring(path.indexOf("/")+1);
-				this._bindLinkEvents();
-			}.bind(this)
-		}).send()
+			onFailure: this._displayFailMessage.bind(this),
+			onSuccess: this._resetStyleAndPath.bind(this, path)
+		}).send();
+	},
+	sendForm: function(path, method, parameters) {
+		this._setupSpinner();
+		new Request.HTML({
+			url: path, 
+			update: this.options.contentID, 
+			method: method,
+			onFailure: this._displayFailMessage.bind(this),
+			onSuccess: this._resetStyleAndPath.bind(this)
+		}).send(parameters);
+	},
+	_resetStyleAndPath: function(path){
+		this.content.setStyle('text-align', 'left');
+		this.content.setStyle('padding', '0');
+		if(path){
+			window.location.hash = path.substring(path.indexOf("/")+1);	
+		}
+		this._bindLinkEvents();
+	},
+	_displayFailMessage: function(){
+		failmsg = '<h2 style="text-align:center;">';
+		failmsg += 'It was our purpose<br />';
+		failmsg += 'Something went terribly wrong<br />';
+		failmsg += 'We couldn\'t do it</h2>';
+		this.content.set('html', failmsg);
+	},
+	_setupSpinner: function(){
+		this.content.setStyle('text-align', 'center');
+		this.content.setStyle('padding', '30px 0 30px 0');
+		this.content.set('html', '<img src="'+this.options.loadingSpinner+'" alt="Waiting..." />');
 	},
 	_bindLinkEvents: function(){
 		$$('.load-remote').each(function(link){
