@@ -9,11 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090611205048) do
+ActiveRecord::Schema.define(:version => 20091107104148) do
 
   create_table "answers", :force => true do |t|
     t.string  "answer"
     t.integer "task_id"
+  end
+
+  create_table "clues", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "position"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "episodes", :force => true do |t|

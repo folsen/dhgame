@@ -5,6 +5,12 @@
 	<%= error_messages_for "user" %>
 </fieldset>
 <% end %>
+<% if flash[:notice] %>
+<fieldset class="flashes">
+	<%= flash[:notice] %>
+</fieldset>
+<br />
+<% end %>
 <form id="new_user" onsubmit="requester.sendForm('/users/<%= @user.id %>', 'put', $('new_user').toQueryString()); return false;" method="put" action="/users/<%= @user.id %>">
 	<div class="unitx3 column first">
 		<fieldset>

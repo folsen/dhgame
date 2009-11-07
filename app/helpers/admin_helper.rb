@@ -19,7 +19,7 @@ module AdminHelper
     end
     
     user = episode_object.tasks.last.progresses.first.user
-    return link_to(user.login, user_path(user))
+    return link_to(user.login, admin_user_path(user))
   end
 
   #gets the latest completed tasks and returns: episode:task - who completed it first
@@ -43,7 +43,7 @@ module AdminHelper
       end
     end
     user = latest_task.progresses.first.user
-    return "#{latest_task.episode.position}:#{latest_task.position} - #{link_to user.login, user_path(user)}"
+    return "#{latest_task.episode.position}:#{latest_task.position} - #{link_to user.login, admin_user_path(user)}"
   end
 
   #this calculates the average time the task was completed

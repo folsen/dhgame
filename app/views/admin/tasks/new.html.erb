@@ -1,0 +1,12 @@
+<%= error_messages_for "task" %> 
+<h3>Enter Task Details</h3>
+
+<% form_for :task, :url => admin_tasks_path, :html => { :multipart => true, :class => "width4" } do |f| %> 
+
+	<%= render :partial => 'fields', :locals => { :f => f } %>
+	<br style="clear:both;" />
+	<label class="no-gutter">
+	<%= f.submit "Save Task", :class => "big-button" %> 
+	</label>
+
+<% end %>

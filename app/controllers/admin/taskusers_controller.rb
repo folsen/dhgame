@@ -1,4 +1,8 @@
-class TaskusersController < ApplicationController
+class Admin::TaskusersController < ApplicationController
+  layout 'admin'
+  
+  before_filter :admin_required
+  
   def show
     @task = Task.find_by_id(params[:id])
     @users = []

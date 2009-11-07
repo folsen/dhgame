@@ -1,6 +1,6 @@
 --- 
 title: The DreamHack Game
-send_sms: true
+send_sms: false
 wrong_answers_to_store: 100
 contacts:
   1: "46735122587"

@@ -1,53 +1,28 @@
-
-  <h1>Winner of each task</h1>
-
-<table style="width: 100%;">
-<% @episodes.each do |e| %>
-  <tr><td><strong><%= e.name %></strong></td><td><strong>User:</strong></td><td><strong>Time passed:</strong></td><td><strong>Best time:</strong></td></tr>
-  <% e.tasks.each do |t| %>
-    <tr>
-      <td><%= link_to t.name, url_for(:controller => "taskusers", :action => "show", :id => t.id) %></td>
-      <% unless t.progresses.empty? %>
-        <td><%= link_to t.progresses.first.user.login, user_path(t.progresses.first.user) %></td>
-    	  <td><%= t.progresses.first.created_at.to_s(:short) %></td>
-    	  <td><%= best_completion_time(t) %></td>
-      <% else %>
-    	  <td colspan="3">None Shall Pass!</td>
-      <% end %>
-    </tr>
-  <% end %>
-  <tr><td colspan="4">&nbsp;</td></tr>
-<% end %>
-</table>
-<div class="statcontainer" style="overflow: auto; width: 100%;">
-<div style="float: left; width: 70%;">
-<h3>Number of people that have completed the tasks</h3>
-<%= image_tag url_for(:controller => "admin", :action => "graph", :type => "progresses"), :style => "border: 2px solid gray;" %>
-<br /><br />
+<div>
+	<h3>Number of people that have completed the tasks</h3>
+	<%= image_tag url_for(:controller => "admin", :action => "graph", :type => "progresses"), :style => "border: 2px solid gray;" %>
 </div>
 
-<div style="float: left;">
-<h3>Average time per task <br /><span style="font-size: 10px;">(for the first 50)</span></h3>
+<div>
+	<h3>Average time per task *this should be graphed* <br /><span style="font-size: 10px;">(for the first 50)</span></h3>
 
-<% @episodes.each do |e| %>
+	<% @episodes.each do |e| %>
 	<strong><%= e.name %></strong><br />
 	<% e.tasks.each do |t| %>
 	<% unless t.progresses.empty? %>
-			<%= t.position %>: <%= average_completion_time(t) %>
+	<%= t.position %>: <%= average_completion_time(t) %>
 	<% else %>
 	<%= t.position %>: None Shall Pass
 	<% end %>
 	<br />
 	<% end %>
 	<br />
-<% end %>
+	<% end %>
 </div>
-</div>
-<div class="statcontainer" style="overflow: auto; width: 100%;">
+
 <div>
-<h3>Where players are right now</h3>
+	<h3>Where players are right now</h3>
 
-<%= image_tag url_for(:controller => "admin", :action => "graph", :type => "players"), :style => "border: 2px solid gray;" %>
+	<%= image_tag url_for(:controller => "admin", :action => "graph", :type => "players"), :style => "border: 2px solid gray;" %>
 
-</div>
 </div>

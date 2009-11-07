@@ -1,0 +1,68 @@
+<section class="column first width2">
+	<fieldset class="width2">
+		<label class="width2 no-gutter"> 
+			Title
+			<%= f.text_field :name %> 
+		</label> 
+
+		<label class="width2 no-gutter"> 
+			Text
+			<%= f.text_area :desc, :style=>"height:350px;" %> 
+		</label> 
+
+		<label class="no-gutter">
+			Episode
+			<%= f.collection_select("episode_id" , @episodes, "id", "name") %>
+		</label>
+
+		<label>
+			Partial
+			<%= f.text_field 'partial' %>
+		</lable>
+	</fieldset>
+</section>
+
+<section class="column width2">
+	<fieldset class="width2">
+		<label class="no-gutter">
+			Files
+		</label>
+		<br style="clear:both;"/>
+		<div id="materials">
+			<%= render :partial => 'material', :collection => @task.materials %>
+		</div>
+		<div>
+			<%= add_link("material", "Add file") %>
+		</div>
+		<label class="no-gutter">
+			Answers
+		</label>
+		<br style="clear:both;"/>
+		<div id="answers">
+			<%= render :partial => 'answer', :collection => @task.answers %>
+		</div>
+		<div>
+			<%= add_link("answer", "Add answer") %>
+		</div>
+		<label class="no-gutter">
+			Clues
+		</label>
+		<br style="clear:both;"/>
+		<div id="clues">
+			<%= render :partial => 'clue', :collection => @task.clues %>
+		</div>
+		<div>
+			<%= add_link("clue", "Add clue") %>
+		</div>
+	</fieldset>
+</section>
+
+<div id="empty-answer" style="display:none;">
+	<%= render :partial => 'answer', :object => Answer.new %>
+</div>
+<div id="empty-material" style="display:none;">
+	<%= render :partial => 'material', :object => Material.new %>
+</div>
+<div id="empty-clue" style="display:none;">
+	<%= render :partial => 'clue', :object => Clue.new %>
+</div>

@@ -7,7 +7,7 @@
         <%= material_form.hidden_field :data, :value => "im not removed" %>
         <%= insert_html_link(material) %>
       <% end -%>
-      <%= link_to_function "remove", "$(this).up('.material').remove()" %>
+      <%= link_to_function "remove", "$(this).getParent('.material').destroy()" %>
     </p>
   <% end %>
 </div>

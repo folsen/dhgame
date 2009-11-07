@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  layout 'admin'
   before_filter :admin_required, :except => :api_wrong_answers
     
   # Give all the users that are not admin, all the episodes and the current_user

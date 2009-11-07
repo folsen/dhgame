@@ -1,0 +1,12 @@
+<%= error_messages_for "task" %> 
+<h3>Enter Task Details</h3>
+or <%= link_to 'destroy task', admin_task_path(@task), :confirm => 'Really want to?', :method => :delete, :style => "color: red;" %>
+<% form_for :task, :url => admin_task_path(@task), :html => { :method => 'put', :multipart => true, :class => "width4" } do |f| %> 
+
+	<%= render :partial => 'fields', :locals => { :f => f } %>
+	<br style="clear:both;" />
+	<label class="no-gutter">
+	<%= f.submit "Update Task", :class => "big-button" %> 
+	</label>
+
+<% end %>

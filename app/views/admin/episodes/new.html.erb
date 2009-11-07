@@ -1,0 +1,12 @@
+<%= error_messages_for "episode" %> 
+<h3>Enter Episode Details</h3>
+
+<% form_for :episode, :url => admin_episodes_path, :html => { :class => "width2" } do |f| %> 
+
+	<%= render :partial => 'fields', :locals => { :f => f } %>
+	<br style="clear:both;" />
+	<label class="no-gutter">
+	<%= f.submit "Save Episode", :class => "big-button" %> 
+	</label>
+
+<% end %>

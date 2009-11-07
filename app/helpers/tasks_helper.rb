@@ -1,23 +1,4 @@
 module TasksHelper
-
-  #add link for first argument, material or answer
-  #params type = material || answer or the shit breaks
-  def add_link(type, name)
-    link_to_function name do |page|
-      page.insert_html :bottom, type + "s", :partial => type, :object => type.capitalize.constantize.new
-    end
-  end
-  
-  #create the fields declarations for a certain object
-  def fields_for_object(object, &block)
-    prefix = object.new_record? ? 'new' : 'existing'
-    fields_for("task[#{prefix}_#{object.class.name.downcase}_attributes][]", object, &block)
-  end
-  
-  #create a link for inserting proper html into the description box
-  def insert_html_link(material)
-    link_to_function material.data_file_name, "$('task_desc').value += '#{material.example_usage}'"
-  end
   
   #return a link for the user to click to start the game
   #based on where the user is right now
@@ -41,16 +22,16 @@ module TasksHelper
       return "<br />The Game will start at #{first_episode.start_time.to_s(:short)}"
       
     elsif progress.empty?
-      return link_to("<br />Click to begin the adventure", task_path(Task.first_task))
+      return link_to("<br />Click to begin the adventure", '/#play')
       
     elsif !last_completed_task.last?
-      return link_to("<br />You're not finished yet! Click here to continue.", task_path(last_completed_task.next_task))
+      return link_to("<br />You're not finished yet! Click here to continue.", '/#play')
       
     elsif next_episode.nil?
       return "<br />You have finished The Game! Congratulations, you are one of few."
       
     elsif next_episode.start_time < Time.zone.now || current_user.headstart_has_begun?(next_episode)
-      return link_to("<br />Click to continue with the next episode", task_path(next_episode.tasks.first))
+      return link_to("<br />Click to continue with the next episode", '/#play')
       
     elsif next_episode.headstart != 0
       return "<br />The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}, the best " + 

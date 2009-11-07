@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>The Game - Admin</title>
+		<%= javascript_include_tag 'mootools-core', 'mootools-more', 'mootools_patch', 'raphael-min', 'admin' %>
+		<%= stylesheet_link_tag 'admin', 'baseline.compress' %>
+	</head>
+	<body>
+		<div id="top">
+			<div><a href="/admin">THE GAME</a></div>
+			<ul id="menu">
+				<li><a href="javascript:;">Sketch</a></li>
+				<li><a href="/admin/create">Create</a></li>
+				<li><a href="/admin/stats">Stats</a></li>
+				<li><a href="/admin/users">Users</a></li>
+				<li><a href="javascript:;">Visualize</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<%= yield %>
+		</div>
+	</body>
+</html>

@@ -1,18 +1,42 @@
-  <h1>Welcome, admin!</h1>
+<h1>Welcome, admin!</h1>
 <p>The most beautiful thing we can experience is the mysterious. It is the source of all true art and all science. He to whom this emotion is a stranger, who can no longer pause to wonder and stand rapt in awe, is as good as dead: his eyes are closed.</p>
 
-<div class="overview_box">
-	<% unless @episodes.empty? %>
-    <% if @episodes.first.start_time < Time.zone.now %>
-    Played Time: <h2><%= time_ago_in_words(@episodes.first.start_time) %></h2>
-    <% end %>
-    Players: <h2><%= @users.length %></h2>
-    Overall Leader: <h2><%= leader(@episodes) %></h2>
-<% end %>
+<div style="float:left">
+	<div class="overview_box">
+		<% unless @episodes.empty? %>
+		<% if @episodes.first.start_time < Time.zone.now %>
+		Played Time: <h2><%= time_ago_in_words(@episodes.first.start_time) %></h2>
+		<% end %>
+		Players: <h2><%= @users.length %></h2>
+		Overall Leader: <h2><%= leader(@episodes) %></h2>
+		<% end %>
+	</div>
+
+	<h2>Player progress:</h2>
+	<% @episodes.each do |e| %>
+	<%= e.name %> - <%= episode_winner(e) %>
+	<% end %>
+	<br style="clear: both" />
 </div>
 
-<h2>Player progress:</h2>
-<% @episodes.each do |e| %>
-	<p><%= e.name %> - <%= episode_winner(e) %>
-<% end %>
-<br style="clear: both" />
+<div style="float:right">
+	<h1>Winner of each task</h1>
+	<table style="width: 100%;">
+		<% @episodes.each do |e| %>
+		<tr><td><strong><%= e.name %></strong></td><td><strong>User:</strong></td><td><strong>Time passed:</strong></td><td><strong>Best time:</strong></td></tr>
+		<% e.tasks.each do |t| %>
+		<tr>
+			<td><%= link_to t.name, url_for(:controller => "taskusers", :action => "show", :id => t.id) %></td>
+			<% unless t.progresses.empty? %>
+			<td><%= link_to t.progresses.first.user.login, admin_user_path(t.progresses.first.user) %></td>
+			<td><%= t.progresses.first.created_at.to_s(:short) %></td>
+			<td><%= best_completion_time(t) %></td>
+			<% else %>
+			<td colspan="3">None Shall Pass!</td>
+			<% end %>
+		</tr>
+		<% end %>
+		<tr><td colspan="4">&nbsp;</td></tr>
+		<% end %>
+	</table>
+</div>
