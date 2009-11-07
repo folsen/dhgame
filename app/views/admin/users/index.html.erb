@@ -1,15 +1,11 @@
-<h1>Users</h1>
+<h2>Users</h2>
 
 <strong>Welcome, Admin - Use your godgiven right to administrate the feeble users...</strong>
-<span style="display:none;float:right;" id="admin_spin"><%= image_tag "spinner.gif" %></span>
-<p style="text-align:center;">
-<% form_remote_tag :url => {:action => :search_users}, :before => "Element.show('admin_spin');$('tableContent').innerHTML = '';", :complete =>"Element.hide('admin_spin')" do %>
-<label class="no-gutter">
-	<%= text_field :user, :query %><%= submit_tag "Search" %>
+<br />
+<label class="no-gutter width2">
+	<%= text_field_tag :query  %>
 </label>
-<% end %>
-<p>
-	<div style="display:inline;" id="tableContent">
-    <%= render :partial => 'users', :locals => { :users => @users, :paginate => true } %>
-	</div>
-</p>
+<br style="clear:both;"/>
+<div style="display:inline;" id="tableContent">
+	<%= render :partial => 'users', :locals => { :users => @users, :paginate => true } %>
+</div>

@@ -51,21 +51,22 @@ class Admin::UsersController < ApplicationController
     else
       flash[:notice] = "Ooops, something went wrong. Read teh logs...!"
     end
-    redirect_to :action => :users 
+    redirect_to :action => 'index'
   end
   
   #This is used when searching for users, it searces all attributes of the
   #users for the searched phrase and then replaces the content in "tableContent"
   #with the users found
 	def search_users
-	  query = "%" + params[:user][:query] + "%"
-	  if params[:user][:query] == ""
+	  query = "%" + params[:query] + "%"
+	  if params[:query] == ""
 	    users = User.paginate(:page => params[:page])
 	  else
 	    users = User.paginate(:page => params[:page], :conditions => ["login like ? OR firstname like ? OR lastname like ? OR team like ? OR nationality like ?", query, query, query, query, query])
     end
-    render :update do |page|
-	    page.replace_html "tableContent", {:partial => "users", :locals => {:users => users, :paginate => true }}
-    end
+    render :partial => "users", :locals => { :users => users, :paginate => true }
+    #render :update do |page|
+	  #  page.replace_html "tableContent", {:partial => "users", :locals => {:users => users, :paginate => true }}
+    #end
   end
 end
