@@ -5,8 +5,9 @@
 	<%= stylesheet_link_tag 'baseline.compress' %>
 	<%= stylesheet_link_tag 'application' %>
 	<%= javascript_include_tag 'mootools-core.js' %>
-	<%= javascript_include_tag 'application.js' %>
+
 	<%= javascript_include_tag 'requester.js' %>
+	<%= javascript_include_tag 'game.js' %>
 </head>
 <body>
 	<div id="superwrapper">
@@ -20,7 +21,11 @@
 				</ul>
 			</div>
 
-			<div id="content" class="width3 nopadding shadowy">
+			<div class="width3 nopadding shadowy">
+				<div id="content">
+					<%= yield %>
+				</div>
+				<br style="clear:both;" />
 			</div>
 
 			<div class="width3 clear align-right disclaimer">
@@ -28,15 +33,5 @@
 			</div>
 		</div>
 	</div>
-	<!-- google stats -->
-  <script type="text/javascript">
-  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-  <script type="text/javascript">
-  try {
-  var pageTracker = _gat._getTracker("UA-8742990-1");
-  pageTracker._trackPageview();
-  } catch(err) {}</script>
 </body>
 </html>

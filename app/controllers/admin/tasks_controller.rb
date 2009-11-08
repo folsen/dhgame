@@ -16,7 +16,7 @@ class Admin::TasksController < ApplicationController
       flash[:notice] = "Could not find that task!"
       render :partial => "public/home" and return
     else
-      render :partial => "tasks/show"
+      render :partial => "tasks/show", :layout => 'preview'
     end
   end
   
