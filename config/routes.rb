@@ -28,7 +28,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :only => [ :new, :edit, :create, :update ]
   
   map.namespace :admin do |admin|
-    admin.resources :users, :collection => { :search_users => :get }
+    admin.resources :users
     admin.resources :tasks, :collection => { :order => :put }
     admin.resources :episodes
     admin.resources :solutions

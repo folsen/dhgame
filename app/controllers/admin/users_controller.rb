@@ -5,7 +5,16 @@ class Admin::UsersController < ApplicationController
   
   #list all users - only available to admin
   def index
-    @users = User.paginate(:page => params[:page], :order => "team")
+	  if params[:query].nil? || params[:query] == ""
+	    @users = User.paginate(:page => params[:page], :order => "team")
+	  else
+	    query = "%" + params[:query].to_s + "%"
+	    @users = User.paginate(:page => params[:page], :conditions => ["login like ? OR firstname like ? OR lastname like ? OR team like ? OR nationality like ?", query, query, query, query, query])
+    end
+    respond_to do |wants|
+      wants.js { render :partial => "users", :locals => { :users => @users, :paginate => true } }
+      wants.html
+    end
   end
   
   #show a single user - only available to admin
@@ -53,20 +62,5 @@ class Admin::UsersController < ApplicationController
     end
     redirect_to :action => 'index'
   end
-  
-  #This is used when searching for users, it searces all attributes of the
-  #users for the searched phrase and then replaces the content in "tableContent"
-  #with the users found
-	def search_users
-	  query = "%" + params[:query] + "%"
-	  if params[:query] == ""
-	    users = User.paginate(:page => params[:page])
-	  else
-	    users = User.paginate(:page => params[:page], :conditions => ["login like ? OR firstname like ? OR lastname like ? OR team like ? OR nationality like ?", query, query, query, query, query])
-    end
-    render :partial => "users", :locals => { :users => users, :paginate => true }
-    #render :update do |page|
-	  #  page.replace_html "tableContent", {:partial => "users", :locals => {:users => users, :paginate => true }}
-    #end
-  end
+
 end
