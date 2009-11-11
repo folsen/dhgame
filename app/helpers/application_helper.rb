@@ -1,4 +1,12 @@
 module ApplicationHelper
+  #pluralizes a word based on count
+  def pluralize(count, noun)
+    case count
+    when 0: "are no #{noun.pluralize}"
+    when 1: "is one #{noun}"
+    else "are #{count} #{noun.pluralize}"
+    end
+  end
   
   #return a home link based on what kind of user you are
   def home_link

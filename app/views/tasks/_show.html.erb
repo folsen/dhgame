@@ -5,7 +5,7 @@
 		<%= @task.desc %>
 	</p>
 
-	<% unless @task.partial.empty? %>
+	<% if !@task.partial.nil? && !@task.partial.empty? %>
 	<% begin %>
 	<%= render :partial => partial_path(@task), :locals => {:task => @task, :user => current_user} %>
 	<% rescue %>
@@ -14,7 +14,7 @@
 	<% end %>
 </div>
 <div class="width1 column message-box">
-	<span class="task">Task 1/2</span>
+	<span class="task">Task <%= @task.position %>/<%= @task.episode.tasks.count %></span>
 	<div>
 		<%= flash[:notice] %>
 		<%= flash[:error] %>

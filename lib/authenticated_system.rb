@@ -69,7 +69,9 @@ module AuthenticatedSystem
       respond_to do |format|
         format.html do
           store_location
-          redirect_to root_path
+          render :partial => "public/home"
+          # TODO this should not really have been changed
+          #redirect_to root_path
         end
         # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
         # Add any other API formats here.  (Some browsers, notably IE6, send Accept: */* and trigger 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090611205048) do
+ActiveRecord::Schema.define(:version => 20090912114436) do
 
   create_table "answers", :force => true do |t|
     t.string  "answer"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20090611205048) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "teaser"
+    t.datetime "latest_attempt_at"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

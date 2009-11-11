@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     if @current_user.validate_task_request?(@task)
       render :partial => "tasks/show" and return
     else
-      render :controller => "public", :action => "home" and return
+      redirect_to :controller => "public", :action => "home" and return
     end
   end
   
@@ -88,20 +88,31 @@ class TasksController < ApplicationController
 
   #try to answer a task from a form
   def answer
+    if @current_user.latest_attempt_at.nil?
+      @time_left = 0
+    else
+      @time_left = (@current_user.latest_attempt_at+15-Time.now).round
+    end
     answer  = params[:answer][:text].downcase unless params[:answer][:text].nil?
-    task    = current_user.task
-    if task.check_answer(answer)
+    @task   = current_user.task
+    if @time_left > 0
+      render :partial => "tasks/show", :status => 418 and return
+    end
+    @current_user.update_attributes(:latest_attempt_at => Time.now)
+    # TODO rename to correct_answer?()
+    if @task.check_answer(answer)
       current_user.make_progress(answer) unless authorized? #current_user.task changes unless admin
-      if task.last?
+      if @task.last?
         render :partial => "tasks/index" and return
       end
+      #Update the task for rendering later
+      @task = @current_user.task
     else
-      WrongAnswer.create(:user_id => current_user.id, :login => current_user.login, :task_id => task.id, :answer => answer)
+      WrongAnswer.create(:user_id => current_user.id, :login => current_user.login, :task_id => @task.id, :answer => answer)
       logger.info("#{current_user.login} entered wrong password: #{params[:answer][:text]}")
       status = 404
     end
-    @task = @current_user.task
-    render :partial => "tasks/show", :status => status || 200
+    render :partial => "tasks/show", :status => status || 200 and return
   end
 
 end

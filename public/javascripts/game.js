@@ -19,14 +19,14 @@ var Game = new Class({
 	play: function(parameters) {
 		this._setupSpinner();
 		var usedMessages = $A([]);
-		var numberOfMessages = Math.floor(Math.random()*4)+3;
+		var numberOfMessages = Math.floor(Math.random()*3)+2;
 		for(i=0;i<numberOfMessages;i++){
 			var index = Math.floor(Math.random()*this.funny_messages.length);
 			while(usedMessages.contains(index)){
 				index = Math.floor(Math.random()*this.funny_messages.length);
 			}
 			usedMessages.push(index);
-			this._setWaitMsg.delay(2000*i, this, usedMessages.getLast());
+			this._setWaitMsg.delay(1300*i, this, usedMessages.getLast());
 		}
 		(
 			function() { 
@@ -40,31 +40,38 @@ var Game = new Class({
 							failmsg += '<h2 style="text-align:center;">';
 							failmsg += 'Nope.. that ain\'t right</h2>';
 							this.content.set('html', failmsg);
-							(function(){
-								this._resetStyle();
-								this.content.set('html', xhr.responseText)
-							}).delay(3000, this);
+						} else if(xhr.status == 418){
+							failmsg = '<img src="/images/time.png" alt="Can\'t answer yet">';
+							failmsg += '<h2 style="text-align:center;">';
+							failmsg += 'Sorry, but you have to wait 15 seconds between answers.';
+							failmsg += '</h2>';
+							this.content.set('html', failmsg);
 						} else {
 							failmsg = '<h2 style="text-align:center;">';
 							failmsg += 'Something went wrong and we could not process your request.<br />';
 							failmsg += 'Please contact an admin if the problem does not go away.</h2>';
 							this.content.set('html', failmsg);
-							(function(){window.location.reload()}).delay(3000);
+							(function(){window.location.reload()}).delay(2000);
+							return false;
 						}
+						(function(){
+							this._resetStyle();
+							this.content.set('html', xhr.responseText);
+						}).delay(3000, this);
 					}.bind(this),
 					onSuccess: function(responseText){
 						successmsg = '<img src="/images/success.png" alt="Success">';
 						successmsg += '<h2 style="text-align:center;">';
-						successmsg += 'Success!</h2>'
+						successmsg += 'Success!</h2>';
 						this.content.set('html', successmsg);
 						(function(){
 							this._resetStyle();
-							this.content.set('html', responseText)
+							this.content.set('html', responseText);
 						}).delay(3000, this);
 					}.bind(this)
 				}).send(parameters)
 			}
-		).delay(2100*(numberOfMessages-1), this);
+		).delay(1400*(numberOfMessages-1), this);
 	},
 	_resetStyle: function(){
 		this.content.setStyle('text-align', 'left');

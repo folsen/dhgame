@@ -15,8 +15,12 @@
 	</p>
 </div>
 <div class="width1 column message-box">
-	<%= flash[:notice] %>
-	<%= flash[:error] %>
+	<% if flash[:notice] || flash[:error] %>
+	<h3>
+		<%= flash[:notice] %>
+		<%= flash[:error] %>
+	</h3>
+	<% end %>
 	<% form_tag register_path do %>
 		<fieldset class="nopadding">
 			<legend>Start playing the game</legend>

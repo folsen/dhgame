@@ -54,7 +54,7 @@ class UsersController < ApplicationController
       # button. Uncomment if you understand the tradeoffs.
       # reset session
       self.current_user = @user # !! now logged in
-      render :controller => "public", :action => "index"
+      redirect_to :controller => 'public', :action => 'home'
       flash[:notice] = "Thanks for signing up!"
     else
       render :action => 'new'
