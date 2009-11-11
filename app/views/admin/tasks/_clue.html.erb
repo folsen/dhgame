@@ -1,0 +1,8 @@
+<div class="clue">
+  <% fields_for_object(clue) do |clue_form| %>
+    <p>
+     <%= clue_form.text_area :body, :style=>"height:40px;" %>
+     <%= link_to_function "remove", "$(this).getParent('.clue').destroy()" %>
+    </p>
+  <% end %>
+</div>

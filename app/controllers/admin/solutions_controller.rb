@@ -1,4 +1,9 @@
-class SolutionsController < ApplicationController
+class Admin::SolutionsController < ApplicationController
+  
+  layout 'admin'
+  
+  before_filter :admin_required
+  
   def index
     @solutions = Solution.find(:all, :order => "created_at DESC")
   end

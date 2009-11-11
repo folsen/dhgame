@@ -37,6 +37,19 @@ a {
 span.task {
 	font-size: 24px;
 }
+.flashes {
+	color:#414141;
+	font-size:17px;
+	padding-bottom:3px;
+	padding-top:6px;
+	background-color: #95a650;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+fieldset.flashes {
+	text-align: center;
+}
 
 /* Styles of the sprited menu */
 

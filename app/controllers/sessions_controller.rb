@@ -24,8 +24,8 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_killing_session!
-    flash[:notice] = "You have been logged out."
-    redirect_to :controller => 'public', :action => 'index'
+    flash.now[:notice] = "You have been logged out."
+    render :partial => '/public/home'
   end
 
 protected

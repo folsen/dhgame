@@ -2,7 +2,6 @@ class PublicController < ApplicationController
   
   #render empty layout first page
   def index
-    render :controller => "tasks", :action => "index" and return
   end
   
   # TODO refactor these three methods below into one

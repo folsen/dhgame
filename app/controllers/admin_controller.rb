@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  layout 'admin'
   before_filter :admin_required, :except => :api_wrong_answers
     
   # Give all the users that are not admin, all the episodes and the current_user
@@ -18,8 +19,18 @@ class AdminController < ApplicationController
     @users          = User.find_all_by_admin(false)
   end
   
-  def wrong_answers
-    @wrong_answers = WrongAnswer.paginate(:page => params[:page], :order => "created_at DESC")
+  def visualize
+    respond_to do |wants|
+      wants.js {
+        if params[:last_id].nil? || params[:last_id].empty?
+          render :nothing => true, :status => 302
+        else
+          @wrong_answers = WrongAnswer.find(:all, :conditions => ["id > ?", params[:last_id]], :order => "id desc")
+          render :partial => 'wrong_answer', :collection => @wrong_answers
+        end
+      }
+      wants.html { @wrong_answers = WrongAnswer.find(:all, :limit => 100, :order => "id desc") }
+    end
   end
   
   # This is used when ordering tasks and episodes on the creation page

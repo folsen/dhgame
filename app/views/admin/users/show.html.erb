@@ -35,7 +35,7 @@
 			<% if @user.teammates.empty? %>
 			He's workin' alone!
 			<% end %>
-			<% @user.teammates.each { |u| %> <%= link_to u.login, user_path(u) %><br /> <% } %>
+			<% @user.teammates.each { |u| %> <%= link_to u.login, admin_user_path(u) %><br /> <% } %>
 		</td>
 	</tr>
 </table>

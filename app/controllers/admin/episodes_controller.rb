@@ -1,4 +1,7 @@
-class EpisodesController < ApplicationController
+class Admin::EpisodesController < ApplicationController
+  
+  layout 'admin'
+  
   before_filter :admin_required
   
   #render the page to create a new episode
@@ -16,10 +19,10 @@ class EpisodesController < ApplicationController
     @episode = Episode.new(params[:episode])
     if @episode.save
       flash[:notice] = "Episode #{@episode.name} was created!"
-      redirect_to :controller => :admin, :action => :create
+      redirect_to "/admin/create"
     else
       flash[:error] = "Episode could not be created!"
-      redirect_to new_episode_path 
+      redirect_to new_admin_episode_path 
     end
   end
   
@@ -31,7 +34,7 @@ class EpisodesController < ApplicationController
     else
       flash[:error] = "Could not update!"
     end
-    redirect_to :controller => :admin, :action => :create 
+    redirect_to "/admin/create"
   end
 
   #tries to delete an episode
@@ -42,6 +45,6 @@ class EpisodesController < ApplicationController
     else
       flash[:notice] = "Episode could not be deleted. Check the log!"
     end  
-    redirect_to :controller => :admin, :action => :create 
+    redirect_to "/admin/create"
   end
 end

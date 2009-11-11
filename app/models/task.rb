@@ -6,13 +6,17 @@ class Task < ActiveRecord::Base
   
   belongs_to :episode
   
-  has_many :materials, :dependent => :destroy
-  has_many :answers, :dependent => :destroy
-  has_many :progresses, :dependent => :destroy
-  has_many :wrong_answers, :dependent => :destroy
+  has_many :materials,      :dependent => :destroy
+  has_many :answers,        :dependent => :destroy
+  has_many :progresses,     :dependent => :destroy
+  has_many :wrong_answers,  :dependent => :destroy
+  has_many :clues,          :dependent => :destroy
   
   after_update :save_answers
+  after_update :save_clues
 
+  #TODO replace all these with real nested model stuff
+  
   def new_material_attributes=(material_attributes)
     material_attributes.each do |attributes|
       materials.build(attributes)
@@ -29,7 +33,9 @@ class Task < ActiveRecord::Base
   
   def new_answer_attributes=(answer_attributes)
     answer_attributes.each do |attributes|
-      answers.build(attributes)
+      unless attributes['answer'].empty?
+        answers.build(attributes)
+      end
     end
   end
   
@@ -47,6 +53,31 @@ class Task < ActiveRecord::Base
   def save_answers
     answers.each do |answer|
       answer.save(false)
+    end
+  end
+  
+  def new_clue_attributes=(clue_attributes)
+    clue_attributes.each do |attributes|
+      unless attributes['body'].empty?
+        clues.build(attributes)
+      end
+    end
+  end
+  
+  def existing_clue_attributes=(clue_attributes)
+    clues.reject(&:new_record?).each do |clue|
+      attributes = clue_attributes[clue.id.to_s]
+      if attributes
+        clue.attributes = attributes
+      else
+        clues.delete(clue)
+      end
+    end
+  end
+  
+  def save_clues
+    clues.each do |clue|
+      clue.save(false)
     end
   end
   

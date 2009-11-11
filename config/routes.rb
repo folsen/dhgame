@@ -21,15 +21,20 @@ ActionController::Routing::Routes.draw do |map|
   map.help '/help', :controller => 'public', :action => 'help'
   map.profile '/profile', :controller => 'users', :action => 'edit'
   
-  map.play '/play', :controller => 'tasks', :action => "play"
+  map.resources :tasks, :member => { :answer => :post, :play => :get }
+  map.play '/play'    , :controller => 'tasks', :action => 'play'
   map.answer '/answer', :controller => 'tasks', :action => 'answer'
   
-  map.resources :users
-  map.resources :tasks, :member => { :answer => :post }
-  map.resources :episodes
-  map.resources :solutions
-  map.resources :material
-
+  map.resources :users, :only => [ :new, :edit, :create, :update ]
+  
+  map.namespace :admin do |admin|
+    admin.resources :users
+    admin.resources :tasks, :collection => { :order => :put }
+    admin.resources :episodes
+    admin.resources :solutions
+    admin.resources :material
+  end
+  
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'

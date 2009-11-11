@@ -22,13 +22,13 @@
 </div>
 <div class="width1 column message-box">
 	<h3>Status</h3>
-	<p>
-		Here you will be able to see your progress while the game is running. You will also be able to find the link to start the game here.
-	</p>
-	<div>
+	<div class="flashes">
 		<%= flash[:notice] %>
 		<%= flash[:error] %>
 	</div>
+	<p>
+		Here you will be able to see your progress while the game is running. You will also be able to find the link to start the game here.
+	</p>
 	<p class="align-right">
 		Want to take a break?<br />
 		<a href="/logout" style="font-size:18px;font-weight:bold;" class="load-remote">Log out</a>

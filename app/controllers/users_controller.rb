@@ -14,17 +14,6 @@ class UsersController < ApplicationController
   end
 
   before_filter :login_required, :except => [:new, :create, :edit]
-  before_filter :admin_required, :only => [:index, :show, :destroy, :search_users]
-  
-  #list all users - only available to admin
-  def index
-    @users = User.paginate(:page => params[:page], :order => "team")
-  end
-  
-  #show a single user - only available to admin
-  def show
-    @user = User.find(params[:id])
-  end
 
   # render new.rhtml
   def new
@@ -36,11 +25,8 @@ class UsersController < ApplicationController
     if !logged_in?
       @user = User.new
       render :action => "new", :layout => false and return
-    end
-    if !authorized? && params[:id] != current_user.id.to_s
-      @user = current_user
     else
-      @user = User.find(params[:id])
+      @user = current_user
     end
   end
  
@@ -74,33 +60,6 @@ class UsersController < ApplicationController
     else
       flash[:error] = "We couldn't perform your changes :("
       render :action => 'edit'
-    end
-  end
-  
-  #remove a user
-  def destroy
-    user = User.find_by_id(params[:id])
-    
-    if user.destroy
-      flash[:notice] = "User #{user.login} was killed and can never come back!"
-    else
-      flash[:notice] = "Ooops, something went wrong. Read teh logs...!"
-    end
-    redirect_to :action => :users 
-  end
-  
-  #This is used when searching for users, it searces all attributes of the
-  #users for the searched phrase and then replaces the content in "tableContent"
-  #with the users found
-	def search_users
-	  query = "%" + params[:user][:query] + "%"
-	  if params[:user][:query] == ""
-	    users = User.paginate(:page => params[:page])
-	  else
-	    users = User.paginate(:page => params[:page], :conditions => ["login like ? OR firstname like ? OR lastname like ? OR team like ? OR nationality like ?", query, query, query, query, query])
-    end
-    render :update do |page|
-	    page.replace_html "tableContent", {:partial => "users", :locals => {:users => users, :paginate => true }}
     end
   end
   

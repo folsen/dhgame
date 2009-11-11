@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
 
   #returns array of all the teammates a user has
   def teammates
-    teammates = User.find(:all, :conditions => ["team = ?", self.team]) unless self.team.empty? || self.team == "Single Player"
+    teammates = User.find(:all, :conditions => ["team = ?", self.team]) unless self.team.nil? || self.team.empty? || self.team == "Single Player"
     
     return teammates.nil? ? [] : teammates
   end

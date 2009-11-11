@@ -1,0 +1,11 @@
+<h2>Users</h2>
+
+<strong>Welcome, Admin - Use your godgiven right to administrate the feeble users...</strong>
+<br />
+<label class="no-gutter width2">
+	<%= text_field_tag :query  %>
+</label>
+<br style="clear:both;"/>
+<div style="display:inline;" id="tableContent">
+	<%= render :partial => 'users', :locals => { :users => @users, :paginate => true } %>
+</div>

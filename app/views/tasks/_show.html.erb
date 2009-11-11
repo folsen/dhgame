@@ -14,21 +14,18 @@
 	<% end %>
 </div>
 <div class="width1 column message-box">
-	<span class="task">Task <%= @task.position %>/<%= @task.episode.tasks.count %></span>
+	<span class="task">Task <%= @task.position %>/<%= Task.count(:conditions => { :episode_id => @task.episode_id }) %></span>
 	<div>
 		<%= flash[:notice] %>
 		<%= flash[:error] %>
 	</div>
 	
+	<% @task.clues.each_with_index do |clue, index| %>
 	<div class="clue">
-		Clue #1:<br />
-		This is a samle clue. Try to <a href="http://google.com">google</a> or just think harder.
+		Clue #<%= index+1 %>:<br />
+		<%= clue.body %>
 	</div>
-	<div class="clue">
-		Clue #2:<br />
-		This is also a samle clue. Have you checked all the
-		<a href="http://reddit.com">latest news</a> and relevent literature?
-	</div>
+	<% end %>
 	
 	<p class="align-right">
 		Want to take a break?<br />

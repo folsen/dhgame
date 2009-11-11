@@ -1,0 +1,27 @@
+<section class="column first width2">
+	<fieldset class="width2">
+		<label class="width2 no-gutter"> 
+			Name
+			<%= f.text_field :name %> 
+		</label> 
+
+		<label class="width2 no-gutter multilinex6"> 
+			Description
+			<%= f.text_area :desc %> 
+		</label> 
+
+		<label class="width2 no-gutter">
+			Start
+		</label>
+		<div class="select-row">
+		<%= datetime_select('episode', 'start_time') %>
+		</div>
+		<label class="width2 no-gutter">
+			Give headstart?
+		</label>
+		<div class="select-row">
+		<%= select_with_integer_options('episode', 'headstart',0,60, @episode.headstart)%> minutes
+		<%= select_with_integer_options('episode', 'headstart_count',0,100, @episode.headstart_count)%> people
+		</div>
+	</fieldset>
+</section>

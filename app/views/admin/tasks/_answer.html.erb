@@ -2,7 +2,7 @@
   <% fields_for_object(answer) do |answer_form| %>
     <p>
      <%= answer_form.text_field :answer %>
-     <%= link_to_function "remove", "$(this).up('.answer').remove()" %>
+     <%= link_to_function "remove", "$(this).getParent('.answer').destroy()" %>
     </p>
   <% end %>
 </div>
