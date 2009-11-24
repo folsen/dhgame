@@ -59,16 +59,16 @@ module ApplicationHelper
       return "<br />The Game will start at #{first_episode.start_time.to_s(:short)}"
       
     elsif progress.empty?
-      return link_to("<br />Click to begin the adventure", "/play", :class => "load-remote")
+      return link_to("<br />Click to begin the adventure", "/#play")
       
     elsif !last_completed_task.last?
-      return link_to("<br />You're not finished yet! Click here to continue.", "/play", :class => "load-remote")
+      return link_to("<br />You're not finished yet! Click here to continue.", "/#play")
       
     elsif next_episode.nil?
       return "<br />You have finished The Game! Congratulations, you are one of few."
       
     elsif next_episode.start_time < Time.zone.now || current_user.headstart_has_begun?(next_episode)
-      return link_to("<br />Click to continue with the next episode", "/play", :class => "load-remote")
+      return link_to("<br />Click to continue with the next episode", "/#play")
       
     elsif next_episode.headstart != 0
       return "<br />The next episode - #{next_episode.name} - starts at #{next_episode.start_time.to_s(:short)}, the best " + 

@@ -21,14 +21,14 @@ class TasksController < ApplicationController
     if @current_user.latest_attempt_at.nil?
       @time_left = 0
     else
-      @time_left = (@current_user.latest_attempt_at+15-Time.now).round
+      @time_left = (@current_user.latest_attempt_at+15-Time.zone.now).round
     end
     answer  = params[:answer][:text].downcase unless params[:answer][:text].nil?
     @task   = current_user.task
     if @time_left > 0
       render :partial => "tasks/show", :status => 418 and return
     end
-    @current_user.update_attributes(:latest_attempt_at => Time.now)
+    @current_user.update_attributes(:latest_attempt_at => Time.zone.now)
     # TODO rename to correct_answer?()
     if @task.check_answer(answer)
       current_user.make_progress(answer) unless authorized? #current_user.task changes unless admin

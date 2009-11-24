@@ -12,6 +12,8 @@ var Game = new Class({
 			"Googling your answer...",
 			"Trying to figure out what you're doing...",
 			"Unraveling the circular references...",
+			"Calculating residual electronic interaction...",
+			"Reticulating splines..."
 		];
 		
 		this.content = $(this.options.contentID);
@@ -71,7 +73,7 @@ var Game = new Class({
 					}.bind(this)
 				}).send(parameters)
 			}
-		).delay(1400*(numberOfMessages-1), this);
+		).delay(1400*(numberOfMessages), this);
 	},
 	_resetStyle: function(){
 		this.content.setStyle('text-align', 'left');

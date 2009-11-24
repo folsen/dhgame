@@ -2,7 +2,7 @@
 <h3>Enter Episode Details</h3>
 or <%= link_to 'destroy episode', admin_episode_path(@episode), :confirm => 'Really want to?', :method => :delete, :style => "color: red;" %>
 
-<% form_for :episode, :url => admin_episode_path(@episode), :html => { :class => "width2" } do |f| %> 
+<% form_for :episode, :url => admin_episode_path(@episode), :html => { :class => "width2", :method => :put } do |f| %> 
 
 	<%= render :partial => 'fields', :locals => { :f => f } %>
 	<br style="clear:both;" />
