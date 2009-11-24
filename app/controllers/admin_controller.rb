@@ -10,7 +10,7 @@ class AdminController < ApplicationController
   
   #Rendes the task and episode creation page
   def create
-    @episodes = Episode.find(:all)
+    @episodes = Episode.find(:all, :order => "position")
   end
   
   #Renders the stats page for the admin
